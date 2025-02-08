@@ -1,6 +1,6 @@
 import os
 import sys
-from ..tools.toolbox import *
+from Scripts.tools.toolbox import *
 from Scripts.manager.paths_transfer import *
 from PySide2.QtWidgets import QListWidget, QMainWindow, QWidget,QListWidgetItem,QPushButton, QHBoxLayout, QVBoxLayout, QLabel
 from PySide2.QtGui import QFontMetrics, QIcon

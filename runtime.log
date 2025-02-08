@@ -1,0 +1,379 @@
+Programm started at 2025-02-06 17:47:16
+2025-02-06 17:47:16 [WARNING]  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe: Icon extraction failed: No 256x256 icon found!
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index) -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(f"Error extracting icon from {exe_path}: {e}")
+2025-02-06 17:47:17 [WARNING]  Error extracting icon from D:\Softwares\7-Zip\7zFM.exe: Icon extraction failed: No 256x256 icon found!
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index) -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(f"Error extracting icon from {exe_path}: {e}")
+2025-02-06 17:47:17 [WARNING]  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe: Icon extraction failed: No 256x256 icon found!
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index) -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(f"Error extracting icon from {exe_path}: {e}")
+2025-02-06 17:47:17 [WARNING]  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\SETLANG.EXE: Icon extraction failed: No 256x256 icon found!
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index) -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(f"Error extracting icon from {exe_path}: {e}")
+2025-02-06 17:47:17 [WARNING]  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe: Icon extraction failed: No 256x256 icon found!
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index) -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(f"Error extracting icon from {exe_path}: {e}")
+2025-02-06 17:47:17 [WARNING]  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\msoev.exe: Icon extraction failed: No 256x256 icon found!
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index) -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(f"Error extracting icon from {exe_path}: {e}")
+2025-02-06 17:47:17 [WARNING]  Error extracting icon from D:\Softwares\MySQL Server 8.0\bin\mysql.exe: Icon extraction failed: No 256x256 icon found!
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index) -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(f"Error extracting icon from {exe_path}: {e}")
+2025-02-06 17:47:17 [WARNING]  Error extracting icon from D:\Softwares\MySQL Server 8.0\bin\mysql.exe: Icon extraction failed: No 256x256 icon found!
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index) -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(f"Error extracting icon from {exe_path}: {e}")
+2025-02-06 17:47:17 [WARNING]  Error extracting icon from C:\Program Files\Microsoft OneDrive\OneDrive.exe: Icon extraction failed: No 256x256 icon found!
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index) -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(f"Error extracting icon from {exe_path}: {e}")
+2025-02-06 17:47:17 [WARNING]  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe: Icon extraction failed: No 256x256 icon found!
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index) -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(f"Error extracting icon from {exe_path}: {e}")
+2025-02-06 17:47:17 [WARNING]  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe: Icon extraction failed: No 256x256 icon found!
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index) -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(f"Error extracting icon from {exe_path}: {e}")
+2025-02-06 17:47:17 [WARNING]  Error extracting icon from D:\Softwares\TecentMeeting\WeMeet\3.29.11.430\WeMeetUninstall.exe: Icon extraction failed: No 256x256 icon found!
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index) -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(f"Error extracting icon from {exe_path}: {e}")
+2025-02-06 17:47:17 [WARNING]  Error extracting icon from D:\Softwares\texlive\2024\bin\windows\dviout.exe: Icon extraction failed: No 256x256 icon found!
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index) -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(f"Error extracting icon from {exe_path}: {e}")
+2025-02-06 17:47:17 [WARNING]  Error extracting icon from C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\WPRUI.exe: Icon extraction failed: No 256x256 icon found!
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index) -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(f"Error extracting icon from {exe_path}: {e}")
+Programm terminated at 2025-02-06 17:51:22
+Conducted for 246.44 seconds
+========================================================================================================================
+Programm started at 2025-02-06 17:51:25
+Programm terminated at 2025-02-06 17:51:30
+Conducted for 4.60 seconds
+========================================================================================================================
+Programm started at 2025-02-06 18:05:40
+Programm started at 2025-02-06 18:06:01
+Programm terminated at 2025-02-06 18:06:06
+Conducted for 4.86 seconds
+========================================================================================================================
+Programm started at 2025-02-06 18:19:42
+Programm terminated at 2025-02-06 18:19:47
+Conducted for 4.64 seconds
+========================================================================================================================
+Programm started at 2025-02-06 18:20:31
+2025-02-06 18:20:32 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-06 18:20:33 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: D:\Softwares\7-Zip\7zFM.exe
+2025-02-06 18:20:33 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-06 18:20:33 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: C:\Program Files (x86)\Microsoft Office\root\Office16\SETLANG.EXE
+2025-02-06 18:20:33 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-06 18:20:33 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: C:\Program Files (x86)\Microsoft Office\root\Office16\msoev.exe
+2025-02-06 18:20:33 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: D:\Softwares\MySQL Server 8.0\bin\mysql.exe
+2025-02-06 18:20:33 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: D:\Softwares\MySQL Server 8.0\bin\mysql.exe
+2025-02-06 18:20:33 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: C:\Program Files\Microsoft OneDrive\OneDrive.exe
+2025-02-06 18:20:33 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-06 18:20:33 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-06 18:20:33 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: D:\Softwares\TecentMeeting\WeMeet\3.29.11.430\WeMeetUninstall.exe
+2025-02-06 18:20:33 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: D:\Softwares\texlive\2024\bin\windows\dviout.exe
+2025-02-06 18:20:33 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\WPRUI.exe
+Programm terminated at 2025-02-06 18:21:21
+Conducted for 49.99 seconds
+========================================================================================================================
+Programm started at 2025-02-06 18:21:23
+2025-02-06 18:21:24 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {e}")
+  Unknown error: Unkown
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index)
+2025-02-06 18:21:25 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {e}")
+  Unknown error: Unkown
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index)
+2025-02-06 18:21:25 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {e}")
+  Unknown error: Unkown
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index)
+2025-02-06 18:21:25 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {e}")
+  Unknown error: Unkown
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index)
+2025-02-06 18:21:25 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {e}")
+  Unknown error: Unkown
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index)
+2025-02-06 18:21:25 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {e}")
+  Unknown error: Unkown
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index)
+2025-02-06 18:21:25 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {e}")
+  Unknown error: Unkown
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index)
+2025-02-06 18:21:25 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {e}")
+  Unknown error: Unkown
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index)
+2025-02-06 18:21:25 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {e}")
+  Unknown error: Unkown
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index)
+2025-02-06 18:21:25 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {e}")
+  Unknown error: Unkown
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index)
+2025-02-06 18:21:25 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {e}")
+  Unknown error: Unkown
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index)
+2025-02-06 18:21:25 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {e}")
+  Unknown error: Unkown
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index)
+2025-02-06 18:21:25 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {e}")
+  Unknown error: Unkown
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index)
+2025-02-06 18:21:25 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {e}")
+  Unknown error: Unkown
+   at IconExtractor.Worker.Extract(String exePath, Nullable`1 index)
+Programm started at 2025-02-06 18:24:03
+2025-02-06 18:24:04 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-06 18:24:04 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: D:\Softwares\7-Zip\7zFM.exe
+2025-02-06 18:24:04 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-06 18:24:04 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: C:\Program Files (x86)\Microsoft Office\root\Office16\SETLANG.EXE
+2025-02-06 18:24:04 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-06 18:24:04 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: C:\Program Files (x86)\Microsoft Office\root\Office16\msoev.exe
+2025-02-06 18:24:04 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: D:\Softwares\MySQL Server 8.0\bin\mysql.exe
+2025-02-06 18:24:04 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: D:\Softwares\MySQL Server 8.0\bin\mysql.exe
+2025-02-06 18:24:05 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: C:\Program Files\Microsoft OneDrive\OneDrive.exe
+2025-02-06 18:24:05 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-06 18:24:05 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-06 18:24:05 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: D:\Softwares\TecentMeeting\WeMeet\3.29.11.430\WeMeetUninstall.exe
+2025-02-06 18:24:05 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: D:\Softwares\texlive\2024\bin\windows\dviout.exe
+2025-02-06 18:24:05 [WARNING]  UnkownError -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":175, GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+  Unknown error: C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\WPRUI.exe
+Programm started at 2025-02-07 19:01:15
+2025-02-07 19:01:16 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-07 19:01:16 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\7-Zip\7zFM.exe
+2025-02-07 19:01:17 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-07 19:01:17 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\SETLANG.EXE
+2025-02-07 19:01:17 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-07 19:01:17 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\msoev.exe
+2025-02-07 19:01:17 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\MySQL Server 8.0\bin\mysql.exe
+2025-02-07 19:01:17 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\MySQL Server 8.0\bin\mysql.exe
+2025-02-07 19:01:17 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Microsoft OneDrive\OneDrive.exe
+2025-02-07 19:01:17 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-07 19:01:17 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-07 19:01:17 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\TecentMeeting\WeMeet\3.29.11.430\WeMeetUninstall.exe
+2025-02-07 19:01:17 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\texlive\2024\bin\windows\dviout.exe
+2025-02-07 19:01:17 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\WPRUI.exe
+Programm terminated at 2025-02-07 19:01:35
+Conducted for 20.46 seconds
+========================================================================================================================
+Programm started at 2025-02-08 12:16:18
+Programm terminated at 2025-02-08 12:16:18
+Conducted for 0.44 seconds
+========================================================================================================================
+Programm started at 2025-02-08 12:17:51
+2025-02-08 12:17:53 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-08 12:17:53 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\7-Zip\7zFM.exe
+2025-02-08 12:17:53 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-08 12:17:53 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\SETLANG.EXE
+2025-02-08 12:17:53 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-08 12:17:53 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\msoev.exe
+2025-02-08 12:17:53 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\MySQL Server 8.0\bin\mysql.exe
+2025-02-08 12:17:53 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\MySQL Server 8.0\bin\mysql.exe
+2025-02-08 12:17:53 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Microsoft OneDrive\OneDrive.exe
+2025-02-08 12:17:53 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-08 12:17:53 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-08 12:17:53 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\TecentMeeting\WeMeet\3.29.11.430\WeMeetUninstall.exe
+2025-02-08 12:17:53 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\texlive\2024\bin\windows\dviout.exe
+2025-02-08 12:17:53 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\WPRUI.exe
+Programm terminated at 2025-02-08 12:18:03
+Conducted for 11.62 seconds
+========================================================================================================================
+Programm started at 2025-02-08 12:21:09
+2025-02-08 12:21:10 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-08 12:21:10 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\7-Zip\7zFM.exe
+2025-02-08 12:21:11 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-08 12:21:11 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\SETLANG.EXE
+2025-02-08 12:21:11 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-08 12:21:11 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\msoev.exe
+2025-02-08 12:21:11 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\MySQL Server 8.0\bin\mysql.exe
+2025-02-08 12:21:11 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\MySQL Server 8.0\bin\mysql.exe
+2025-02-08 12:21:11 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Microsoft OneDrive\OneDrive.exe
+2025-02-08 12:21:11 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-08 12:21:11 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-08 12:21:11 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\TecentMeeting\WeMeet\3.29.11.430\WeMeetUninstall.exe
+2025-02-08 12:21:11 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\texlive\2024\bin\windows\dviout.exe
+2025-02-08 12:21:11 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\WPRUI.exe
+Programm terminated at 2025-02-08 12:21:19
+Conducted for 9.71 seconds
+========================================================================================================================
+Programm started at 2025-02-08 12:21:24
+2025-02-08 12:21:25 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-08 12:21:26 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\7-Zip\7zFM.exe
+2025-02-08 12:21:26 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-08 12:21:26 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\SETLANG.EXE
+2025-02-08 12:21:26 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-08 12:21:26 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\msoev.exe
+2025-02-08 12:21:26 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\MySQL Server 8.0\bin\mysql.exe
+2025-02-08 12:21:26 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\MySQL Server 8.0\bin\mysql.exe
+2025-02-08 12:21:26 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Microsoft OneDrive\OneDrive.exe
+2025-02-08 12:21:26 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-08 12:21:26 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-08 12:21:26 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\TecentMeeting\WeMeet\3.29.11.430\WeMeetUninstall.exe
+2025-02-08 12:21:26 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\texlive\2024\bin\windows\dviout.exe
+2025-02-08 12:21:26 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\WPRUI.exe
+Programm terminated at 2025-02-08 12:22:58
+Conducted for 93.91 seconds
+========================================================================================================================
+Programm started at 2025-02-08 12:23:00
+2025-02-08 12:23:01 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-08 12:23:01 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\7-Zip\7zFM.exe
+2025-02-08 12:23:01 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-08 12:23:01 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\SETLANG.EXE
+2025-02-08 12:23:01 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-08 12:23:01 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\msoev.exe
+2025-02-08 12:23:01 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\MySQL Server 8.0\bin\mysql.exe
+2025-02-08 12:23:01 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\MySQL Server 8.0\bin\mysql.exe
+2025-02-08 12:23:01 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Microsoft OneDrive\OneDrive.exe
+2025-02-08 12:23:01 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-08 12:23:01 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-08 12:23:01 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\TecentMeeting\WeMeet\3.29.11.430\WeMeetUninstall.exe
+2025-02-08 12:23:01 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\texlive\2024\bin\windows\dviout.exe
+2025-02-08 12:23:02 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\WPRUI.exe
+Programm terminated at 2025-02-08 12:37:59
+Conducted for 898.75 seconds
+========================================================================================================================
+Programm started at 2025-02-08 12:37:59
+Programm terminated at 2025-02-08 12:38:04
+Conducted for 4.17 seconds
+========================================================================================================================
+Programm started at 2025-02-08 12:38:11
+Programm terminated at 2025-02-08 12:38:15
+Conducted for 4.15 seconds
+========================================================================================================================
+Programm started at 2025-02-08 12:38:31
+2025-02-08 12:38:32 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-08 12:38:32 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\7-Zip\7zFM.exe
+2025-02-08 12:38:32 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-08 12:38:32 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\SETLANG.EXE
+2025-02-08 12:38:32 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-08 12:38:32 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\msoev.exe
+2025-02-08 12:38:32 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\MySQL Server 8.0\bin\mysql.exe
+2025-02-08 12:38:32 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\MySQL Server 8.0\bin\mysql.exe
+2025-02-08 12:38:32 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Microsoft OneDrive\OneDrive.exe
+2025-02-08 12:38:32 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-08 12:38:32 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-08 12:38:32 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\TecentMeeting\WeMeet\3.29.11.430\WeMeetUninstall.exe
+2025-02-08 12:38:32 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\texlive\2024\bin\windows\dviout.exe
+2025-02-08 12:38:32 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\WPRUI.exe
+Programm started at 2025-02-08 17:14:34
+2025-02-08 17:14:35 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-08 17:14:36 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\7-Zip\7zFM.exe
+2025-02-08 17:14:36 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-08 17:14:36 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\SETLANG.EXE
+2025-02-08 17:14:36 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-08 17:14:36 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\msoev.exe
+2025-02-08 17:14:36 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\MySQL Server 8.0\bin\mysql.exe
+2025-02-08 17:14:36 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\MySQL Server 8.0\bin\mysql.exe
+2025-02-08 17:14:36 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Microsoft OneDrive\OneDrive.exe
+2025-02-08 17:14:36 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-08 17:14:36 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-08 17:14:36 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\TecentMeeting\WeMeet\3.29.11.430\WeMeetUninstall.exe
+2025-02-08 17:14:36 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from D:\Softwares\texlive\2024\bin\windows\dviout.exe
+2025-02-08 17:14:36 [WARNING]  No256Icon -> "d:\SuperLauncher\Scripts\manager\paths_transfer.py":164, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\WPRUI.exe

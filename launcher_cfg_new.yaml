@@ -1,3 +1,9 @@
+InitialConfig:
+  use_desktop_opengl: true
+  use_high_dpi_pixmap: true
+  surface_sample_count: 32
+  admin_mode: true
+
 Hotkeys:
   previous_mode: Ctrl+TAB
   next_mode: Ctrl+Q
@@ -857,7 +863,18 @@ Settings:
         background_colors: ["#F7F7F7", "#FFC300", "#FF5733"] # common, hover, pressed
         border: "1px solid #F7F7F7"
         border_radius: 10
-
+    app_name_filter:
+    ## the first filter is the option, the latter is the filter name
+    ## only if a single filter_name is matched, the filter will be applied
+    ## filter name can be a dirname or a filename
+    ## filter name must obey the regex format
+    ## filter option:
+    ### -p for precise match, -d to match dir name
+    ### -a to match lower and upper case, -f to match file name , -pf for default
+    ### -pf is the default option, which means match both dirname and filename
+    # note: carefully use "\", in case yaml file cannot parse the filter name
+     - ["-pd", "^Windows$", "^system32$", "^SysWOW64$"] 
+     - ["-af", "^uninst.*\\.exe$"] 
 Manager:
   LauncherPathManager:
     path:

@@ -1,7 +1,4 @@
 import os
-import sys
-
-from sympy import group
 from Scripts.tools.toolbox import *
 from Scripts.manager.paths_transfer import *
 from PySide2.QtWidgets import QListWidget, QMainWindow, QWidget,QListWidgetItem,QPushButton, QHBoxLayout, QVBoxLayout, QLabel
@@ -12,7 +9,7 @@ from Scripts.manager.config_ui import *
 from functools import partial
 import shutil
 import pandas
-from typing import List, Literal, Union, OrderedDict
+from typing import Literal, Union, OrderedDict
 
 class UIShortcutSetting(QWidget):
     def __init__(self, parent:QMainWindow, config:Config_Manager, shortcuts_manager:ShortcutsPathManager):
@@ -563,7 +560,7 @@ class SheetControl(QTabBar):
         self._init_menu()
         self.up = parent
         UIUpdater.set(font_f, self.setFont, 'font')
-        UIUpdater.set(style_main, self.customStyle, 'style')
+        self.style_ctl = self.customStyle(style_main)
         height_f = atuple('Settings', 'LauncherSetting', 'style', 'sheet_control', 'main_height')
         self.height_ctrl = UIUpdater.set(height_f, self.setFixedHeight, 'height')
         self.setMovable(True) 
@@ -593,6 +590,7 @@ class SheetControl(QTabBar):
         else:
             right_button.click()
     
+    @dynamic_load(type_f='style')
     def customStyle(self, style:dict, escape_sign:dict={}):
         bg_color = Udata(atuple('main_background'),'transparent')
         main_border = Udata(atuple('main_border'),'none')
@@ -834,7 +832,7 @@ class BaseLauncherSetting(QWidget):
         self.objs_l:dict[int, dict[str, QWidget]] = {}
         self.widget_l:list[QWidget] = []
         self.tab_index = 0
-
+    
     def _get_default_df(self, group:str):
         # ['Name', 'Chinese Name', 'Description', 'EXE Path', 'Group']
         data = OrderedDict([['Name', ['']], ['Chinese Name', ['']], ['EXE Path', ['']], ['Group', [group]], ['IconID',[None]]])
@@ -1395,6 +1393,9 @@ class SoftwareInitializer(QWidget):
         self.software_path_folder = UIUpdater.get(atuple("Settings", self.name, 'path', 'software_path_folder'), 'path')
         self.app_d = {}
 
+        self.re_filters_ptr = atuple("Settings", self.name, 'app_name_filter')
+        self.load_filters(self.re_filters_ptr)
+
         self.arrow_icon = atuple("Settings", self.name, 'path', 'arrow_icon')
         self.group_icon = atuple("Settings", self.name, 'path', 'group_icon')
         self.icon_icon = atuple("Settings", self.name, 'path', 'icon_icon')
@@ -1439,9 +1440,55 @@ class SoftwareInitializer(QWidget):
         self.title_font = atuple("Settings", self.name, 'font', 'title_font')
         self.menu_font = atuple("Settings", self.name, 'font', 'menu_font')
 
+    @dynamic_load()
+    def load_filters(self, filters:list[list[str]])->list[tuple[str,re.Pattern]]:
+        filters = filters if filters else []
+        re_filters:list[tuple[str,re.Pattern]] = []
+        for filter_i in filters:
+            if filter_i[0].startswith('-'):
+                option_i = filter_i[0][1:]
+                filter_i = filter_i[1:]
+            else:
+                option_i = 'pf'
+            if 'p' in option_i:
+                match_dir = True
+            else:
+                match_dir = False
+            if 'a' in option_i:
+                match_case = False
+            else:
+                match_case = True
+            pattern_str = '|'.join(filter_i)
+            if match_case:
+                pattern_f = re.compile(pattern_str)
+            else:
+                pattern_f = re.compile(pattern_str, re.IGNORECASE)
+            if match_dir:
+                re_filters.append(('dir', pattern_f))
+            else:
+                re_filters.append(('file', pattern_f))
+        self.re_filters = re_filters
+
+    def filter_path(self, path_f:str)->bool:
+        for filter_i in self.re_filters:
+            if filter_i[0] == 'dir':
+                dirnames = os.path.dirname(path_f).split(os.sep)
+                for dirname in dirnames:
+                    if bool(filter_i[1].match(dirname)):
+                        return False
+            else:
+                if bool(filter_i[1].match(os.path.basename(path_f))):
+                    return False
+        return True
+
+    def filter_path_l(self, path_l:list[str])->list[str]:
+        return [i for i in path_l if self.filter_path(i)]
+    
+
     def _initData(self)->None:
         path_l = glob(os.path.join(self.software_path_folder, '**'), recursive=True)
-        self.path_l = [link2path(i) for i in path_l if (not os.path.isdir(i)) and i not in self.exe_paths]
+        path_d = [link2path(i) for i in path_l if (not os.path.isdir(i)) and i not in self.exe_paths]
+        self.path_l = self.filter_path_l(path_d)
         self.app_d = {}
         for path_i in self.path_l:
             ext:str = os.path.splitext(path_i)[1]

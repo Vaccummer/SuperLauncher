@@ -1,23 +1,23 @@
-from genericpath import isfile
 from PySide2.QtWidgets import QMainWindow
 from PySide2.QtGui import QIcon
 from PySide2.QtCore import Signal, Slot, QObject
 from Scripts.tools.toolbox import *
-from Scripts.manager.config_ui import AIcon
+from Scripts.manager.config_ui import AIcon, APixmap
 import Scripts.global_var as GV
-import numpy as np
+import am_store as am
 from typing import *
 from Scripts.manager.config_ui import Config_Manager  
 from Scripts.manager.config_ui import UIUpdater
 import clr
-from PIL import Image
-from PIL.Image import Image as ImageType
+import stat
+import time
+import asyncssh
+import aiofiles
 import io
-import pickle
-from datetime import datetime
+import asyncio
 import hashlib
 clr.AddReference(os.path.abspath("./Scripts/manager/IconExtractor.dll"))
-from IconExtractor import Worker    # type: ignore
+from IconExtractor import Worker, No256Icon, FileNotExists, ErrorLoad, UnkownError    # type: ignore
 import shutil
 
 class IconSet:
@@ -150,17 +150,31 @@ class LauncherPathManager(QObject):
         check_ext = os.path.splitext(name_i)[1] in ['.png', '.svg', '.ico', 'jpg', 'jpeg', 'bmp']
         return check_file and check_ext
         
-    def extract_exe_icon(self, exe_path:str, index_f:int=0)->ImageType|None:
+    def extract_exe_icon(self, exe_path:str, index_f:int=0)->APixmap|None:
         exe_path = link2path(exe_path)
         if os.path.splitext(exe_path)[1].lower() not in ['.exe','dll']:
             return None
         try:
-            image_data = Worker.Extract(exe_path, index_f)
-            image_f = Image.open(io.BytesIO(image_data))
-            return image_f
-        except Exception as e:
-            #warnings.warn(f"Error extracting icon from {exe_path}: {e}")
+            image_data_ori = Worker.Extract(exe_path, index_f)
+            image_data = io.BytesIO(image_data_ori).getvalue()
+            pixmap = APixmap()
+            pixmap.loadFromData(QByteArray(image_data))
+            return pixmap
+        except No256Icon as e:
+            GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
             return None
+        except FileNotExists as e:
+            GV.logger.warning(title='FileNotExists', message=f"File not exists: {exe_path}")
+            return None
+        except ErrorLoad as e:
+            GV.logger.warning(title='ErrorLoad', message=f"Error loading icon from {exe_path}")
+            return None
+        except UnkownError as e:
+            GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
+            return None
+
+
+
 
     def app_icon_extract(self, exe_path:str, group:str, name:str, index_f:int=0)->str|None:
         if self.extractor_record.get((exe_path, group, name), False):
@@ -230,7 +244,7 @@ class LauncherPathManager(QObject):
         path_i = host_i + 'path_for_folder_icon_or_exe_file_icon' + path_i
         
         return hash(str(hashlib.md5(path_i.encode()).hexdigest()[:16]))
-    
+
     def hash_app(self, name:str, group:str)->str:
         name_i = name + 'name_for_app_icon' + group
         return hash(str(hashlib.md5(name_i.encode()).hexdigest()[:16]))
@@ -320,7 +334,7 @@ class ShortcutsPathManager(QObject):
         super().__init__()
         self.config = config
         self.col_name = ["Display_Name", "Icon_Path", "EXE_Path"]
-        self.data_path = AMPATH(self.config.get("setting_xlsx", mode="Launcher", widget="shortcut_obj", obj="path"))
+        self.data_path = am.AMPATH(self.config.get("setting_xlsx", mode="Launcher", widget="shortcut_obj", obj="path"))
         self._read_xlsx()
         self.check()
         self._load()
@@ -334,7 +348,7 @@ class ShortcutsPathManager(QObject):
         self.df['Icon_Path'] = self.df['Icon_Path'].apply(lambda x: x if is_path(x, exist_check=True) else "")
     
     def _load(self):
-        self.icon_dir = AMPATH(self.config.get("button_icons", mode="Launcher", widget="shortcut_obj", obj="path"))
+        self.icon_dir = am.AMPATH(self.config.get("button_icons", mode="Launcher", widget="shortcut_obj", obj="path"))
         self.icon_dict = {}
         for path_i in self.icon_dir.iterdir():
             if path_i.is_dir():
@@ -1006,7 +1020,6 @@ class FileMonitor(QThread):
         except Exception:
             pass
 
-
 class PathTracker:
     def __init__(self):
         pass
@@ -1033,7 +1046,8 @@ class PathTracker:
             pass
     
     @Slot(str)
-    def target_receiver(self, driver:str):
+    def target_receiver(self, driver:str, para_f:dict=None):
+        print('haha', sep='hah')
         pass
 
     def close_tracker(self):

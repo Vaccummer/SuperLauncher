@@ -1,0 +1,3 @@
+2025-02-08 12:19:34 am@D:\SuperLauncher$ D:\Softwares\RMM\bin\rm.exe .\dist\
+PermissionError: ".\dist"->"$Trash\dist", [WinError 32] The process cannot access the file because it is being used by another process: 'D:\\SuperLauncher\\dist'
+2025-02-08 12:20:13 am@D:\SuperLauncher$ D:\Softwares\RMM\bin\rm.exe dist

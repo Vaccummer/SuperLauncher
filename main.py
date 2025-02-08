@@ -1,7 +1,8 @@
 from PySide2.QtWidgets import QApplication
 from PySide2.QtCore import Slot, Signal,QCoreApplication # type: ignore
 from PySide2.QtGui import QSurfaceFormat
-from sympy import Q
+from am_store import init
+import time
 from Scripts.tools.toolbox import *
 from Scripts.ui.launcherUI import *
 from Scripts.ui.settingUI import *
@@ -269,6 +270,7 @@ class UILauncher(BaseLauncher):
     @abstractmethod
     def _change_mode(self, index_n):
         pass
+    
     @abstractmethod
     def _change_host(self, index_n):
         pass
@@ -280,9 +282,10 @@ class ControlLauncher(UILauncher):
         self._obj_connect()
     
     def _change_mode(self, index_n:int):
-        
         GV.MODE = self.switch_button.modes[index_n]
-        self.stack_ass.setCurrentIndex(index_n)
+        self.stack_ass.setIndex(index_n)
+        # self.stack_ass.
+
     
     def _change_host(self, index_n:int):
         
@@ -308,6 +311,7 @@ class ControlLauncher(UILauncher):
         self.paths_m.maintainer.stop()
 
     def _obj_connect(self):
+        self.stack_ass.in_animation_signal.connect(lambda x: self.switch_button.setEnableWheelEvent(not x))
         # inputbox text change detect
         self.input_box.textChanged.connect(self._input_change)
         # inputbox key press detect
@@ -410,21 +414,33 @@ class ControlLauncher(UILauncher):
         self._refresh_setting.connect(self.shortcut_setting.refresh_signal)
         self.shortcut_button.refresh()
 
-if __name__ == "__main__":
-    # if not is_admin():
-    #     # Re-run the program with admin privileges
-    #     print("Requesting admin privileges...")
-    #     ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
-    #     sys.exit()
-    # QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
-    QCoreApplication.setAttribute(Qt.AA_UseDesktopOpenGL)
-    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
+def check_admin(config_f:adict):
+    if (not is_admin()) and config_f[atuple('InitialConfig', 'admin_mode')]:
+        # Re-run the program with admin privileges
+        ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+        sys.exit()
+
+def app_set(config_f:adict):
+    if config_f.get(atuple('InitialConfig', 'use_desktop_opengl'), False):
+        QCoreApplication.setAttribute(Qt.AA_UseDesktopOpenGL)
+    if config_f.get(atuple('InitialConfig', 'use_high_dpi_pixmap'), False):
+        QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
     format = QSurfaceFormat()
-    format.setSamples(8)  
+    format.setSamples(config_f.get(atuple('InitialConfig', 'surface_sample_count'), 8))
     QSurfaceFormat.setDefaultFormat(format)
-    app = QApplication([])
+    QApplication.setApplicationName("Super Launcher")
+    QApplication.setApplicationVersion("1.0.0")
+    QApplication.setOrganizationName("Vaccummer")   
+    QApplication.setOrganizationDomain("https://github.com/Vaccummer")
+    
+
+if __name__ == "__main__":
+    init()
     path_t = os.path.abspath('./launcher_cfg_new.yaml')
     Config_Manager.set_config_path(path_t)
+    check_admin(Config_Manager.config)
+    app_set(Config_Manager.config)
+    app = QApplication([])
     config = Config_Manager(wkdir=os.getcwd())
     UIUpdater._primary_init(config)
     uiupdater = UIUpdater()

@@ -1,4 +1,4 @@
-from ..tools.toolbox import *
+from Scripts.tools.toolbox import *
 from Scripts.manager.paths_transfer import *
 from PySide2.QtWidgets import  QMainWindow, QWidget
 from PySide2.QtGui import QFontMetrics

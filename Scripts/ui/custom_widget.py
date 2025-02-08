@@ -1,15 +1,15 @@
-from imp import reload
 from PySide2.QtCore import Signal, Slot
 from PySide2.QtGui import QIcon, QFont, QPixmap, QWheelEvent
 from PySide2.QtWidgets import QPushButton, QWidget, QListWidget, QLineEdit, QMainWindow, QVBoxLayout
 import random
 from functools import partial
 from Scripts.manager.config_ui import *
-from typing import Literal, Optional, Tuple, Union, List
+from typing import Literal, Optional, Tuple, Union
 from abc import abstractmethod
 from Scripts.manager.paths_transfer import *
 
 class YohoPushButton(QPushButton):
+    right_button_clicked = Signal(dict)
     def __init__(self, style_config:atuple,
                  icon_i:Union[str, AIcon, Tuple]='',
                  text_f:str='',
@@ -27,6 +27,7 @@ class YohoPushButton(QPushButton):
         else:
             super().__init__(parent)
         self.setText(text_f)
+        self.right_button_clicked_data:dict = {}
         self.an_type = "resize"
         self.force_antype = None
         self.an_time = an_time
@@ -34,9 +35,14 @@ class YohoPushButton(QPushButton):
         self.extra_style_dict = {}
         UIUpdater.set(font_f, self.setFont, type_f='font')
         UIUpdater.set(icon_proportion, self._loadIconProportion)
-        self.style_ctl = UIUpdater.set(style_config, self.customStyle, 'style')
+        if style_config == atuple('MainWindow', 'switch_button', 'style'):
+            self.style_ctl = self.customStyle(style_config)
+        else:
+            self.style_ctl = self.customStyle(style_config)
         # 设置按钮图标
         if icon_i is not None:
+
+
             UIUpdater.set(icon_i, self.setIcon, type_f='icon')
         if size_f is not None:
             UIUpdater.set(size_f, self.setFixedSize, type_f='size')
@@ -44,6 +50,7 @@ class YohoPushButton(QPushButton):
             UIUpdater.set(height_f, self.setFixedHeight, type_f='height')
         if width_f is not None:
             UIUpdater.set(width_f, self.setFixedWidth, type_f='width')
+
         self.change_size = change_size
         self.change_period = change_period
         self.clicked.connect(self.start_animation)
@@ -107,6 +114,7 @@ class YohoPushButton(QPushButton):
         self.setFixedSize(size_f)
         self.setIconSize(QSize(int(size_f.width()*res_factor), int(size_f.height()*res_factor)))
 
+    @dynamic_load(type_f='style')
     def customStyle(self, format_dict:dict, escape_sign:dict={}):
         self.an_type = format_dict.get('animation_type', None)
         self.an_time = format_dict.get('animation_time', self.default_an_time)
@@ -138,6 +146,11 @@ class YohoPushButton(QPushButton):
             self.style_dict = {}
         self.style_dict = process_style_dict(self.style_dict, temp_dict, escape_sign, format_dict)
         self.setStyleSheet(style_make(self.style_dict|self.extra_style_dict))
+
+    def mousePressEvent(self, event: QMouseEvent):
+        if event.button() == Qt.RightButton:
+            self.right_button_clicked.emit(self.right_button_clicked_data)
+        super().mousePressEvent(event)
 
 class ColorfulButton(QPushButton):
     def __init__(self, text_f:str, colors:list[str], font:QFont, height:int=None, width:int=None):
@@ -179,9 +192,10 @@ class AutoLabel(QLabel):
         self.extra_style_dict = {}
         self.style_config = style_config
         self.cl_pointer = style_config | atuple(['background_colors'])
-        self.style_ctl = UIUpdater.set(style_config, self.customStyle, 'style')
+        self.style_ctl = self.customStyle(style_config)
         self.setAlignment(Qt.AlignCenter)
-    
+
+    @dynamic_load(type_f='style')
     def customStyle(self, format_dict:dict, escape_sign:dict={}):
         bg_color = Udata(atuple('background_colors'), ['transparent', 'transparent', 'transparent'])
         border_radius = Udata(atuple('border_radius'), 10)
@@ -264,9 +278,10 @@ class AutoEdit(QLineEdit):
         UIUpdater.set(height, self.setFixedHeight)
         if width is not None:
             UIUpdater.set(width, self.setFixedWidth)
-        self.style_ctl = UIUpdater.set(style_d, self.customStyle, 'style')
+        self.style_ctl = self.customStyle(style_d)
         self.cursor_paint_time = 0
-
+        
+    @dynamic_load(type_f='style')   
     def customStyle(self, style_dict:dict, escape_sign:dict={}):
         bg_color = Udata(atuple('background'), 'white')
         font_color = Udata(atuple('font_color'), 'black')
@@ -403,7 +418,6 @@ class ModeButton(YohoPushButton):
         self.textChanged.connect(self._AutoResize)
         self.setText(text_f)
         UIUpdater.set(height_f, self.setFixedHeight, type_f='height')
-        self.style_ctl:UIData = UIUpdater.set(style_d, self.customStyle, 'style')
         self.style_ctl.force_escape_sign = {atuple('background_colors'):True}
 
     def setText(self, text_f:str):
@@ -445,10 +459,11 @@ class ModeListWidget(QListWidget):
         self.deault_extra_width = 80
         UIUpdater.set(font_f, self.setFont, type_f='font')
         self.setWindowFlags(Qt.FramelessWindowHint)  
-        UIUpdater.set(style_d, self.customStyle, 'style')
+        self.style_ctl = self.customStyle(style_d)
         self.scrollbar_style()
         UIUpdater.set(max_height, self.setMaximumHeight, type_f='height')
 
+    @dynamic_load(type_f='style')
     def customStyle(self, style_d:dict, escape_sign:dict={}):
         '''
         self.color_state: decide color group to use
@@ -576,6 +591,7 @@ class CustomComboBox(QWidget):
         self.up = parent
         self.modes = modes
         self.default_an_time = 300
+        self.enable_wheel_event = True
         self.style_d = style_d
         self.box_height = box_height
         self.box_font = box_font
@@ -671,6 +687,8 @@ class CustomComboBox(QWidget):
             return self.modes[index_f]
     
     def wheel_signal_receiver(self, sign:int):
+        if not self.enable_wheel_event:
+            return
         index_n = self.getIndex()
         index_n += sign
         self.setIndex(index_n)
@@ -682,6 +700,8 @@ class CustomComboBox(QWidget):
         text_width = font_metrics.width(text_f) + 70
         self.setFixedWidth(text_width)
 
+    def setEnableWheelEvent(self, enable:bool):
+        self.enable_wheel_event = enable
 class PolygonWidget(QWidget):
     def __init__(self):
         super().__init__()
@@ -809,12 +829,14 @@ class ProgressBar(QProgressBar):
         self.setRange(0, max_value)  
         self.setValue(0)  
         UIUpdater.set(height, self.setFixedHeight, 'height')
-        UIUpdater.set(style_d, self.customStyle, 'style')
+        self.style_ctl = self.customStyle(style_d)
         self.setTextVisible(False)
         
+
     def update(self, value_add:int):
         self.setValue(self.value()+value_add)
-
+    
+    @dynamic_load(type_f='style')
     def customStyle(self, style_d:dict, escape_sign:dict={}):
         bg_color = Udata(atuple('background'), 'rgba(255, 255, 255, 100)')
         bar_color = Udata(atuple('bar_color'), 'rgba(255, 255, 255, 100)')
@@ -843,9 +865,11 @@ class ProgressBar(QProgressBar):
         self.setStyleSheet(style_make(self.style_dict|self.extra_style_dict))
 
 class SmartStackWidget(QStackedWidget):
+    in_animation_signal = Signal(bool)
     def __init__(self, parent:QWidget,an_time=200):
         super().__init__(parent)
         self.an_time = an_time
+
         self._load()
         self.in_animation = False
     
@@ -874,6 +898,7 @@ class SmartStackWidget(QStackedWidget):
     def animate_transition(self, index: int, sign: int):
         if self.in_animation:
             return
+        self.in_animation_signal.emit(True)
         self.in_animation = True
         current_widget = self.widget(self.currentIndex())
         next_widget = self.widget(index)
@@ -895,9 +920,9 @@ class SmartStackWidget(QStackedWidget):
         next_animation = QPropertyAnimation(next_widget, b"geometry")
         next_animation.setDuration(2*self.an_time//3)
         if sign > 0:
-            next_animation.setStartValue(QRect(0, self.height(), self.width()-5, self.height()-5))
+            next_animation.setStartValue(QRect(self.width(), 0, self.width()-5, self.height()-5))
         else:
-            next_animation.setStartValue(QRect(0, -self.height(), self.width()-5, self.height()-5))
+            next_animation.setStartValue(QRect(-self.width(), 0, self.width()-5, self.height()-5))
         next_animation.setEndValue(QRect(0, 0, self.width(), self.height()))
         next_animation.setEasingCurve(QEasingCurve.OutCubic)
 
@@ -920,10 +945,11 @@ class SmartStackWidget(QStackedWidget):
         self.opacity_effect.setOpacity(1)
         self.setCurrentWidget(next_widget)
         if sign > 0:
-            next_widget.setGeometry(QRect(0, self.height(), self.width()-5, self.height()-5))
+            next_widget.setGeometry(QRect(self.width(), 0, self.width()-5, self.height()-5))
         else:
-            next_widget.setGeometry(QRect(0, -self.height(), self.width()-5, self.height()-5))
+            next_widget.setGeometry(QRect(-self.width(), 0, self.width()-5, self.height()-5))
         next_widget.show()
+
         self.l_animation = later_animation
 
         self.l_animation.start()
@@ -931,6 +957,7 @@ class SmartStackWidget(QStackedWidget):
 
     def animation_end(self):
         self.in_animation = False
+        self.in_animation_signal.emit(False)
 
     # def wheelEvent(self, event):
     #     if event.angleDelta().y() > 0:
@@ -955,8 +982,9 @@ class TipButton(QPushButton):
         UIUpdater.set(width_f, self.setFixedWidth, 'width')
         UIUpdater.set(height_f, self.setFixedHeight, 'height')
         self.radius_set = radius_set
-        UIUpdater.set(style_d, self.customStyle, 'style')
+        self.style_ctl = self.customStyle(style_d)
 
+    @dynamic_load(type_f='style')
     def customStyle(self, style_d:dict, escape_sign:dict={}):
         bg_colors = Udata(atuple('background_colors'), ['#F7F7F7', '#FFC300', '#FF5733'])
         font_colors = Udata(atuple('font_colors'), ['#000000', '#000000', '#000000'])
@@ -996,9 +1024,10 @@ class AutoMenu(QWidget):
         self.value_l = values
         self.item_style_d = item_style_d
         self.button_list = []
-        self.main_style_ctl = UIUpdater.set(main_style_d, self.customStyle, 'style')
+        self.main_style_ctl = self.customStyle(main_style_d)
         self.extra_width = main_style_d | atuple('extra_width')
         self.extra_height = main_style_d | atuple('extra_height')
+
         self.font_f = font
         self.setWindowFlags(self.windowFlags()|Qt.FramelessWindowHint | Qt.Tool)
         self.setAttribute(Qt.WA_ShowWithoutActivating)
@@ -1023,6 +1052,7 @@ class AutoMenu(QWidget):
                     QApplication.instance().removeEventFilter(self)
         return super().eventFilter(obj, event)
     
+    @dynamic_load(type_f='style')
     def customStyle(self, style_d:dict, escape_sign:dict={}):
         background = Udata(atuple('background'), 'transparent')
         border = Udata(atuple('border'), 'none')
@@ -1156,12 +1186,14 @@ class ScrollArea(QScrollArea):
         self.frame_layout.setContentsMargins(0, 0, 0, 0)
         self.frame.setLayout(self.frame_layout)
         self.frame.setObjectName("OuterFrame")
-        UIUpdater.set(self.frame_d, self.customFrameStyle, 'style')
-    
+        self.frame_ctl = self.customFrameStyle(self.frame_d)
+        self.scroll_area_ctl = self.customScrollAreaStyle(self.scroll_area_d)
+
         self.setWidget(self.frame)  # Set the frame as the widget of the scroll area
         self.setWidgetResizable(True)
-        UIUpdater.set(self.scroll_area_d, self.customScrollAreaStyle, 'style')
 
+    
+    @dynamic_load(type_f='style')
     def customFrameStyle(self, frame_style:dict, escape_sign:dict={}):
         bg_color = Udata(atuple('background'), 'transparent')
         border_radius = Udata(atuple('border-radius'), 10)
@@ -1183,8 +1215,10 @@ class ScrollArea(QScrollArea):
         self.frame_style_dict = process_style_dict(self.frame_style_dict, temp_dict, escape_sign, frame_style)
         self.frame.setStyleSheet(style_make(self.frame_style_dict|self.extra_frame_style_dict))
 
+    @dynamic_load(type_f='style')
     def customScrollAreaStyle(self, scroll_style:dict, escape_sign:dict={}):
         orbit_color = Udata(atuple('orbit_color'), 'rgba(255, 255, 255, 40)')
+
 
         handle_colors = Udata(atuple('background_colors'), ["#F7F7F7", "#FFC300", "#FF5733"])
         border_radius = Udata(atuple('border_radius'), 10)
@@ -1247,5 +1281,3 @@ class ScrollArea(QScrollArea):
 
         self.scroll_area_style_dict = process_style_dict(self.scroll_area_style_dict, temp_dict, escape_sign, scroll_style)
         self.setStyleSheet(style_make(self.scroll_area_style_dict|self.extra_scroll_area_style_dict))
-
-

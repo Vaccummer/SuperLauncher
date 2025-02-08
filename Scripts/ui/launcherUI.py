@@ -245,9 +245,10 @@ class BasicAS(QListWidget):
 
         UIUpdater.set(self.font_a, self.setFont, 'font')
         style_d = atuple('Launcher', self.name, 'style', 'main')
-        UIUpdater.set(style_d, self.customStyle, 'style')
+        self.style_ctl = self.customStyle(style_d)
         spacing_f = atuple('Launcher', self.name, 'style', 'main', 'item', 'spacing')
         UIUpdater.set(spacing_f, self.setSpacing, 'spacing')
+
 
     def _get_prompt(self)->str:
         return self.input_text
@@ -266,6 +267,7 @@ class UIAS(BasicAS):
         self._inititems()
         self.setFocusPolicy(Qt.NoFocus)
 
+    @dynamic_load(type_f='style')
     def customStyle(self, style_d:dict, escape_sign:dict={}):
         # dynamic style set
         main_bg = Udata(atuple('widget', 'background'), 'transparent')
@@ -448,6 +450,7 @@ class AssociateList(UIAS):
         self._initMenu()
         self.customContextMenuRequested.connect(self.right_click)
         self.itemClicked.connect(self.left_click)
+    
     @Slot(str)
     def update_associated_words(self, text:str):
         self.input_text = text
@@ -1032,12 +1035,14 @@ class ProgressInfo(QWidget):
         UIUpdater.set(alist(self.label_height, self.label_spacing, self.extra_height), self._SetHeight)
         UIUpdater.set(self.extra_width, self._dynamicLoad, 'width')
         self.setMinimumWidth(self.extra_width+UIUpdater.config[self.title_label_width]+80)
-        UIUpdater.set(self.main_style_d, self.customStyle, 'style')
+        self.style_ctl = self.customStyle(self.main_style_d)
 
+    @dynamic_load(type_f='style')
     def customStyle(self, style_d:dict, escape_sign:dict={}):
         bg_color = Udata(atuple('background'), '#F7F7F7')
         border = Udata(atuple('border'), 'none')
         border_radius = Udata(atuple('border-radius'), 10)
+
         if not hasattr(self, 'style_dict'):
             self.style_dict = {}
         
@@ -1207,8 +1212,8 @@ class ProgressWidget(QWidget):
             return
         cursor_pos = QCursor.pos()
         #x_p, y_p = self.up.geometry().x(), self.up.geometry().y()
-        x = cursor_pos.x()-x_p+10
-        y = cursor_pos.y()-y_p+10
+        x = cursor_pos.x()-self.up.geometry().x()+10
+        y = cursor_pos.y()-self.up.geometry().y()+10
 
         w, h = self.info_widget.size().width(), self.info_widget.size().height()
         self.info_widget.setGeometry(x,y,w,h)
@@ -1415,7 +1420,7 @@ class AsBACKup:
         tasks = []  
         for src_i, dst_i, size_i in task_i:
             chunck_size = self.cal_chunck_size(size_i, hosttype='local')
-            tasks.append(copy_file_chunk(src_i, dst_i, chunck_size, bar))
+            # tasks.append(copy_file_chunk(src_i, dst_i, chunck_size, bar))
         await asyncio.gather(*tasks) 
     
     def progress_handler(self, current, total):

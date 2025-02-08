@@ -5,31 +5,22 @@ import openpyxl
 import subprocess
 import os
 import copy
-from typing import Literal, Optional, Tuple, Union, List, OrderedDict
+from typing import Literal, Optional, Tuple, Union, List, OrderedDict, Callable, Any
 import re
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2.QtCore import *
 import warnings
-import math
-from sympy import symbols, sympify
-from am_store.common_tools import yml, AMPATH
+# import am_store as am
 import paramiko
-import stat
 import ctypes
-import asyncssh
-import aiofiles
-import asyncio
 import pathlib
-from pathlib import Path
-import time
-from abc import ABC, abstractmethod
 import numpy
 import yaml
-import sys
 import pandas
 from win32com.client import Dispatch
+import Scripts.global_var as GV
 
 def is_path(string_f, exist_check:bool=False):
     # To judge whether a variable is Path or not
@@ -453,7 +444,7 @@ def pxstr(value_f, length=4)->str:
         for value_i in value_f:
             str_f += f"{value_i}px "
     return str_f
-        
+
 def style_make(config:dict)->str:
     """
     config must be a dict, key is obj name, value is a dict with key-value pairs
@@ -553,6 +544,10 @@ def link2path(path_f:str)->str:
     else:
         return path_f
 
+def get_func_info(func_f:Callable)->GV.FuncInfo:
+    func_info = GV.FuncInfo(func_f.__class__.__name__, func_f.__name__, filename='', linenum=0)
+    return func_info
+
 
 class atuple(tuple):
     def __new__(cls, *args):
@@ -610,8 +605,22 @@ class adict(object):
                 if dict_n is None:
                     return None
             return dict_n
-        
+
+    def get(self, key:atuple, default:Any=None):
+        if self.__getitem__(key) is None:
+            return default
+        else:
+            return self.__getitem__(key)
+
 class dicta:
+    @classmethod
+    def a(cls):
+
+        cls.a = 1
+    def a(self):
+        haha = 1
+        self.haha = 1
+        self.__name__ = ''
     @staticmethod
     def flatten_dict(dict_f:dict, max_depth:int=numpy.inf):
         # flatten dict, keys of multi layers stored in tuple

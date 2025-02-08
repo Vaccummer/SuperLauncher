@@ -3,9 +3,15 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2.QtCore import *
 from Scripts.tools.toolbox import *
-import numpy as np
+from sympy import symbols, sympify
+import math
 import Scripts.global_var as GV
 from typing import Union, Callable, Any
+from functools import partial
+import inspect
+import types
+
+
 
 class Asize(QSize):
     def __init__(self, width:int, height:int):
@@ -32,6 +38,21 @@ class AIcon(QIcon):
     def q(self):
         QIcon(self.file_path)
 
+class APixmap(QPixmap):
+    def __init__(self, size:int|tuple[int, int]=None):
+        if size is None:
+            super().__init__()
+        else:
+            self.size_f = size if isinstance(size, tuple) else (size, size)
+            super().__init__(*self.size_f)
+
+
+    def save(self, file_path:str):
+        return super().save(file_path, quality=100)
+    
+    def icon(self):
+        return QIcon(self)
+
 class Config_Manager(object):
     @classmethod
     def set_config_path(cls,yaml_path:str):
@@ -42,7 +63,7 @@ class Config_Manager(object):
             config_0 = cls._calSize(cls.config)
             config_1 = dicta.unflatten_dict(config_0)
             cls.config = adict(config_1)
-            a = 1
+    
     def __init__(self, 
                  wkdir:str,
                  mode_name:str=None, 
@@ -178,7 +199,7 @@ class Config_Manager(object):
 class UIData(object):
     def __init__(self, index:int, key:atuple|alist[atuple], action:callable, 
                  type_f:Literal[None, 'size', 'font', 'icon', 'config', 'height','margin','unpack']| Literal[None, 'size', 'font', 'icon', 'config', 'height','margin','unpack'], value_t:dict|list|str|int, value_ae:dict|list|str|int, 
-                 escape_sign:dict, force_escape_sign:dict|list|bool={}):
+                 escape_sign:dict, force_escape_sign:dict|list|bool={}, traceinfo:GV.FuncInfo=None):
         self.index = index
         self.key = key
         self.action = action
@@ -187,7 +208,8 @@ class UIData(object):
         self.value_ae = value_ae
         self.escape_sign = escape_sign
         self.force_escape_sign = force_escape_sign
-    
+        self.traceinfo = traceinfo
+
     def get_escape_sign(self):
         if not self.force_escape_sign:
             return self.escape_sign
@@ -290,14 +312,22 @@ class UIUpdater(QObject):
             return default_v
     @classmethod
     def set(cls, key_f:Union[atuple,alist],action_f:Callable,
-             type_f:Union[alist[GV.UpdateSign], GV.UpdateSign]=None):
+             type_f:Union[alist[GV.UpdateSign], GV.UpdateSign]=None, traceinfo:GV.FuncInfo=None):
+        if not traceinfo:
+            inspect_info = inspect.getframeinfo(inspect.currentframe().f_back)
+            traceinfo = GV.FuncInfo('', inspect_info.filename, inspect_info.function, inspect_info.lineno)
+        else:
+            pass
         atuple_check, value_t, value_ae = cls.action(key_f, action_f, type_f)
         if atuple_check:
+            if not traceinfo:
+                traceinfo = get_func_info(action_f)
             escape_sign = UIUpdater.cal_escape_sign(value_t, value_t, init_value=True)
             if type_f != 'style':
                 action_f = UIwarpper(action_f)
+
             data_c = UIData(index=len(cls.ui_set_l), key=key_f, action=action_f, type_f=type_f, value_t=value_t, 
-                            value_ae=value_ae, escape_sign=escape_sign, force_escape_sign={})
+                            value_ae=value_ae, escape_sign=escape_sign, force_escape_sign={}, traceinfo=traceinfo)
             cls.ui_set_l.append(data_c)
         else:
             cls.action(key_f, action_f, type_f)
@@ -411,7 +441,7 @@ class UIUpdater(QObject):
             if isinstance(i.key, atuple):
                 value_new = yml_file[i.key]
                 if value_new is None:
-                    warnings.warn(f"Key {i.key} , func {i.action}not found in new yaml file")
+                    self._key_missing_warning(i)
                     continue
                 elif value_new == i.value_t:
                     continue
@@ -420,10 +450,11 @@ class UIUpdater(QObject):
                 for i_f, key_i in enumerate(i.key):
                     vi = yml_file[key_i]
                     if vi is None:
-                        warnings.warn(f"Key {key_i} not found in new yaml file")
+                        self._key_missing_warning(i)
                     value_new.append(vi)
             else:
-                warnings.warn(f"Invalid key type: {i.key}")
+                warnings.warn(f"Invalid key: {i.key}")
+
                 continue
             
             escape_sign_server = UIUpdater.cal_escape_sign(i.value_t, value_new)
@@ -448,6 +479,19 @@ class UIUpdater(QObject):
             i.value_ae = value_ae
             update_result = self._objUpdate(i)
             i.value_t = value_new
+    
+    @staticmethod
+    def _key_missing_warning(data_i:UIData):
+        key_f = data_i.key
+        traceinfo = data_i.traceinfo
+        classname_f = traceinfo.classname
+        methodname_f = traceinfo.methodname
+        filename_f = traceinfo.filename
+        linenum_f = traceinfo.linenum
+        if classname_f == 'function':
+            warnings.warn(f'Key {key_f} not found in new yaml file, Function {methodname_f} at "{filename_f}", line {linenum_f}')
+        else:
+            warnings.warn(f'Key {key_f} not found in new yaml file, {classname_f}.{methodname_f} at "{filename_f}", line {linenum_f}')
     
     def _objUpdate(self, uidata_f:UIData):
         try:
@@ -493,8 +537,28 @@ class UIUpdater(QObject):
             return alist(UIUpdater._getValue(i, config_f) for i in key_f)
         else:
             return key_f
-    
-def UIwarpper(func_f:callable):
+
+def dynamic_load(type_f:Literal[None, 'size', 'font', 'icon', 'config', 'height','margin','unpack', 'style']|alist=None):
+    def inner_func(func_f:Callable):
+        def inner2_func(*args)->UIData:
+            obj_f = args[0]
+            function_f = types.MethodType(func_f, obj_f)
+            if len(args) == 2:
+                out_f = UIUpdater.set(args[1], function_f, type_f, traceinfo=get_func_info(function_f))
+            else:
+
+                arg_l = alist([i for i in args[1:]])
+                if not type_f:
+                    out_f = UIUpdater.set(arg_l, function_f, type_f=alist(), traceinfo=get_func_info(function_f))
+                else:
+                    out_f = UIUpdater.set(arg_l, function_f, type_f, traceinfo=get_func_info(function_f))
+            return out_f
+
+
+        return inner2_func
+    return inner_func
+
+def UIwarpper(func_f:Callable):
     def inner_func(*args, escape_sign:bool=False, **kwargs):
         if isinstance(escape_sign, list):
             if all(escape_sign):
