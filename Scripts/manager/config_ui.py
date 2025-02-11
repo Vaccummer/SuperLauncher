@@ -2,14 +2,14 @@ from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2.QtCore import *
-from Scripts.tools.toolbox import *
 from sympy import symbols, sympify
 import math
-import Scripts.global_var as GV
 from typing import Union, Callable, Any
-from functools import partial
 import inspect
 import types
+# local import 
+from ..tools.toolbox import *
+from .. import global_var as GV
 
 
 

@@ -20,7 +20,8 @@ import numpy
 import yaml
 import pandas
 from win32com.client import Dispatch
-import Scripts.global_var as GV
+# local import
+from .. import global_var as GV
 
 def is_path(string_f, exist_check:bool=False):
     # To judge whether a variable is Path or not

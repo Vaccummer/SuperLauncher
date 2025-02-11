@@ -1,10 +1,11 @@
-from Scripts.tools.toolbox import *
-from Scripts.manager.paths_transfer import *
 from PySide2.QtWidgets import  QMainWindow, QWidget
 from PySide2.QtGui import QFontMetrics
 from PySide2.QtCore import Qt
-from Scripts.ui.custom_widget import *
 from typing import Literal
+# local import
+from ..tools.toolbox import *
+from ..manager.paths_transfer import *
+from ..ui.custom_widget import *
 
 class SwitchButton(CustomComboBox):
     def __init__(self, parent: QMainWindow, config:Config_Manager) -> None:

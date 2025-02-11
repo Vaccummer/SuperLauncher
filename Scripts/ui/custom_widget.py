@@ -2,11 +2,10 @@ from PySide2.QtCore import Signal, Slot
 from PySide2.QtGui import QIcon, QFont, QPixmap, QWheelEvent
 from PySide2.QtWidgets import QPushButton, QWidget, QListWidget, QLineEdit, QMainWindow, QVBoxLayout
 import random
-from functools import partial
-from Scripts.manager.config_ui import *
-from typing import Literal, Optional, Tuple, Union
-from abc import abstractmethod
-from Scripts.manager.paths_transfer import *
+from typing import Tuple, Union
+# local import
+from ..manager.config_ui import *
+from ..manager.paths_transfer import *
 
 class YohoPushButton(QPushButton):
     right_button_clicked = Signal(dict)

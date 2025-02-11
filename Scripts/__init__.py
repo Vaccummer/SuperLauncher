@@ -1,18 +1,23 @@
+# local import
+import sys
+from .tools.toolbox import *
+from .ui.launcherUI import *
+from .ui.settingUI import *
+from .ui.custom_widget import *
+from .ui.mainwindowUI import *
+from .tools.toolbox import *
+from .manager.config_ui import *
+from am_store import init
+from .manager.paths_transfer import *
+from .global_var import *
+# pyside2 import
 from PySide2.QtWidgets import QApplication
 from PySide2.QtCore import Slot, Signal,QCoreApplication # type: ignore
 from PySide2.QtGui import QSurfaceFormat
-from am_store import init
+# standard library import
 import time
-from Scripts.tools.toolbox import *
-from Scripts.ui.launcherUI import *
-from Scripts.ui.settingUI import *
-from Scripts.ui.custom_widget import *
-from Scripts.ui.mainwindowUI import *
-from Scripts.tools.toolbox import *
-from Scripts.manager.config_ui import *
 from abc import abstractmethod
-from Scripts.manager.paths_transfer import *
-import Scripts.global_var as GV
+
 
 class BaseLauncher(QMainWindow):
     # You can't heritate QObject and QMainWindow at the same time, cause QObject is the parent of QMainWindow
@@ -432,19 +437,4 @@ def app_set(config_f:adict):
     QApplication.setApplicationVersion("1.0.0")
     QApplication.setOrganizationName("Vaccummer")   
     QApplication.setOrganizationDomain("https://github.com/Vaccummer")
-    
 
-if __name__ == "__main__":
-    init()
-    path_t = os.path.abspath('./launcher_cfg_new.yaml')
-    Config_Manager.set_config_path(path_t)
-    check_admin(Config_Manager.config)
-    app_set(Config_Manager.config)
-    app = QApplication([])
-    config = Config_Manager(wkdir=os.getcwd())
-    UIUpdater._primary_init(config)
-    uiupdater = UIUpdater()
-    launcher = ControlLauncher(config, app)
-    # uiupdater.update_task.connect(launcher._updateUI)
-    launcher.show()
-    sys.exit(app.exec_())

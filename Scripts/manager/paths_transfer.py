@@ -1,13 +1,8 @@
 from PySide2.QtWidgets import QMainWindow
 from PySide2.QtGui import QIcon
 from PySide2.QtCore import Signal, Slot, QObject
-from Scripts.tools.toolbox import *
-from Scripts.manager.config_ui import AIcon, APixmap
-import Scripts.global_var as GV
-import am_store as am
 from typing import *
-from Scripts.manager.config_ui import Config_Manager  
-from Scripts.manager.config_ui import UIUpdater
+import os
 import clr
 import stat
 import time
@@ -19,6 +14,14 @@ import hashlib
 clr.AddReference(os.path.abspath("./Scripts/manager/IconExtractor.dll"))
 from IconExtractor import Worker, No256Icon, FileNotExists, ErrorLoad, UnkownError    # type: ignore
 import shutil
+import pathlib
+# local import
+from ..tools.toolbox import *
+from ..manager.config_ui import AIcon, APixmap
+from .. import global_var as GV
+from ..manager.config_ui import Config_Manager  
+from ..manager.config_ui import UIUpdater
+
 
 class IconSet:
     def __init__(self, path:str, icon:QIcon):
@@ -334,7 +337,7 @@ class ShortcutsPathManager(QObject):
         super().__init__()
         self.config = config
         self.col_name = ["Display_Name", "Icon_Path", "EXE_Path"]
-        self.data_path = am.AMPATH(self.config.get("setting_xlsx", mode="Launcher", widget="shortcut_obj", obj="path"))
+        self.data_path = pathlib.Path(self.config.get("setting_xlsx", mode="Launcher", widget="shortcut_obj", obj="path"))
         self._read_xlsx()
         self.check()
         self._load()
@@ -348,7 +351,7 @@ class ShortcutsPathManager(QObject):
         self.df['Icon_Path'] = self.df['Icon_Path'].apply(lambda x: x if is_path(x, exist_check=True) else "")
     
     def _load(self):
-        self.icon_dir = am.AMPATH(self.config.get("button_icons", mode="Launcher", widget="shortcut_obj", obj="path"))
+        self.icon_dir = pathlib.Path(self.config.get("button_icons", mode="Launcher", widget="shortcut_obj", obj="path"))
         self.icon_dict = {}
         for path_i in self.icon_dir.iterdir():
             if path_i.is_dir():
@@ -997,7 +1000,7 @@ class FileMonitor(QThread):
 
     def run(self):
         try:
-            from file_watcher import FileWatcher     # type: ignore
+            from Scripts.backends.file_watcher import FileWatcher     # type: ignore
             self.watcher = FileWatcher()
             result_f = self.watcher.start(self.monitor_path, self.file_name, self.output_signal.emit)
             error_f = ''

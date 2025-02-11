@@ -1,20 +1,17 @@
 import os
-import sys
-from Scripts.tools.toolbox import *
-from Scripts.manager.paths_transfer import *
-import Scripts.global_var as GV
 from PySide2.QtWidgets import QListWidget, QMainWindow, QWidget,QListWidgetItem,QPushButton, QHBoxLayout, QVBoxLayout, QLabel
 from PySide2.QtGui import QFontMetrics, QIcon
 from PySide2.QtCore import QSize, Qt
-from Scripts.ui.custom_widget import *
 from functools import partial
-import shutil
-import pandas
-import pathlib
-import aiofiles
+from abc import abstractmethod
 import asyncio
 import asyncssh
 from typing import List, Literal, Union, OrderedDict
+# local import
+from ..ui.custom_widget import *
+from ..tools.toolbox import *
+from ..manager.paths_transfer import *
+from .. import global_var as GV
 
 class Associate:
     def __init__(self, nums:int, 

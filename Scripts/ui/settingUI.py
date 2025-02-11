@@ -1,15 +1,17 @@
 import os
-from Scripts.tools.toolbox import *
-from Scripts.manager.paths_transfer import *
 from PySide2.QtWidgets import QListWidget, QMainWindow, QWidget,QListWidgetItem,QPushButton, QHBoxLayout, QVBoxLayout, QLabel
 from PySide2.QtGui import QFontMetrics, QIcon
 from PySide2.QtCore import QSize, Qt
-from Scripts.ui.custom_widget import *
-from Scripts.manager.config_ui import *
 from functools import partial
 import shutil
 import pandas
+from abc import abstractmethod
 from typing import Literal, Union, OrderedDict
+# local import
+from ..ui.custom_widget import *
+from ..manager.config_ui import *
+from ..tools.toolbox import *
+from ..manager.paths_transfer import *
 
 class UIShortcutSetting(QWidget):
     def __init__(self, parent:QMainWindow, config:Config_Manager, shortcuts_manager:ShortcutsPathManager):

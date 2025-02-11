@@ -1,12 +1,8 @@
 import os
 import sys
-from Scripts.tools.toolbox import *
-from Scripts.manager.paths_transfer import *
 from PySide2.QtWidgets import QListWidget, QMainWindow, QWidget,QListWidgetItem,QPushButton, QHBoxLayout, QVBoxLayout, QLabel
 from PySide2.QtGui import QFontMetrics, QIcon
 from PySide2.QtCore import QSize, Qt
-from Scripts.ui.custom_widget import *
-from functools import partial
 import shutil
 import pandas
 import pathlib
@@ -15,6 +11,10 @@ import asyncio
 import asyncssh
 from typing import List, Literal, Union, OrderedDict
 from Scripts.manager.config_ui import *    
+# local import 
+from ..tools.toolbox import *
+from ..manager.paths_transfer import *
+from ..ui.custom_widget import *
 
 class Terminal(QTextEdit):
     def __init__(self, config:Config_Manager, parent:QMainWindow):
