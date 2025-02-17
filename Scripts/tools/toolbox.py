@@ -790,11 +790,12 @@ class yml:
 
     @staticmethod
     def intactwrite(path_f, data_f:dict, mktree:bool=False):
-        from ruamel.yaml import YAML as Ryaml
-        ryaml = Ryaml()
-        with open(path_f, "r", encoding="utf-8") as f:
-            ori_data = ryaml.load(f)
-        new_data = yml.yaml_obj_edit(ori_data, data_f, mktree)
-        with open(path_f, "w", encoding="utf-8") as f:
-            ryaml.dump(new_data, f)
+        return
+        # from ruamel.yaml import YAML as Ryaml
+        # ryaml = Ryaml()
+        # with open(path_f, "r", encoding="utf-8") as f:
+        #     ori_data = ryaml.load(f)
+        # new_data = yml.yaml_obj_edit(ori_data, data_f, mktree)
+        # with open(path_f, "w", encoding="utf-8") as f:
+        #     ryaml.dump(new_data, f)
     

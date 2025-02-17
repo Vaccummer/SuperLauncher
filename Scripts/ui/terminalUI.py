@@ -10,11 +10,11 @@ import aiofiles
 import asyncio
 import asyncssh
 from typing import List, Literal, Union, OrderedDict
-from Scripts.manager.config_ui import *    
 # local import 
 from ..tools.toolbox import *
 from ..manager.paths_transfer import *
 from ..ui.custom_widget import *
+from ..manager.config_ui import *  
 
 class Terminal(QTextEdit):
     def __init__(self, config:Config_Manager, parent:QMainWindow):

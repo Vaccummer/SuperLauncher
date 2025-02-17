@@ -46,7 +46,6 @@ class APixmap(QPixmap):
             self.size_f = size if isinstance(size, tuple) else (size, size)
             super().__init__(*self.size_f)
 
-
     def save(self, file_path:str):
         return super().save(file_path, quality=100)
     

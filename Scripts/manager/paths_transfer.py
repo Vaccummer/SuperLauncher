@@ -11,17 +11,15 @@ import aiofiles
 import io
 import asyncio
 import hashlib
-clr.AddReference(os.path.abspath("./Scripts/manager/IconExtractor.dll"))
-from IconExtractor import Worker, No256Icon, FileNotExists, ErrorLoad, UnkownError    # type: ignore
 import shutil
 import pathlib
 # local import
 from ..tools.toolbox import *
-from ..manager.config_ui import AIcon, APixmap
+from .config_ui import AIcon, APixmap
 from .. import global_var as GV
-from ..manager.config_ui import Config_Manager  
-from ..manager.config_ui import UIUpdater
-
+from .config_ui import Config_Manager  
+from .config_ui import UIUpdater
+import backends as BK
 
 class IconSet:
     def __init__(self, path:str, icon:QIcon):
@@ -86,21 +84,22 @@ class LauncherPathManager(QObject):
         '''
         icons are stored in the folder as {ext_name}.png, like txt.png, jpg.png, etc.
         '''
-        self.file_icon_folder = UIUpdater.get(atuple('Manager', 'LauncherPathManager', 'path', 'file_icon_folder'), '')
+        self.file_icon_folder = path_join(UIUpdater.get(atuple('Manager', 'LauncherPathManager', 'path', 'file_icon_folder'), 
+                                               './load/Manager/LauncherPathManager/common_file_icons'))
         self.file_icon_d:dict[str,AIcon] = {}
         for name_i in os.listdir(self.file_icon_folder):
             path_i = os.path.join(self.file_icon_folder, name_i)
             if not self.check_format(path_i):
                 continue
-            ext_name = os.path.splitext(name_i)[0]
+            ext_name = os.path.splitext(name_i)[0]     
             self.file_icon_d[f'.{ext_name}'] = AIcon(path_i)
         
         # load icon path for folder_icon_d
         '''
         icons are stored in the folder as {hash_num}.png, like 1234567890.png, hash_num is the hash of tuple(host, path)
         '''
-        self.folder_icons = UIUpdater.get(atuple('Manager', 'LauncherPathManager', 'path', 'folder_icon_folder'), 
-                                               './load/Manager/LauncherPathManager/folder_icons')
+        self.folder_icons = path_join(UIUpdater.get(atuple('Manager', 'LauncherPathManager', 'path', 'folder_icon_folder'), 
+                                               './load/Manager/LauncherPathManager/folder_icons'))
         self.folder_icon_d:dict[str, AIcon] = {}
         for name_i in os.listdir(self.folder_icons):
             path_i = os.path.join(self.folder_icons, name_i)
@@ -158,25 +157,23 @@ class LauncherPathManager(QObject):
         if os.path.splitext(exe_path)[1].lower() not in ['.exe','dll']:
             return None
         try:
-            image_data_ori = Worker.Extract(exe_path, index_f)
+            image_data_ori = BK.Worker.Extract(exe_path, index_f)
             image_data = io.BytesIO(image_data_ori).getvalue()
             pixmap = APixmap()
             pixmap.loadFromData(QByteArray(image_data))
             return pixmap
-        except No256Icon as e:
+        except BK.No256Icon as e:
             GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
             return None
-        except FileNotExists as e:
+        except BK.FileNotExists as e:
             GV.logger.warning(title='FileNotExists', message=f"File not exists: {exe_path}")
             return None
-        except ErrorLoad as e:
+        except BK.ErrorLoad as e:
             GV.logger.warning(title='ErrorLoad', message=f"Error loading icon from {exe_path}")
             return None
-        except UnkownError as e:
+        except BK.UnkownError as e:
             GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
             return None
-
-
 
 
     def app_icon_extract(self, exe_path:str, group:str, name:str, index_f:int=0)->str|None:
@@ -954,125 +951,4 @@ class TransferMaintainer(QThread):
             self.loop.call_soon_threadsafe(self.loop.stop)
         self.quit()
         self.wait()
-
-class FileTransfer:
-    def __init__(self, remote_server):
-        self.remote_server = remote_server
-
-    async def transfer_single_file(self, src: str, dst: str, sftp, type_f: Literal['get', 'put'], semaphore: asyncio.Semaphore):
-        async with semaphore:  # 限制并发数
-            if type_f == 'get':
-                await sftp.get(src, dst)  # 下载文件
-            elif type_f == 'put':
-                await sftp.put(src, dst)  # 上传文件
-            print(f"{type_f} file from {src} to {dst} completed.")
-
-    async def transfer_multiple_files(self, tasks: List[tuple[str, str]], type_f: Literal['get', 'put'], max_connections: int = 5):
-        host_d = self.remote_server.host
-        semaphore = asyncio.Semaphore(max_connections)  # 最大并发数
-
-        try:
-            async with asyncssh.connect(host_d['HostName'], 
-                                        username=host_d.get('User', os.getlogin()), 
-                                        password=host_d.get(('Password', '')),
-                                        port=int(host_d.get('port', 22))) as conn:
-                async with conn.start_sftp_client() as sftp:
-                    transfer_tasks = []  
-                    for src, dst in tasks:
-                        transfer_tasks.append(self.transfer_single_file(src, dst, sftp, type_f, semaphore))
-                    await asyncio.gather(*transfer_tasks)
-                    return True
-        except Exception as e:
-            print(f"文件传输失败: {e}")
-            return False
-
-class FileMonitor(QThread):
-    output_signal = Signal(str)
-    def __init__(self, monitor_dir:str, target_file:str, max_time:float|int):
-        '''
-        monitor_dir: the directory to be supervised
-        target_file: the original path of the target file
-        max_time: max time of the supervise process, in microsecond
-        '''
-        super().__init__()
-        self.monitor_dir = monitor_dir
-        self.target_file = target_file
-
-    def run(self):
-        try:
-            from Scripts.backends.file_watcher import FileWatcher     # type: ignore
-            self.watcher = FileWatcher()
-            result_f = self.watcher.start(self.monitor_path, self.file_name, self.output_signal.emit)
-            error_f = ''
-        except Exception as e:
-            result_f = None
-            error_f = str(e)
-        self.output_signal.emit({'result':result_f, 'error':error_f})
-
-    def sucess(self, dst:str):
-        self.output_signal.emit(dst)
-    
-    def close(self):
-        self.close_signal = True
-
-    def close(self):
-        self.quit()
-        self.wait()
-        try:
-            self.watcher.stop()
-        except Exception:
-            pass
-
-class PathTracker:
-    def __init__(self):
-        pass
-    
-    def _load_config(self):
-        pass
-
-    def create_tag(self):
-        name_f = f"__SuperLauncher_Tag.txt"
-        path_f = path_join(self.tag_folder, name_f)
-        if not os.path.exists(path_f):
-            with open(name_f, 'a') as f:
-                f.write(f"SuperLauncher_Tag\nFor Path Tracking")
-        self.path_f = path_f
-
-    def create_tracker(self):
-        drivers = self.get_drives()
-        if not drivers:
-            return
-        if not os.path.exists(self.path_f):
-            self.create_tag()
-        file_name = os.path.basename(self.path_f)
-        for driver in drivers:
-            pass
-    
-    @Slot(str)
-    def target_receiver(self, driver:str, para_f:dict=None):
-        print('haha', sep='hah')
-        pass
-
-    def close_tracker(self):
-        self.close_timer = QTimer()
-        self.close_timer.timeout.connect(self.close_tracker_action)
-        self.close_timer.start(self.wait_time)
-    
-    def close_tracker_action(self):
-        for i in self.tracker_list:
-            i.close()
-    
-    def get_drives(self):
-        drivers = get_hard_drives()
-        if self.monitor_drivers:
-            drivers_t = []
-            for i in drivers:
-                for i_t in self.monitor_drivers:
-                    if i.startswith(i_t):
-                        drivers_t.append(i)
-                        break
-            return drivers_t
-        else:
-            return drivers
-
 

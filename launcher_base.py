@@ -5,9 +5,9 @@ from PySide2.QtCore import Qt, QEvent, QObject, Signal, QSize, Slot, QThread
 from PySide2.QtCore import QTimer, QPropertyAnimation, QEasingCurve, QSequentialAnimationGroup
 from PySide2.QtGui import QPixmap, QPalette, QIcon, QFont, QScreen, QFontMetrics, QWindow, QKeySequence
 from PySide2.QtGui import QPainter, QColor, QBrush, QPen, QLinearGradient, QTextCharFormat, QTextCursor
-from Scripts.toolbox import *
+from Scripts2.toolbox import *
 from am_store2.common_tools import *
-from Scripts.launcher_ori import *
+from Scripts2.launcher_ori import *
 
 class BaseLauncher(QMainWindow):
     MODE = "Launcher"

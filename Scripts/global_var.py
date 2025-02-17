@@ -1,7 +1,7 @@
 from typing import Literal,Callable
 from dataclasses import dataclass
-import am_store
-
+from .ConsoleCustom.logger import get_logger
+from .manager.TaskData import TaskInfo
 MODE:str = "Launcher"
 HOST:str = 'Local'
 HOST_TYPE:str = "Local"
@@ -9,10 +9,11 @@ CONNECT:bool = True
 CON_ERROR:str = ''
 CLOSE_ACTION:list[Callable] = []
 GEOMETRY:list[int] = [0, 0, 0, 0]
+TASKS:list[TaskInfo] = []
 
 UpdateSign = Literal[None, 'size', 'font', 'icon', 'config', 'height', 'margin', 'unpack', 'style']
 
-logger = am_store.get_logger('runtime.log')
+logger = get_logger('runtime.log')
 
 @dataclass
 class FuncInfo:
@@ -99,4 +100,3 @@ class IconSaveRequest:
     path:str
     host:str
     src:str
-
