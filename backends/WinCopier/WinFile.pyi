@@ -1,5 +1,6 @@
 from typing import Literal
 from enum import Enum
+
 class FileOperationType(Enum):
     COPY = 1
     MOVE = 2

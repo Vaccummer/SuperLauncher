@@ -7,7 +7,7 @@ from enum import Enum
 
 # relative import
 from .. import global_var as GV
-
+from backends.SFTPTransfer.client import SFTPConfig
 zipformat = Literal['zip', '7z', 'bz2', 'tar', 'gz', 'xz', 'gz']
 
 class TransferError(Enum):
@@ -17,14 +17,22 @@ class TransferError(Enum):
     UnknownError = -3
     Canceled = -4
 
-class ZipClass(Enum, str):
+    def __eq__(self, other):
+        return self.value == other
+
+class ZipClass(Enum):
     ZIP = "zip"
     UNZIP = "unzip"
+
+    def __eq__(self, other):
+        return self.value == other
 
 class TaskType(Enum):
     FILE = "file_operation"
     ZIP = "zip_operation"
-
+    
+    def __eq__(self, other):
+        return self.value == other
 
 @dataclass
 class ZipTaskData:
@@ -41,25 +49,24 @@ class FileTask:
     src:str
     dst:str
     stat_local:os.stat_result
-    task_type:Literal['put', 'get', 'local']
+    task_type:Literal['put', 'get', 'local_copy', "local_move"]
     total_size:int
-    host_config:dict={}
-    local_chunk_size:int=1024*1024*20
-    remote_chunk_size:int=1024*1024*5
-    thread_num:int=4
+    host_config:SFTPConfig=None
 
 @dataclass
 class TaskRuntimeInfo:
     ID:int
-    type:Literal['filename', 'progress', 'done', 'watcher']
+    type:Literal['filename', 'progress', 'done', 'watcher', 'error']
     progress:float=None
     filename:str=None
     done:int=None
     tracked_path:str=None
+    error:Any=None
+    error_msg:str=None
 
 class TaskInfo(QObject):
     runtime_info = Signal(TaskRuntimeInfo)
-    def __init__(self, task_type:TaskType, task_data:ZipTaskData|FileTaskData, ID:int=None):
+    def __init__(self, task_type:TaskType, task_data:ZipTaskData|FileTask, ID:int=None):
         super().__init__()
         self.task_type = task_type
         self.task_data = task_data

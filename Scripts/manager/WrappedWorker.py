@@ -1,5 +1,5 @@
 from PySide2.QtCore import QObject, Signal, Slot, QThread, QByteArray
-from typing import Callable, Any, Literal
+from typing import Callable, Any, Literal, Optional
 import time
 from PIL import Image
 from PySide2.QtCore import Signal, Slot, QObject, QThread
@@ -9,7 +9,6 @@ import time
 import asyncssh
 import io
 import asyncio
-import io
 from functools import partial
 
 # local package
@@ -41,10 +40,9 @@ class FileWatcher(QThread):
     def pause(self):
         self.worker.pause()
 
-    def terminate(self):
+    def stop(self):
         self.worker.terminate()
         self.is_running = False
-        self.quit()
 
     def setWatch(self, filename:str, filepath:str):
         self.filename = filename
@@ -86,15 +84,11 @@ class ZIPmanager(QThread):
                 code = self.worker.decompress(ID=self.ID, src=src, output_dir=dst, format=format, password=password, cb_per_interval=interval, file_cb=self.filename_cb, progress_cb=self.progress_cb)
                 self.done_cb(code)
 
-    def terminate(self):
+    def stop(self):
         self.worker.terminate(self.ID)
 
     def _emitRuntimeInfo(self, ID:int, type:Literal['filename', 'progress', 'done'], info:int|float|str):
-        match type:
-            case 'filename':
-                self.runtime_info.emit(TaskRuntimeInfo(ID=ID, type=type, filename=info))
-            case 'progress':
-                self.runtime_info.emit(TaskRuntimeInfo(ID=ID, type=type, progress=info))
+        self.runtime_info.emit(TaskRuntimeInfo(ID=ID, type=type, progress=info))
 
 class IconGet:
     extractor = BK.Worker()
@@ -116,8 +110,58 @@ class IconGet:
 
 class FileTransfer(QThread):
     runtime_info = Signal(TaskRuntimeInfo)
-    def __init__(self, task_f:FileTask):
+    def __init__(self, task_f:FileTask, sftp_config:Optional[BK.TransferConfig]=None, explorer_config:Optional[BK.FileOperationSet]=None):
         super().__init__()
+        self.task_f = task_f
+        self.sftp_config = sftp_config 
+        self.explorer_config = explorer_config
+        self.stop_sign = False
+
+    def run(self):
+        match self.task_f.task_type:
+            case 'local_copy' | 'local_move':
+                self._local_transfer(self.task_f.task_type)
+            case _:
+                self._remote_transfer(self.task_f.type_f)
+
+    def _remote_transfer(self, type_f:Literal['put', 'get']):
+        self.task_config = BK.TransferConfig() if self.task_config is None else self.task_config
+        assert isinstance(self.sftp_config, BK.TransferConfig)
+        self.worker = BK.SFTPClient(self.sftp_config, self.task_config, self._progress_cb, self._error_cb)
+        try:
+            self.worker.transfer(self.task_f.src, self.task_f.dst, type_f)
+            self.runtime_info.emit(TaskRuntimeInfo(ID=self.ID, type='done', done=TransferError.Normal))
+        except Exception as e:
+            if str(e) == 'Canceled':
+                self.runtime_info.emit(TaskRuntimeInfo(ID=self.ID, type='done', done=TransferError.Canceled))
+            else:
+                self._error_cb(e)
+
+    def _local_transfer(self, type_f:Literal['local_copy', 'local_move']):
+        self.worker = BK.ExplorerAPI()
+        self.explorer_config = BK.FileOperationSet() if self.explorer_config is None else self.explorer_config
+        self.worker.Init(BK.FileOperationSet(self.explorer_config))
+        if type_f == 'local_move':
+            out = self.worker.action(src=self.task_f.src, dst=self.task_f.dst, action=BK.FileOperationType.MOVE)
+        else:
+            out = self.worker.action(src=self.task_f.src, dst=self.task_f.dst, action=BK.FileOperationType.COPY)
+        if out != BK.FileOperationResult.SUCCESS:
+            self._error_cb(out)
+
+    def _progress_cb(self, src:str, dst:str, size:int):
+        if self.stop_sign:
+            raise Exception('Canceled')
+        self.runtime_info.emit(TaskRuntimeInfo(ID=self.ID, type='progress', progress=size/self.total_size))
+    
+    def _error_cb(self, error:Any):
+        try:
+            msg = str(error)
+        except:
+            msg = 'Unknown Error Info'
+        self.runtime_info.emit(TaskRuntimeInfo(ID=self.ID, type='error', error=error, error_msg=msg))
+
+    def stop(self) -> None:
+        self.stop_sign = True
 
 class FileTransfer2(QThread):
     runtime_info = Signal(TaskRuntimeInfo)
@@ -135,7 +179,7 @@ class FileTransfer2(QThread):
         super().__init__()
         self.task = task_f
         self.ID = task_f.ID
-        self.task_data:FileTaskData = task_f.task_data
+        self.task_data:FileTask = task_f.task_data
         self.total_size = task_f.task_data.total_size
         self.close_sign = False
 

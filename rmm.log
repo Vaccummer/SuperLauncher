@@ -1,5 +1,0 @@
-2025-02-08 12:19:34 am@D:\SuperLauncher$ D:\Softwares\RMM\bin\rm.exe .\dist\
-PermissionError: ".\dist"->"$Trash\dist", [WinError 32] The process cannot access the file because it is being used by another process: 'D:\\SuperLauncher\\dist'
-2025-02-08 12:20:13 am@D:\SuperLauncher$ D:\Softwares\RMM\bin\rm.exe dist
-2025-02-08 17:33:39 am@D:\SuperLauncher$ D:\Softwares\RMM\bin\rmm.exe .\am_store_ori\
-PermissionError: ".\am_store_ori"->"$Trash\am_store_ori", [WinError 5] Access is denied: 'D:\\SuperLauncher\\am_store_ori\\.git\\objects\\00\\212a644abbddc8edcaf9e6c31a926d9f23b242'
