@@ -11,6 +11,7 @@ from typing import List, Literal, Union, OrderedDict
 from ..ui.custom_widget import *
 from ..tools.toolbox import *
 from ..manager.paths_transfer import *
+from ..manager.WrappedWorker import *
 from .. import global_var as GV
 
 class Associate:
@@ -168,39 +169,56 @@ class BasicAS(QListWidget):
         
     def focusNextPrevChild(self, next):
         return True
+    def startDrag(self, event: QDragEnterEvent):
+        item_f = self.currentItem()
+        if item_f is None:
+            return
+        drag = QDrag(self)
+        mime_data = QMimeData()
+        if not os.path.exists(self.path_i):
+            with open(self.path_i, 'a') as f:
+                f.write("haha")
+        mime_data.setUrls([QUrl.fromLocalFile(self.path_i)])
+        drag.setMimeData(mime_data)
+        drag.exec_(Qt.CopyAction)
+        
     def dragEnterEvent(self, event: QDragEnterEvent):
-        if event.mimeData().hasUrls():  # 检查是否有文件 URL
-            event.acceptProposedAction()  # 接受拖入
-        else:
-            pass
-            # super().dragEnterEvent(event)
+        if event.mimeData().hasUrls(): 
+            event.acceptProposedAction()  
+        super().dragEnterEvent(event)
     def dragMoveEvent(self, event: QDragMoveEvent):
         if event.mimeData().hasUrls():
             event.acceptProposedAction()
-        else:
-            super().dragMoveEvent(event)
+        super().dragMoveEvent(event)
     def dropEvent(self, event: QDropEvent):
         mime_data = event.mimeData()
-        if mime_data.hasUrls():  # 如果拖放的内容是文件
+        if mime_data.hasUrls():  
             urls = mime_data.urls()
             paths = [url.toLocalFile() for url in urls]  # 获取文件路径
             self._upload(paths)
             event.acceptProposedAction()  # 接受拖放
         else:
-            # super().dropEvent(event)
             pass
-    
+
     @abstractmethod
     def _upload(self, src:str):
         pass
     
     def _loadAll(self):
-        self.setAcceptDrops(True)  # 接受放置事件
-        self.setDragEnabled(True)  # 启用拖动事件
+        self.setAcceptDrops(True) 
+        self.setDragEnabled(True) 
         self.setDropIndicatorShown(True)
         self.config.group_chose("Launcher", self.name)
+        self.path_i = os.path.abspath(r'./tmp/vaccummer_superlauncher_url_temp_file94138.txt')
         self._loadPara()
         self._loadPtr()
+        self.watcher = FileWatcher(["D:\\", "E:\\", "F:\\"], os.path.basename(self.path_i), self.path_i)
+        self.watcher.runtime_info.connect(self._runtime_info_prrocess)
+        self.watcher.start()
+    
+    @Slot(TaskRuntimeInfo)
+    def _runtime_info_prrocess(self, info:TaskRuntimeInfo):
+        print(info.tracked_path)
 
     def _loadPara(self):
         # dynamic load
@@ -245,7 +263,6 @@ class BasicAS(QListWidget):
         self.style_ctl = self.customStyle(style_d)
         spacing_f = atuple('Launcher', self.name, 'style', 'main', 'item', 'spacing')
         UIUpdater.set(spacing_f, self.setSpacing, 'spacing')
-
 
     def _get_prompt(self)->str:
         return self.input_text

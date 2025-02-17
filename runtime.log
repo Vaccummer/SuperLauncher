@@ -147,3 +147,538 @@ Programm started at 2025-02-17 22:13:37
   Error extracting icon from E:\Softwares\vivo手机助手\unins000.exe
 2025-02-17 22:13:39 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
   Error extracting icon from C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\WPRUI.exe
+Programm terminated at 2025-02-17 22:34:31
+Conducted for 1253.63 seconds
+========================================================================================================================
+Programm started at 2025-02-17 22:34:34
+2025-02-17 22:34:34 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\SPSS\SPSS27\stats.exe
+2025-02-17 22:34:34 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-17 22:34:34 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Super Launcher\load\Others\暴力删除.exe
+2025-02-17 22:34:34 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FastCopy\FastCopy.exe
+2025-02-17 22:34:34 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\INNO3D TuneIT\Inno3D.exe
+2025-02-17 22:34:34 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Afterburner\MSI Afterburner\MSIAfterburner.exe
+2025-02-17 22:34:34 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\DDU v18.0.7.0\Display Driver Uninstaller.exe
+2025-02-17 22:34:34 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\TestMem5\TM5.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FL Mouse\FL Esports M618 GamingMouse\FL Esports m618.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Hi75\OemDrv.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FreeCAD\bin\FreeCAD.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\7-Zip\7zFM.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-i386.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-x86_64-SSE4-AVX2.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-x86_64.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Tutorial-x86_64.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Tutorial-i386.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Cheat Engine.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Kernelmoduleunloader.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\ceregreset.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\unins000.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Cygwin\bin\mintty.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\SETLANG.EXE
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\msoev.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Microsoft OneDrive\OneDrive.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\OpenSSL-Win64\unins000.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\SangforCSClient\SangforCSClient.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\SangforCSClient\SangforCSClientUninstaller.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\texlive\2024\bin\windows\dviout.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\ApkInstaller.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\vivo手机助手.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\unins000.exe
+2025-02-17 22:34:35 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\WPRUI.exe
+Programm terminated at 2025-02-17 22:35:22
+Conducted for 48.52 seconds
+========================================================================================================================
+Programm started at 2025-02-17 22:35:26
+2025-02-17 22:35:27 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\SPSS\SPSS27\stats.exe
+2025-02-17 22:35:27 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-17 22:35:27 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Super Launcher\load\Others\暴力删除.exe
+2025-02-17 22:35:27 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FastCopy\FastCopy.exe
+2025-02-17 22:35:27 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\INNO3D TuneIT\Inno3D.exe
+2025-02-17 22:35:27 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Afterburner\MSI Afterburner\MSIAfterburner.exe
+2025-02-17 22:35:27 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\DDU v18.0.7.0\Display Driver Uninstaller.exe
+2025-02-17 22:35:27 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\TestMem5\TM5.exe
+2025-02-17 22:35:27 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FL Mouse\FL Esports M618 GamingMouse\FL Esports m618.exe
+2025-02-17 22:35:27 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Hi75\OemDrv.exe
+2025-02-17 22:35:27 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FreeCAD\bin\FreeCAD.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\7-Zip\7zFM.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-i386.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-x86_64-SSE4-AVX2.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-x86_64.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Tutorial-x86_64.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Tutorial-i386.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Cheat Engine.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Kernelmoduleunloader.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\ceregreset.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\unins000.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Cygwin\bin\mintty.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\SETLANG.EXE
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\msoev.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Microsoft OneDrive\OneDrive.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\OpenSSL-Win64\unins000.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\SangforCSClient\SangforCSClient.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\SangforCSClient\SangforCSClientUninstaller.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\texlive\2024\bin\windows\dviout.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\ApkInstaller.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\vivo手机助手.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\unins000.exe
+2025-02-17 22:35:28 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\WPRUI.exe
+Programm terminated at 2025-02-17 22:36:40
+Conducted for 73.78 seconds
+========================================================================================================================
+Programm started at 2025-02-17 22:36:44
+2025-02-17 22:36:45 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\SPSS\SPSS27\stats.exe
+2025-02-17 22:36:45 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-17 22:36:45 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Super Launcher\load\Others\暴力删除.exe
+2025-02-17 22:36:45 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FastCopy\FastCopy.exe
+2025-02-17 22:36:45 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\INNO3D TuneIT\Inno3D.exe
+2025-02-17 22:36:45 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Afterburner\MSI Afterburner\MSIAfterburner.exe
+2025-02-17 22:36:45 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\DDU v18.0.7.0\Display Driver Uninstaller.exe
+2025-02-17 22:36:45 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\TestMem5\TM5.exe
+2025-02-17 22:36:45 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FL Mouse\FL Esports M618 GamingMouse\FL Esports m618.exe
+2025-02-17 22:36:45 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Hi75\OemDrv.exe
+2025-02-17 22:36:45 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FreeCAD\bin\FreeCAD.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\7-Zip\7zFM.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-i386.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-x86_64-SSE4-AVX2.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-x86_64.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Tutorial-x86_64.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Tutorial-i386.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Cheat Engine.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Kernelmoduleunloader.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\ceregreset.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\unins000.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Cygwin\bin\mintty.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\SETLANG.EXE
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\msoev.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Microsoft OneDrive\OneDrive.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\OpenSSL-Win64\unins000.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\SangforCSClient\SangforCSClient.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\SangforCSClient\SangforCSClientUninstaller.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\texlive\2024\bin\windows\dviout.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\ApkInstaller.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\vivo手机助手.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\unins000.exe
+2025-02-17 22:36:46 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\WPRUI.exe
+Programm terminated at 2025-02-17 22:39:26
+Conducted for 161.73 seconds
+========================================================================================================================
+Programm started at 2025-02-17 22:39:31
+2025-02-17 22:39:31 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\SPSS\SPSS27\stats.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Super Launcher\load\Others\暴力删除.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FastCopy\FastCopy.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\INNO3D TuneIT\Inno3D.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Afterburner\MSI Afterburner\MSIAfterburner.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\DDU v18.0.7.0\Display Driver Uninstaller.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\TestMem5\TM5.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FL Mouse\FL Esports M618 GamingMouse\FL Esports m618.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Hi75\OemDrv.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FreeCAD\bin\FreeCAD.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\7-Zip\7zFM.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-i386.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-x86_64-SSE4-AVX2.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-x86_64.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Tutorial-x86_64.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Tutorial-i386.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Cheat Engine.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Kernelmoduleunloader.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\ceregreset.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\unins000.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Cygwin\bin\mintty.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\SETLANG.EXE
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\msoev.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Microsoft OneDrive\OneDrive.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\OpenSSL-Win64\unins000.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\SangforCSClient\SangforCSClient.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\SangforCSClient\SangforCSClientUninstaller.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-17 22:39:32 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\texlive\2024\bin\windows\dviout.exe
+2025-02-17 22:39:33 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\ApkInstaller.exe
+2025-02-17 22:39:33 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\vivo手机助手.exe
+2025-02-17 22:39:33 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\unins000.exe
+2025-02-17 22:39:33 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\WPRUI.exe
+Programm terminated at 2025-02-17 22:41:31
+Conducted for 120.30 seconds
+========================================================================================================================
+Programm started at 2025-02-17 22:41:35
+2025-02-17 22:41:36 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\SPSS\SPSS27\stats.exe
+2025-02-17 22:41:36 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-17 22:41:36 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Super Launcher\load\Others\暴力删除.exe
+2025-02-17 22:41:36 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FastCopy\FastCopy.exe
+2025-02-17 22:41:36 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\INNO3D TuneIT\Inno3D.exe
+2025-02-17 22:41:36 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Afterburner\MSI Afterburner\MSIAfterburner.exe
+2025-02-17 22:41:36 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\DDU v18.0.7.0\Display Driver Uninstaller.exe
+2025-02-17 22:41:36 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\TestMem5\TM5.exe
+2025-02-17 22:41:36 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FL Mouse\FL Esports M618 GamingMouse\FL Esports m618.exe
+2025-02-17 22:41:36 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Hi75\OemDrv.exe
+2025-02-17 22:41:36 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FreeCAD\bin\FreeCAD.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\7-Zip\7zFM.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-i386.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-x86_64-SSE4-AVX2.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-x86_64.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Tutorial-x86_64.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Tutorial-i386.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Cheat Engine.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Kernelmoduleunloader.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\ceregreset.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\unins000.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Cygwin\bin\mintty.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\SETLANG.EXE
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\msoev.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Microsoft OneDrive\OneDrive.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\OpenSSL-Win64\unins000.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\SangforCSClient\SangforCSClient.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\SangforCSClient\SangforCSClientUninstaller.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\texlive\2024\bin\windows\dviout.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\ApkInstaller.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\vivo手机助手.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\unins000.exe
+2025-02-17 22:41:37 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\WPRUI.exe
+Programm terminated at 2025-02-17 22:41:53
+Conducted for 17.85 seconds
+========================================================================================================================
+Programm started at 2025-02-17 22:45:07
+2025-02-17 22:45:08 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\SPSS\SPSS27\stats.exe
+2025-02-17 22:45:08 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-17 22:45:08 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Super Launcher\load\Others\暴力删除.exe
+2025-02-17 22:45:08 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FastCopy\FastCopy.exe
+2025-02-17 22:45:08 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\INNO3D TuneIT\Inno3D.exe
+2025-02-17 22:45:08 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Afterburner\MSI Afterburner\MSIAfterburner.exe
+2025-02-17 22:45:08 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\DDU v18.0.7.0\Display Driver Uninstaller.exe
+2025-02-17 22:45:08 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\TestMem5\TM5.exe
+2025-02-17 22:45:08 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FL Mouse\FL Esports M618 GamingMouse\FL Esports m618.exe
+2025-02-17 22:45:08 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Hi75\OemDrv.exe
+2025-02-17 22:45:08 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FreeCAD\bin\FreeCAD.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\7-Zip\7zFM.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-i386.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-x86_64-SSE4-AVX2.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-x86_64.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Tutorial-x86_64.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Tutorial-i386.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Cheat Engine.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Kernelmoduleunloader.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\ceregreset.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\unins000.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Cygwin\bin\mintty.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\SETLANG.EXE
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\msoev.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Microsoft OneDrive\OneDrive.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\OpenSSL-Win64\unins000.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\SangforCSClient\SangforCSClient.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\SangforCSClient\SangforCSClientUninstaller.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\texlive\2024\bin\windows\dviout.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\ApkInstaller.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\vivo手机助手.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\unins000.exe
+2025-02-17 22:45:09 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\WPRUI.exe
+Programm terminated at 2025-02-17 22:46:13
+Conducted for 65.50 seconds
+========================================================================================================================
+Programm started at 2025-02-17 22:48:12
+2025-02-17 22:48:13 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\SPSS\SPSS27\stats.exe
+2025-02-17 22:48:13 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-17 22:48:13 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Super Launcher\load\Others\暴力删除.exe
+2025-02-17 22:48:13 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FastCopy\FastCopy.exe
+2025-02-17 22:48:13 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\INNO3D TuneIT\Inno3D.exe
+2025-02-17 22:48:13 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Afterburner\MSI Afterburner\MSIAfterburner.exe
+2025-02-17 22:48:13 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\DDU v18.0.7.0\Display Driver Uninstaller.exe
+2025-02-17 22:48:13 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\TestMem5\TM5.exe
+2025-02-17 22:48:13 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FL Mouse\FL Esports M618 GamingMouse\FL Esports m618.exe
+2025-02-17 22:48:13 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Hi75\OemDrv.exe
+2025-02-17 22:48:13 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\FreeCAD\bin\FreeCAD.exe
+2025-02-17 22:48:13 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\7-Zip\7zFM.exe
+2025-02-17 22:48:13 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-i386.exe
+2025-02-17 22:48:13 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-x86_64-SSE4-AVX2.exe
+2025-02-17 22:48:13 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\cheatengine-x86_64.exe
+2025-02-17 22:48:13 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Tutorial-x86_64.exe
+2025-02-17 22:48:13 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Tutorial-i386.exe
+2025-02-17 22:48:13 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Cheat Engine.exe
+2025-02-17 22:48:13 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\Kernelmoduleunloader.exe
+2025-02-17 22:48:14 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\ceregreset.exe
+2025-02-17 22:48:14 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Cheat Engine 7.3\unins000.exe
+2025-02-17 22:48:14 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\Cygwin\bin\mintty.exe
+2025-02-17 22:48:14 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-17 22:48:14 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\SETLANG.EXE
+2025-02-17 22:48:14 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Office16\msoev.exe
+2025-02-17 22:48:14 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Microsoft Office\root\Client\AppVLP.exe
+2025-02-17 22:48:14 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files\Microsoft OneDrive\OneDrive.exe
+2025-02-17 22:48:14 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\OpenSSL-Win64\unins000.exe
+2025-02-17 22:48:14 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\SangforCSClient\SangforCSClient.exe
+2025-02-17 22:48:14 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\SangforCSClient\SangforCSClientUninstaller.exe
+2025-02-17 22:48:14 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Sangfor\SSL\EasyConnect\EasyConnect.exe
+2025-02-17 22:48:14 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\texlive\2024\bin\windows\dviout.exe
+2025-02-17 22:48:14 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\ApkInstaller.exe
+2025-02-17 22:48:14 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\vivo手机助手.exe
+2025-02-17 22:48:14 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from E:\Softwares\vivo手机助手\unins000.exe
+2025-02-17 22:48:14 [WARNING]  No256Icon -> "e:\SuperLauncher\Scripts\manager\paths_transfer.py":166, GV.logger.warning(title='No256Icon', message=f"Error extracting icon from {exe_path}")
+  Error extracting icon from C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\WPRUI.exe
+Programm terminated at 2025-02-17 22:48:44
+Conducted for 31.72 seconds
+========================================================================================================================
