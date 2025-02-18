@@ -311,12 +311,12 @@ class UIUpdater(QObject):
             return default_v
     @classmethod
     def set(cls, key_f:Union[atuple,alist],action_f:Callable,
-             type_f:Union[alist[GV.UpdateSign], GV.UpdateSign]=None, traceinfo:GV.FuncInfo=None):
+             type_f:Union[alist[GV.UpdateSign], GV.UpdateSign]=None, traceinfo:Optional[GV.FuncInfo]=None):
         if not traceinfo:
-            inspect_info = inspect.getframeinfo(inspect.currentframe().f_back)
-            traceinfo = GV.FuncInfo('', inspect_info.filename, inspect_info.function, inspect_info.lineno)
-        else:
-            pass
+            frame_f = inspect.currentframe().f_back
+            inspect_info = inspect.getframeinfo(frame_f)
+            classname_f = UIUpdater.get_classname(frame_f)
+            traceinfo = GV.FuncInfo(classname=classname_f, methodname=inspect_info.function, filename=inspect_info.filename, linenum=inspect_info.lineno)
         atuple_check, value_t, value_ae = cls.action(key_f, action_f, type_f)
         if atuple_check:
             if not traceinfo:
@@ -362,7 +362,14 @@ class UIUpdater(QObject):
                 return False
             else:
                 return value_t==value_n
-        
+    @staticmethod
+    def get_classname(frame_f):
+        locals_f = frame_f.f_locals
+        if 'self' in locals_f:
+            return locals_f['self'].__class__.__name__
+        else:
+            return ""
+    
     def __init__(self):
         super().__init__()
         self.update_delay = QTimer()
@@ -487,10 +494,10 @@ class UIUpdater(QObject):
         methodname_f = traceinfo.methodname
         filename_f = traceinfo.filename
         linenum_f = traceinfo.linenum
-        if classname_f == 'function':
-            warnings.warn(f'Key {key_f} not found in new yaml file, Function {methodname_f} at "{filename_f}", line {linenum_f}')
+        if classname_f == '':
+            GV.logger.warning(title="YAML Key Missing", message=f'Key {key_f} not found in new yaml file, Function {methodname_f} at "{filename_f}:{linenum_f}"')
         else:
-            warnings.warn(f'Key {key_f} not found in new yaml file, {classname_f}.{methodname_f} at "{filename_f}", line {linenum_f}')
+            GV.logger.warning(title="YAML Key Missing", message=f'Key {key_f} not found in new yaml file, {classname_f}.{methodname_f} at "{filename_f}:{linenum_f}"')
     
     def _objUpdate(self, uidata_f:UIData):
         try:

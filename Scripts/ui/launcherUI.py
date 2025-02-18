@@ -6,13 +6,19 @@ from functools import partial
 from abc import abstractmethod
 import asyncio
 import asyncssh
-from typing import List, Literal, Union, OrderedDict
+from typing import List, Literal, Union, OrderedDict, TYPE_CHECKING
 # local import
 from ..ui.custom_widget import *
 from ..tools.toolbox import *
 from ..manager.paths_transfer import *
-from ..manager.WrappedWorker import *
+from ..worker import wrapped_worker as WW
+
+from ..manager.task_manage import *
 from .. import global_var as GV
+
+if TYPE_CHECKING:
+    from Scripts import ControlLauncher
+    from ..worker import worker_thread as WT
 
 class Associate:
     def __init__(self, nums:int, 
@@ -156,69 +162,191 @@ class Ass:
             self.path = path
             self.host = host
 
+class NameTagWidget(QWidget):
+    def __init__(self, host_sd:atuple, basename_sd:atuple, host_font_f:atuple, basename_font_f:atuple, height_f:atuple):
+        super().__init__()
+        self.host_sd = host_sd
+        self.basename_sd = basename_sd
+        self.host_font_f = host_font_f
+        self.basename_font_f = basename_font_f
+        self.height_f = height_f
+        if height_f is not None:
+            UIUpdater.set(height_f, self.setFixedHeight, 'height')
+        self._windowSet()
+        self._initUI()
+    
+    def _windowSet(self):
+        self.setWindowFlags(self.windowFlags()|Qt.FramelessWindowHint | Qt.Tool)
+        self.setAttribute(Qt.WA_ShowWithoutActivating)
+        self.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.setAttribute(Qt.WA_TranslucentBackground)  # 设置窗口属性为透明
+    
+    def _initUI(self):
+        self.layout_0 = amlayoutH(align_v='c', spacing=1)
+        self.host_label = NameTag(font=self.host_font_f, style_config=self.host_sd, height=self.height_f)
+        self.basename_label = NameTag(font=self.basename_font_f, style_config=self.basename_sd, height=self.height_f)
+        add_obj(self.host_label, self.basename_label, parent_f=self.layout_0)
+        self.setLayout(self.layout_0)
+        self.layout_0.setContentsMargins(0, 0, 0, 0)
+
+    def setHost(self, host:str):
+        self.host_label.setText(host)
+
+    def setBasename(self, basename:str):
+        self.basename_label.setText(basename)
+
+    @Slot(list)
+    def setPosition(self, pos:list[int]):
+        if not self.isVisible():
+            return
+        self.setGeometry(pos[0], pos[1], self.width(), self.height())
+
 class BasicAS(QListWidget):
-    def __init__(self, config:Config_Manager, parent:Union[QMainWindow, QWidget],launcher_manager:LauncherPathManager,
-                 path_manager:TransferPathManager):
+    def __init__(self, config:"Config_Manager", parent:"ControlLauncher",manager:"ManagerGroup"):
         super().__init__(parent)
         self.up = parent
         self.name = "associate_list"
-        self.launcher_manager:LauncherPathManager = launcher_manager
-        self.path_manager:TransferPathManager = path_manager
+        self.launcher_manager:LauncherPathManager = manager.launcher
+        self.path_manager:TransferPathManager = manager.transfer
+        self.task_manager:TaskManager = manager.task
+        self.event_manager:GlobalMouseListener = manager.event
         self.config = config.deepcopy()
         self._loadAll()
         
     def focusNextPrevChild(self, next):
         return True
-    def startDrag(self, event: QDragEnterEvent):
+    
+    def selectReset(self):
+        if self.selected_item is not None:
+            self._get_label(self.selected_item).setSelected(False)
+            self.selected_item = None
+
+    def startDrag(self, supportedActions: Qt.DropActions):
         item_f = self.currentItem()
-        if item_f is None:
+        self.selected_item = item_f
+        self.selected_label = self._get_label(item_f)
+        self.is_dragging = True
+        cwd_f = self.get_cwd()
+        if cwd_f is None:
             return
+        text_f = self._get_item_text(item_f)
+
+        self.event_manager.resume('move')
+        self.name_widget.setHost(GV.HOST)
+        self.name_widget.setBasename(text_f)
+        self.name_widget.adjustSize()
+        self.name_widget.show()
         drag = QDrag(self)
+        self.watcher.setSrc(os.path.join(cwd_f, text_f), GV.HOST)
         mime_data = QMimeData()
         if not os.path.exists(self.path_i):
             with open(self.path_i, 'a') as f:
                 f.write("haha")
         mime_data.setUrls([QUrl.fromLocalFile(self.path_i)])
         drag.setMimeData(mime_data)
-        drag.exec_(Qt.CopyAction)
-        
+        drag.exec_(Qt.CopyAction)  
+        self.name_widget.hide()
+
     def dragEnterEvent(self, event: QDragEnterEvent):
-        if event.mimeData().hasUrls(): 
+        if event.mimeData().hasUrls() or event.source() == self: 
             event.acceptProposedAction()  
-        super().dragEnterEvent(event)
     def dragMoveEvent(self, event: QDragMoveEvent):
-        if event.mimeData().hasUrls():
+        if event.mimeData().hasUrls()or event.source() == self:
             event.acceptProposedAction()
-        super().dragMoveEvent(event)
+        else:
+            event.ignore()
     def dropEvent(self, event: QDropEvent):
         mime_data = event.mimeData()
         if mime_data.hasUrls():  
-            urls = mime_data.urls()
-            paths = [url.toLocalFile() for url in urls]  # 获取文件路径
-            self._upload(paths)
-            event.acceptProposedAction()  # 接受拖放
-        else:
-            pass
+            pos_f = event.pos()
+            item_f = self.itemAt(pos_f)
+            if item_f is None:
+                return
+            src = self.watcher.src
+            cwd_f = self.get_cwd()
+            hostname = self.watcher.src_hostname
+            text_f = self._get_item_text(item_f)
+            if text_f == "..":
+                self._transfer(src=src, src_hostname=hostname, dst=os.path.dirname(cwd_f), dst_hostname=GV.HOST)
+            else:
+                dst = os.path.join(cwd_f, text_f)
+                if not dst == cwd_f:
+                    d_r = self.path_manager.check(dst, GV.HOST)
+                    if d_r and stat.S_ISDIR(d_r.st_mode):
+                        self._transfer(src=src, src_hostname=hostname, dst=dst, dst_hostname=GV.HOST)
+            event.acceptProposedAction()
 
     @abstractmethod
     def _upload(self, src:str):
         pass
     
     def _loadAll(self):
+        self.selected_item = None
+        self.selected_label = None
+        self.hover_label = None
+        self.is_dragging = False
+        self.pause_timer = QTimer(self)
+        self.pause_timer.setSingleShot(True)
+        self.pause_timer.setInterval(100)
+
         self.setAcceptDrops(True) 
         self.setDragEnabled(True) 
         self.setDropIndicatorShown(True)
         self.config.group_chose("Launcher", self.name)
-        self.path_i = os.path.abspath(r'./tmp/vaccummer_superlauncher_url_temp_file94138.txt')
         self._loadPara()
         self._loadPtr()
-        self.watcher = FileWatcher(["D:\\", "E:\\", "F:\\"], os.path.basename(self.path_i), self.path_i)
-        self.watcher.runtime_info.connect(self._runtime_info_prrocess)
-        self.watcher.start()
+        default_path = os.path.abspath("./tmp/vaccummer_superlauncher_url_temp_file94138.txt")
+        self.path_i = UIUpdater.get(atuple("Launcher", "associate_list", "path", "hook_file_path"), default_path)
+        task_data = WatcherTask(get_hard_drives(), os.path.basename(self.path_i), self.path_i)
+        self.watcher:WT.FileWatcher = self.task_manager.create_and_run_task(TaskType.WATCHER, task_data)
+        self.watcher.callback_info.connect(self._hook_result_reciver)
+        self.event_manager.mouse_press.connect(self._left_button_release)
+        self.name_widget = NameTagWidget(host_sd=self.host_sd, basename_sd=self.basename_sd, host_font_f=self.tag_host_font, basename_font_f=self.tag_basename_font, height_f=self.item_height)
+        self.name_widget.hide()
+        self.event_manager.mouse_move.connect(self.name_widget.setPosition)
+        self.event_manager.mouse_move.connect(self._set_hover_label)
     
-    @Slot(TaskRuntimeInfo)
-    def _runtime_info_prrocess(self, info:TaskRuntimeInfo):
-        print(info.tracked_path)
+    @Slot(list)
+    def _hook_result_reciver(self, src_dst_l:list[str]):
+        hostname, src, dst = src_dst_l
+        if self.selected_item is not None:
+            label_f = self._get_label(self.selected_item)
+            label_f.setSelected(False)
+        if os.path.basename(dst) == os.path.basename(self.path_i):
+            WW.Copier().rm(dst)
+        else:
+            GV.logger.error(title="WatcherError", message=f'Watcher get an invalid tracked path: "{dst}"')
+            return
+        dst = os.path.dirname(dst)
+        if not self.path_manager.check(src, hostname):
+            GV.logger.warning(title="WatcherSrcNotExists", message="FileWatcher doses't has valid src")
+            return
+        self._transfer(src=src, src_hostname=hostname, dst=dst, dst_hostname='Local')
+
+    @Slot(list)
+    def _left_button_release(self, trace_info:list=None):
+        if ((not trace_info) or((trace_info[2] == mouse.Button.left) and (trace_info[3] == False))):
+            self.is_dragging = False
+            if (self.selected_label is not None):
+                self.selected_label.setSelected(False)
+                self.selected_label = None
+            if self.hover_label is not None:
+                self.hover_label.setSelected(False)
+                self.hover_label = None
+    
+    @Slot(list)
+    def _set_hover_label(self, pos:list[int]):
+        if not self.is_dragging:
+            return
+        item_f = self.itemAt(self.mapFromGlobal(QPoint(pos[0], pos[1])))
+        if item_f == self.selected_item:
+            return
+        if item_f is None:
+            return
+        if self.hover_label is not None:
+            self.hover_label.setSelected(False)
+        self.hover_label = self._get_label(item_f)
+        self.hover_label.setBgColor("#216ECE")
 
     def _loadPara(self):
         # dynamic load
@@ -242,6 +370,10 @@ class BasicAS(QListWidget):
         self.menu_style = atuple('Launcher', self.name, 'style', 'menu', 'main')
         self.menu_item_style = atuple('Launcher', self.name, 'style', 'menu', 'item_button')
         self.menu_font = atuple('Launcher', self.name, 'font', 'menu')
+        self.host_sd = atuple('Launcher', self.name, 'style', 'ItemNameTag', 'Hostname')
+        self.basename_sd = atuple('Launcher', self.name, 'style', 'ItemNameTag', 'Basename')
+        self.tag_host_font = atuple('Launcher', self.name, 'font', 'tag_hostname')
+        self.tag_basename_font = atuple('Launcher', self.name, 'font', 'tag_basename')
 
         # size
         pre = ['Launcher', self.name, 'Size']
@@ -267,17 +399,29 @@ class BasicAS(QListWidget):
     def _get_prompt(self)->str:
         return self.input_text
 
+    def get_cwd(self)->str|None:
+        prompt_f = self._get_prompt()
+        if not is_path(prompt_f):
+            return None
+        if self.path_manager.check(prompt_f) is None:
+            return os.path.dirname(prompt_f)
+        else:
+            return prompt_f
+
     def get_exe_path(self, name:str)->str:
         for value_i in self.path_dict.values():
             value_t =  value_i.get(name, None)
             if value_t is not None:
                 return value_t
         return ''
+
+    @abstractmethod
+    def _transfer(self, src:str, src_hostname:str, dst:str, dst_hostname:str):
+        pass
 class UIAS(BasicAS):
     resize_info = Signal(list)
-    def __init__(self, config:Config_Manager, parent:Union[QMainWindow, QWidget],launcher_manager:LauncherPathManager,
-                 path_manager:TransferPathManager):  
-        super().__init__(config, parent, launcher_manager, path_manager)
+    def __init__(self, config:"Config_Manager", parent:"ControlLauncher",manager:"ManagerGroup"):  
+        super().__init__(config, parent, manager)
         self._inititems()
         self.setFocusPolicy(Qt.NoFocus)
 
@@ -379,13 +523,15 @@ class UIAS(BasicAS):
         item_i = QListWidgetItem()
         item_i.setData(Qt.UserRole + 1, int(index_f))
         button_i = YohoPushButton(icon_i=None, style_config=self.button_config, icon_proportion=self.icon_proportion)
-        button_i.setFixedSize(UIUpdater.get(button_size),UIUpdater.get(button_size))
+        button_i.setFixedSize(1.2*UIUpdater.get(button_size),UIUpdater.get(button_size))
         button_i.clicked.connect(partial(self._changeicon, index_i=index_f))
 
         label_i = AutoLabel(text="Default", font=label_font, style_config=self.label_config)
-        label_i.setAlignment(Qt.AlignVCenter)
+        # label_i = LabelAlikeButton(text_f="Default", style_config=self.label_config, font_f=label_font, height_f=button_size)
+        label_i.setAlignment(Qt.AlignVCenter|Qt.AlignLeft)
         layout_i = amlayoutH(align_v='l')
         UIUpdater.set(self.line_margin, layout_i.setContentsMargins, 'margin')
+        layout_i.setSpacing(0)
         layout_i.addWidget(button_i)
         layout_i.addWidget(label_i)
         widget_i = QWidget()
@@ -431,11 +577,19 @@ class UIAS(BasicAS):
     
     def _get_item_text(self, item:QListWidgetItem)->str:
         index_f = self._get_item_index(item)
+        if index_f == -1:
+            return ".."
         return self.label_l[index_f].text()
     
     def _getbutton(self, item:QListWidgetItem) -> QPushButton:
         index_f = self._get_item_index(item)
         return self.button_l[index_f]
+    
+    def _get_label(self, item:QListWidgetItem) -> AutoLabel:
+        index_f = self._get_item_index(item)
+        if index_f == -1:
+            return self.s_label
+        return self.label_l[index_f]
     
     @Slot(list)
     def _resizeLabelButton(self, info_l:list):
@@ -454,9 +608,8 @@ class AssociateList(UIAS):
     file_transfer_signal = Signal(dict)
     file_operation_signal = Signal(GV.FileOperation)
     launch_signal = Signal(GV.LaunchTask)
-    def __init__(self, config:Config_Manager, parent:Union[QMainWindow, QWidget],launcher_manager:LauncherPathManager,
-                 path_manager:TransferPathManager):  
-        super().__init__(config, parent, launcher_manager, path_manager)
+    def __init__(self, config:"Config_Manager", parent:"ControlLauncher",manager:"ManagerGroup"):  
+        super().__init__(config, parent, manager)
         self.type = 'name'
         self.transfer_task = Signal(dict)
         self.raise_()
@@ -537,6 +690,10 @@ class AssociateList(UIAS):
         return self.ass.fill(current_text)
     
     def left_click(self, item:QListWidgetItem):
+        # if self.selected_item is not None:
+        #     index_f = self._get_item_index(self.selected_item)
+        #     self.label_l[index_f].setSelected(True)
+        # self.selected_item = item
         index_f = self._get_item_index(item)
         item_text = self._get_item_text(item)
         prompt_f = self._get_prompt()
@@ -554,7 +711,6 @@ class AssociateList(UIAS):
             info_dict = item.data(Qt.UserRole)
             self.app_launch_signal.emit(info_dict)
             self.set_input_text('')
-        item.setSelected(False)
     
     def _initMenu(self):
         self.action_l = ['Open','Delete', 'New', 'Assign Icon', 'Reverse', 'Download', 'Download(Ask dir)']
@@ -708,6 +864,10 @@ class AssociateList(UIAS):
                 return self.sort_fliter(input_l)
             case _:
                 return self.sort_fliter(input_l)
+
+    def _transfer(self, src:str, src_hostname:str, dst:str, dst_hostname:str):
+        print(src, src_hostname, dst, dst_hostname)
+        pass
 
 class PathModeSwitch(CustomComboBox):
     def __init__(self, parent:QMainWindow, config:Config_Manager, path_manager:TransferPathManager) -> None:
@@ -1463,5 +1623,4 @@ class AsBACKup:
         except Exception as e:
             print(f"文件传输失败: {e}")
             return False
-
 

@@ -4,9 +4,11 @@ import os
 from PySide2.QtCore import QObject, Signal, Slot
 from dataclasses import dataclass
 from enum import Enum
-
+from typing import Callable
+import time
 # relative import
 from .. import global_var as GV
+from backends import FileOperationType
 from backends.SFTPTransfer.client import SFTPConfig
 zipformat = Literal['zip', '7z', 'bz2', 'tar', 'gz', 'xz', 'gz']
 
@@ -27,15 +29,24 @@ class ZipClass(Enum):
     def __eq__(self, other):
         return self.value == other
 
+    def __str__(self):
+        return self.value
+
 class TaskType(Enum):
-    FILE = "file_operation"
-    ZIP = "zip_operation"
-    
+    FILE = "FileOperation"
+    ZIP = "ZipOperation"
+    WATCHER = "Watcher"
+    MOUSE_LISTENER = "MouseListener"
+
     def __eq__(self, other):
         return self.value == other
-
+    
+    def __str__(self):
+        return self.value
+ 
 @dataclass
 class ZipTaskData:
+    ID:int
     src:str|list[str]
     dst:str
     task:ZipClass
@@ -49,9 +60,15 @@ class FileTask:
     src:str
     dst:str
     stat_local:os.stat_result
-    task_type:Literal['put', 'get', 'local_copy', "local_move"]
+    task_type:Literal['put', 'get', FileOperationType.COPY, FileOperationType.MOVE, FileOperationType.REMOVE]
     total_size:int
     host_config:SFTPConfig=None
+
+@dataclass
+class WatcherTask:
+    drivers:list[str]
+    filename:str
+    filepath:str
 
 @dataclass
 class TaskRuntimeInfo:
@@ -64,9 +81,9 @@ class TaskRuntimeInfo:
     error:Any=None
     error_msg:str=None
 
-class TaskInfo(QObject):
-    runtime_info = Signal(TaskRuntimeInfo)
-    def __init__(self, task_type:TaskType, task_data:ZipTaskData|FileTask, ID:int=None):
+@dataclass
+class TaskInfo:
+    def __init__(self, task_type:TaskType, task_data:ZipTaskData|FileTask|WatcherTask|None, ID:int=None):
         super().__init__()
         self.task_type = task_type
         self.task_data = task_data
@@ -74,17 +91,7 @@ class TaskInfo(QObject):
         self.progress:float = None
         self.filename:str = None
         self.done:int = None
-    
-    def __setattr__(self, name:str, value: Any) -> None:
-        super().__setattr__(name, value)
-        match name:
-            case 'progress' if value is not None:
-                self.runtime_info.emit(TaskRuntimeInfo(self.ID, 'progress', value))
-            case 'filename' if value is not None:
-                self.runtime_info.emit(TaskRuntimeInfo(self.ID, 'filename', value))
-            case 'done' if value is not None:
-                self.runtime_info.emit(TaskRuntimeInfo(self.ID, "done", value))
-                self.runtime_info.disconnect()
+        self.start_time:float = time.time()
     
 class TaskManager(QObject):
     task2add = Signal(TaskInfo)
@@ -112,13 +119,13 @@ class TaskManager(QObject):
     def _launch(self, task:TaskInfo):
         pass
 
-def update_progress(task_f:TaskInfo, progress:float)->None:
-    task_f.progress = progress
+# def update_progress(task_f:TaskInfo, progress:float)->None:
+#     task_f.progress = progress
 
-def update_filename(task_f:TaskInfo, filename:str)->None:
-    task_f.filename = filename
+# def update_filename(task_f:TaskInfo, filename:str)->None:
+#     task_f.filename = filename
 
-def update_done(task_f:TaskInfo, done:int)->None:
-    task_f.done = done
+# def update_done(task_f:TaskInfo, done:int)->None:
+#     task_f.done = done
 
 

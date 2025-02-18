@@ -1316,14 +1316,12 @@ class LauncherSetting(UILauncherSetting):
             case 'delete':
                 self.delete_tab(page_f)
 
-
 class SoftwareInitializer(QWidget):
     def __init__(self, manager:LauncherPathManager)->None:
-        self.edge_threshold = 10
-        self.drag_position = None
         super().__init__()
         self.manager = manager
         self.name = 'LauncherInitializer'
+        self._windowset()
         self._initPara()
         self._initData()
         self._initUI()
@@ -1332,7 +1330,7 @@ class SoftwareInitializer(QWidget):
         self.drag_position = None
         self.edge_drag = None
         self.edge_threshold = 20
-        self.setWindowFlags(self.windowFlags() | Qt.FramelessWindowHint)
+        self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setWindowTitle("Launcher Software Initializate")
         UIUpdater.set(atuple("Settings", self.name,'path','taskbar_icon'), self.setWindowIcon,type_f='icon')
@@ -1604,5 +1602,5 @@ class SoftwareInitializer(QWidget):
 
     def closeAction(self, save_f:bool)->None:
         pass
-    
+
 

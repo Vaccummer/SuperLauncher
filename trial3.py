@@ -1,25 +1,20 @@
-from typing import Literal
-import os
-import asyncssh
-import asyncio
-import time
+import ctypes
 
-async def _remote_transfer(src:str, dst:str):
+def get_display_refresh_rate()->int:
+    try:
+        hdc = ctypes.windll.user32.GetDC(0)
+        # 获取显示器的刷新率
+        refresh_rate = ctypes.windll.gdi32.GetDeviceCaps(hdc, 116)  # 116 是 VREFRESH 的常量值
+        # 释放设备上下文
+        ctypes.windll.user32.ReleaseDC(0, hdc)
+        output = int(refresh_rate)
+        if 30<output<180:
+            return output
+        else:
+            return 60
+    except Exception as e:
+        return 60
 
-    config_t = {
-        'host':'172.28.14.64',
-        'port':22,
-        'username':'am',
-        'password':'1984'
-    }
-    async with asyncssh.connect(**config_t) as conn:
-        async with conn.start_sftp_client() as sftp:
-            await sftp.put(src, dst, recurse=True, max_requests=2)
-src = r'F:\Windows_Data\Desktop_File\voc2007.rar'
-dst = r'/home/am/test23.rar'
-size_f = os.path.getsize(src)
-time_start = time.time()
-asyncio.run(_remote_transfer(src, dst))
-time_end = time.time()
-speed = size_f / (time_end - time_start)/1024/1024
-print(f'Speed: {speed:.2f} MB/s')
+if __name__ == "__main__":
+    refresh_rate = get_display_refresh_rate()
+    print(f"Display refresh rate: {refresh_rate} Hz")

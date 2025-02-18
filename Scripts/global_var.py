@@ -1,7 +1,10 @@
 from typing import Literal,Callable
+import time
+import atexit
+from PySide2.QtCore import QThread
 from dataclasses import dataclass
 from .ConsoleCustom.logger import get_logger
-from .manager.TaskData import TaskInfo
+from .worker.task_data import TaskInfo
 MODE:str = "Launcher"
 HOST:str = 'Local'
 HOST_TYPE:str = "Local"
@@ -12,8 +15,31 @@ GEOMETRY:list[int] = [0, 0, 0, 0]
 TASKS:list[TaskInfo] = []
 
 UpdateSign = Literal[None, 'size', 'font', 'icon', 'config', 'height', 'margin', 'unpack', 'style']
-
+  
 logger = get_logger('runtime.log')
+
+@dataclass
+class ThreadInfo:
+    ID:str
+    task:TaskInfo
+    thread:QThread
+class ThreadManager:
+    def __init__(self):
+        self.threads = []
+
+    def add_thread(self, thread:QThread):
+        self.threads.append(thread)
+
+    def clean(self):
+        for thread in self.threads:
+            try:
+                thread.stop()
+            except Exception as e:
+                logger.warning(f'Failed to stop thread {thread}, error: {e}')
+        time.sleep(0.5)
+
+    def clear(self):
+        self.threads = []
 
 @dataclass
 class FuncInfo:

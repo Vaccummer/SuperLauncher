@@ -1,9 +1,9 @@
 from typing import Literal
 from enum import Enum
-
 class FileOperationType(Enum):
     COPY = 1
     MOVE = 2
+    REMOVE=3
 
 class FileOperationResult(Enum):
     SUCCESS = 0
@@ -36,4 +36,13 @@ class ExplorerAPI:
         pass
 
     def action(self, src: str, dst: str, action: FileOperationType) -> FileOperationResult:
+        pass
+
+    def rm(self, path: str) -> FileOperationResult:
+        pass
+
+    def copy(self, src: str, dst: str) -> FileOperationResult:
+        pass
+
+    def move(self, src: str, dst: str) -> FileOperationResult:
         pass

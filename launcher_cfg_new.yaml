@@ -2,7 +2,8 @@ InitialConfig:
   use_desktop_opengl: true
   use_high_dpi_pixmap: true
   surface_sample_count: 32
-  admin_mode: false
+  admin_mode: true
+  admin_terminal: false
 
 Hotkeys:
   previous_mode: Ctrl+TAB
@@ -248,9 +249,12 @@ Launcher:
     font:
       main: [[Family, *yahei], [PixelSize, 40]]
       menu: [[Family, *yahei], [PixelSize, 30]]
+      tag_hostname: [[Family, *yahei], [PixelSize, 30], [Weight, 80]]
+      tag_basename: [[Family, *yahei], [PixelSize, 30], [Weight, 70]]
     path:
       file_icon_folder: "./load/Launcher/file_icons"
       app_icon_folder: "./load/Launcher/app_icons"
+      hook_file_path: "./tmp/vaccummer_superlauncher_url_temp_file94138.txt"
       # icons of certian format file is customed via UI, usually stored in $file_icon_folder
       # name of the icon is f"Ass_Icon_{extension}.{svg|png|icon}"
     style:
@@ -280,12 +284,11 @@ Launcher:
           margin: 0
       label:
         background_colors: ["#F7F7F7", "#FFC300", "#FF5733"]
-        padding: [0, 10, 0, 0]
+        padding: [5, 10, 5, 10]
         border: "none"
         text_align: "left"
         border_radius: 10
         resize_fractor: 0.5
-        animation_time: "none"
       button:
         icon_proportion: 0.9
         background_colors: ["rgba(255, 255, 255, 20)", "#FFC300", "#FF5733"] # common, hover, pressed
@@ -307,6 +310,24 @@ Launcher:
           display_x_offset: -20
           display_y_offset: -40
           padding: [0, 0, 0, 10]
+      ItemNameTag:
+        Hostname:
+          background_colors: ["#DCC624"]
+          font_color: "#000000"
+          border: "none"
+          border_radius: [10, 0, 0, 10]
+          padding: [10, 0, 10, 0]
+          text_align: "left"
+          extra_width: 10
+        Basename:
+          background_colors: ["#DE7423"]
+          font_color: "#000000"
+          border: "none"
+          border_radius: [0, 10, 10, 0]
+          padding: [10, 0, 10, 0]
+          text_align: "left"
+          extra_width: 10
+
     max_app_num: 20
     max_item_maintain: 999
     max_dir_num: 999
@@ -351,8 +372,8 @@ Launcher:
       button_icons: "./load/Launcher/shortcut_botton/button_icons"
       taskbar_icon: "./load/Launcher/shortcut_setting/taskbar_icon.svg"
       setting_xlsx: "./load/Launcher/shortcut_obj/shortcut_set.xlsx"
-      # default_app_icon: *default_button_icon # 和associate共享默认app_icon
-      # default_button_icon: *default_button_icon # 和associate共享默认app_icon
+      default_app_icon: "./load/Manager/LauncherPathManager/default/app.svg"
+      default_button_icon: "./load/Manager/LauncherPathManager/default/app.svg"
       default_folder_icon: "./load/Launcher/shortcut_setting/default/default_folder_icon.svg"
       col_coordinate_icon: "./load/Launcher/shortcut_setting/col_icon/col_coordinate_icon.svg"
       col_name_icon: "./load/Launcher/shortcut_setting/col_icon/col_name_icon.svg"
@@ -758,6 +779,11 @@ Settings:
       arrow_icon: "./load/Launcher/entry_button.svg"
       temp_icon_folder: "./tmp/icon"
       software_path_folder: "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs"
+      group_icon: ""
+      name_icon: ""
+      chname_icon: ""
+      exe_icon: ""
+      icon_icon: ""
     font:
       title_font: [[Family, *jetbrains], [PointSize, 12], [Weight, 70]]
       group_font: [[Family, *jetbrains], [PointSize, 12], [Weight, 70]]
@@ -767,6 +793,7 @@ Settings:
       exe_font: [[Family, *jetbrains], [PointSize, 12], [Weight, 70]]
       control_button_font: [[Family, *yahei], [PointSize, 12], [Weight, 70]]
     Size:
+      line_margin: [0, 0, 0, 0]
       line_height: 60
       group_width: 180
       name_edit_width: 120
@@ -776,6 +803,7 @@ Settings:
       line_obj_spacing: 10
       control_button_width: 100
       control_button_height: 40
+      control_button_margin: [0, 0, 0, 0]
     style:
       title:
         background: "transparent"
@@ -875,6 +903,7 @@ Settings:
       # note: carefully use "\", in case yaml file cannot parse the filter name
       - ["-pd", "^Windows$", "^system32$", "^SysWOW64$"]
       - ["-af", "^uninst.*\\.exe$"]
+
 Manager:
   LauncherPathManager:
     path:
@@ -906,3 +935,19 @@ Manager:
       - ["ubuntu-24.04", "//wsl.localhost/Ubuntu-24.04", "am"] # ["hostname", "address", "username"]
     connection_check_interval: 30
     connection_timeout: 5
+
+Backend:
+  FileWatcher:
+    path:
+      tag_file: "./tmp/vaccummer_superlauncher_url_temp_file94138.txt"
+  ExplorerAPI:
+    NoProgressUI: false
+    NoneUI: false
+    NoConfirmation: true
+    NoErrorUI: false
+    NoConfirmationForMakeDir: true
+    WarningIfPermanentDelete: false
+  SFTPClient:
+    block_size: -1
+    max_requests: 2
+    preserve: true

@@ -21,6 +21,7 @@ from .config_ui import Config_Manager
 from .config_ui import UIUpdater
 import backends as BK
 
+
 class IconSet:
     def __init__(self, path:str, icon:QIcon):
         pass
@@ -509,25 +510,30 @@ class TransferPathManager(SSHManager):
         path = os.path.join(self.wsl_d[self.hostname_n]['path'], path)
         return path
     
-    def check(self, path:str) -> Union[None, os.stat_result]:
-        if self.host_type == 'WSL':
+    def check(self, path:str, hostname:str|None=None) -> Union[None, os.stat_result]:
+        if hostname is None:
+            host_type = GV.HOST_TYPE
+            hostname = GV.HOST
+        else:
+            host_type = self.host_types.get(hostname, None)
+            if host_type is None:
+                GV.logger.error(title="WrongHosttype", message=f'Transfermanager.check get an invalid hostname "{hostname}"')
+                return None
+        if host_type == 'WSL':
             path = self._wsl_path_preprocess(path)
-        if self.host_type in ['Local', 'WSL']:
+        if host_type in ['Local', 'WSL']:
             if not os.path.exists(path):
                 return None
             return os.stat(path)
-        elif self.host_type == 'Remote':
+        elif host_type == 'Remote':
             try:
                 # 获取文件状态信息
                 return self.sftp.stat(path)
             except FileNotFoundError:
                 return None
             except Exception as e:
-                warnings.warn(f'Host{self.hostname_n} connection encounters error {e}')
+                GV.logger.error(title="HostConnectError", message=f'Host {hostname} connection encounter error: {e}')
                 return None
-        else:
-            warnings.warn(f"Invalid host type: {self.host_type}")
-            return None
     
     def isdir(self, path:str)->bool:
         stat_t = self.check(path)

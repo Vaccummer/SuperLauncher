@@ -1,4 +1,6 @@
 import pandas as pd
+import ctypes
+from ctypes import wintypes
 from glob import glob
 import webbrowser
 import openpyxl
@@ -549,7 +551,36 @@ def get_func_info(func_f:Callable)->GV.FuncInfo:
     func_info = GV.FuncInfo(func_f.__class__.__name__, func_f.__name__, filename='', linenum=0)
     return func_info
 
+DeleteFile = ctypes.windll.kernel32.DeleteFileW
+DeleteFile.argtypes = [wintypes.LPCWSTR]
+DeleteFile.restype = wintypes.BOOL
 
+def WinAPI_RM(file_path:str)->Optional[Exception]:
+    file_path = ctypes.c_wchar_p(str(file_path))
+    if not DeleteFile(file_path):
+        error_code = ctypes.windll.kernel32.GetLastError()
+        if error_code == 2:  
+            return FileNotFoundError(f'Path {file_path.value} does not exist')
+        elif error_code == 5: 
+            return PermissionError(f'No permission to delete file {file_path.value}')
+        else:
+            return RuntimeError(f'Failed to delete file {file_path.value}, error code: {error_code}')
+
+def get_display_refresh_rate()->int:
+    try:
+        hdc = ctypes.windll.user32.GetDC(0)
+        # 获取显示器的刷新率
+        refresh_rate = ctypes.windll.gdi32.GetDeviceCaps(hdc, 116)  # 116 是 VREFRESH 的常量值
+        # 释放设备上下文
+        ctypes.windll.user32.ReleaseDC(0, hdc)
+        output = int(refresh_rate)
+        if 30<output<180:
+            return output
+        else:
+            return 60
+    except Exception as e:
+        return 60
+    
 class atuple(tuple):
     def __new__(cls, *args):
         if len(args) == 1 and isinstance(args[0], (list, tuple)):

@@ -40,8 +40,6 @@ class YohoPushButton(QPushButton):
             self.style_ctl = self.customStyle(style_config)
         # 设置按钮图标
         if icon_i is not None:
-
-
             UIUpdater.set(icon_i, self.setIcon, type_f='icon')
         if size_f is not None:
             UIUpdater.set(size_f, self.setFixedSize, type_f='size')
@@ -124,6 +122,7 @@ class YohoPushButton(QPushButton):
         border_radius = Udata(atuple('border_radius'), 10)
         border = Udata(atuple('border'), 'none')
         padding = Udata(atuple('padding'), [0,0,0,0])
+        text_align = Udata(atuple('text_align'), 'center')
         temp_dict = {
             'QPushButton': {
                 'background-color': bg_colors[0],
@@ -133,6 +132,7 @@ class YohoPushButton(QPushButton):
                 'border-top-right-radius': border_radius[1],
                 'border-bottom-right-radius': border_radius[2],
                 'border-bottom-left-radius': border_radius[3],
+                'text-align': text_align,
             },
             'QPushButton:hover': {
                 'background-color': bg_colors[1],
@@ -145,7 +145,7 @@ class YohoPushButton(QPushButton):
             self.style_dict = {}
         self.style_dict = process_style_dict(self.style_dict, temp_dict, escape_sign, format_dict)
         self.setStyleSheet(style_make(self.style_dict|self.extra_style_dict))
-
+        
     def mousePressEvent(self, event: QMouseEvent):
         if event.button() == Qt.RightButton:
             self.right_button_clicked.emit(self.right_button_clicked_data)
@@ -175,6 +175,60 @@ class ColorfulButton(QPushButton):
         }}
         '''
         self.setStyleSheet(style_sheet)
+
+class LabelAlikeButton(QPushButton):
+    def __init__(self, text_f:str, style_config:atuple, font_f:QFont, height_f:int=None, width_f:int=None):
+        super().__init__()
+        self.setText(text_f)
+        UIUpdater.set(font_f, self.setFont, type_f='font')
+        if height_f is not None:
+            UIUpdater.set(height_f, self.setFixedHeight)
+        if width_f is not None:
+            UIUpdater.set(width_f, self.setFixedWidth)
+        self.extra_style_dict = {}
+        self.bg_color_ptr = style_config | atuple(['background_colors'])
+        self.style_ctl = self.customStyle(style_config)
+
+    @dynamic_load(type_f='style')
+    def customStyle(self, format_dict:dict, escape_sign:dict={}):
+        bg_color = Udata(atuple('background_colors'), ['transparent', 'transparent', 'transparent'])
+        border_radius = Udata(atuple('border_radius'), [10,10,10,10])
+        border = Udata(atuple('border'), 'none')
+        padding = Udata(atuple('padding'), [10,5,5,5])
+        text_align = Udata(atuple('text_align'), 'left')
+        temp_dict = {
+            'QPushButton': {
+                'background-color': bg_color[0],
+                'border': border,
+                'padding': padding,
+                'text-align': text_align,
+                'border-top-left-radius': border_radius[0],
+                'border-top-right-radius': border_radius[1],
+                'border-bottom-right-radius': border_radius[2],
+                'border-bottom-left-radius': border_radius[3],
+            },
+            'QPushButton:hover': {
+                'background-color': bg_color[1],
+            },
+            'QPushButton:pressed': {
+                'background-color': bg_color[2],
+            }
+        }
+        if not hasattr(self, 'style_dict'):
+            self.style_dict = {}
+        self.style_dict = process_style_dict(self.style_dict, temp_dict, escape_sign, format_dict)
+        self.setStyleSheet(style_make(self.style_dict|self.extra_style_dict))
+
+    def setSelected(self, selected:bool):
+        bg_color = enlarge_list(UIUpdater.get(self.bg_color_ptr, ["white", "yellow", "red"]),3)
+        if selected:
+            self.extra_style_dict[atuple('QPushButton', 'background-color')] = bg_color[2]
+            self.extra_style_dict[atuple('QPushButton:hover', 'background-color')] = bg_color[2]
+            self.setStyleSheet(style_make(self.style_dict|self.extra_style_dict))
+        else:
+            self.extra_style_dict.pop(atuple('QPushButton', 'background-color'), None)
+            self.extra_style_dict.pop(atuple('QPushButton:hover', 'background-color'), None)
+            self.setStyleSheet(style_make(self.style_dict|self.extra_style_dict))
 
 class AutoLabel(QLabel):
     def __init__(self, text:str, font:Union[QFont,atuple], style_config:atuple, icon_f:Union[str,atuple,QIcon]=None, 
@@ -257,6 +311,48 @@ class AutoLabel(QLabel):
             self.setPixmap(QPixmap(icon))
         elif isinstance(icon, QIcon):
             self.setPixmap(icon.pixmap(-1,-1))
+
+    def setBgColor(self, color:str):
+        self.extra_style_dict[atuple('QLabel', 'background-color')] = color
+        self.extra_style_dict[atuple('QLabel::hover', 'background-color')] = color
+        self.setStyleSheet(style_make(self.style_dict|self.extra_style_dict))
+
+class NameTag(QLabel):
+    def __init__(self, font:QFont, style_config:atuple, height:int=None, width:int=None):
+        super().__init__()
+        UIUpdater.set(font, self.setFont, type_f='font')
+        self.extra_style_dict = {}
+        self.style_ctl = self.customStyle(style_config)
+        if height is not None:
+            UIUpdater.set(height, self.setFixedHeight, type_f='height')
+        if width is not None:
+            UIUpdater.set(width, self.setFixedWidth, type_f='width')
+
+    @dynamic_load(type_f='style')
+    def customStyle(self, style_dict:dict, escape_sign:dict={}):
+        bg_color = Udata(atuple('background_colors'), ['white', 'white', 'white'])
+        font_color = Udata(atuple('font_color'), 'black')
+        border_radius = Udata(atuple('border_radius'), 10)
+        border = Udata(atuple('border'), 'none')
+        padding = Udata(atuple('padding'), [10,0,5,5])
+        text_align = Udata(atuple('text_align'), 'left')
+        temp_dict = {
+            'QLabel': {
+                'background-color': bg_color[0],
+                'color': font_color,
+                'border-top-left-radius': border_radius[0],
+                'border-top-right-radius': border_radius[1],
+                'border-bottom-right-radius': border_radius[2],
+                'border-bottom-left-radius': border_radius[3],
+                'border': border,
+                'padding': padding,
+                'text-align': text_align,
+            }
+        }
+        if not hasattr(self, 'style_dict'):
+            self.style_dict = {}
+        self.style_dict = process_style_dict(self.style_dict, temp_dict, escape_sign, style_dict)
+        self.setStyleSheet(style_make(self.style_dict|self.extra_style_dict))
 
 class AutoEdit(QLineEdit):
     geometry_signal = Signal(dict)
@@ -580,7 +676,7 @@ class ModeListWidget(QListWidget):
     
     def get_max_height(self):
         return self.get_size()[1]
-    
+
 class CustomComboBox(QWidget):
     index_changed = Signal(int)
     def __init__(self, modes:list, style_d:dict, box_height=None, box_font=QFont(), menu_font=QFont(),
@@ -701,6 +797,7 @@ class CustomComboBox(QWidget):
 
     def setEnableWheelEvent(self, enable:bool):
         self.enable_wheel_event = enable
+
 class PolygonWidget(QWidget):
     def __init__(self):
         super().__init__()
@@ -1044,11 +1141,9 @@ class AutoMenu(QWidget):
             if event.type() == QEvent.ActivationChange:
                 if not self.isActiveWindow():
                     self.am_exit()
-                    QApplication.instance().removeEventFilter(self)
             elif event.type() == QEvent.MouseButtonPress:
                 if not self.geometry().contains(event.globalPos()):
                     self.am_exit()
-                    QApplication.instance().removeEventFilter(self)
         return super().eventFilter(obj, event)
     
     @dynamic_load(type_f='style')

@@ -18,7 +18,7 @@ from .manager.paths_transfer import *
 from .global_var import *
 from .ConsoleCustom.exc_cb import exc_cb_init
 
-
+EXIT_TIME = 0
 class BaseLauncher(QMainWindow):
     # You can't heritate QObject and QMainWindow at the same time, cause QObject is the parent of QMainWindow
     def __init__(self, config:Config_Manager, app:QApplication):
@@ -28,6 +28,7 @@ class BaseLauncher(QMainWindow):
         self.basic_para_init()
         self.createTrayIcon()
         self._mainwindow_set()
+        atexit.register(self.programm_exit)
     # For mouse control
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
@@ -77,7 +78,6 @@ class BaseLauncher(QMainWindow):
         self.hide()  # hide the main window
         self.tray_icon.showMessage("Super Launcher", "Main Window is now hidden", QSystemTrayIcon.Information)
     def createTrayIcon(self):
-        
         # create taskbar hide icon
         self.tray_icon = QSystemTrayIcon(self)
         self.tray_icon.setIcon(QIcon(self.config.get(None, "MainWindow", "task_bar_icon")))
@@ -128,9 +128,16 @@ class BaseLauncher(QMainWindow):
         self.launcher_m = LauncherPathManager(self.config)
         self.shortcut_m = ShortcutsPathManager(self.config)
         self.paths_m = TransferPathManager(self, self.config)
+        self.task_m = TaskManager()
+        self.event_m = GlobalMouseListener()
+        self.event_m.start()
+        id = self.task_m.GetID()
+        self.task_m.tasks[id] = TaskInfo(task_type=TaskType.MOUSE_LISTENER, task_data=None,ID=id)
+        self.task_m.threads[id] = self.event_m
+
+        self.managers:ManagerGroup = ManagerGroup(self.config, self.launcher_m, self.shortcut_m, self.paths_m, self.task_m, self.event_m)
 
     def _mainwindow_set(self):
-        
         self.setGeometry(*self.config.get('main_window', mode='MainWindow', widget=None, obj="Size"))
         self.setWindowFlags(self.windowFlags() | Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
@@ -164,14 +171,14 @@ class BaseLauncher(QMainWindow):
         return values[return_i]
 
     def programm_exit(self):
-        ## programm exit
-        for action in GV.CLOSE_ACTION:
-            try:
-                action()
-            except Exception as e:
-                warnings.warn(f"Error in close thread: {e}")
-        time.sleep(0.15)
-        QApplication.instance().quit()
+        global EXIT_TIME
+        if EXIT_TIME == 0:
+            self.task_m.exit()
+            time.sleep(0.15)
+            self.tray_icon.hide()
+            self.tray_icon.deleteLater()
+            QApplication.instance().quit()
+            EXIT_TIME += 1
     
     def restart_program(self, script_path=None):
         script_path = script_path if script_path else os.path.abspath(__file__)
@@ -240,7 +247,7 @@ class UILauncher(BaseLauncher):
     
     def _initFuncUI(self):
         # first layer content
-        self.associate_list = AssociateList(config=self.config.deepcopy(), parent=self, launcher_manager=self.launcher_m, path_manager=self.paths_m)
+        self.associate_list = AssociateList(config=self.config.deepcopy(), parent=self, manager=self.managers)
         self.shortcut_button = ShortcutButton(parent=self, config=self.config.deepcopy(), shortcuts_manager=self.shortcut_m)
         self.shortcut_setting = ShortcutSetting(parent=self, config=self.config.deepcopy(),shortcuts_manager=self.shortcut_m)
         self.shortcut_setting.showWin()
@@ -291,7 +298,6 @@ class ControlLauncher(UILauncher):
         self.stack_ass.setIndex(index_n)
         # self.stack_ass.
 
-    
     def _change_host(self, index_n:int):
         
         host_n = self.path_switch_button.getMode(index_n)
@@ -387,7 +393,6 @@ class ControlLauncher(UILauncher):
     
     @Slot(list) # type: ignore
     def _connection_check(self, result):
-        
         sign_f, error = result
         GV.CON_ERROR = error
         if GV.CONNECT == sign_f:
@@ -398,9 +403,9 @@ class ControlLauncher(UILauncher):
             self.path_switch_button.setState(2)
         else:
             self.path_switch_button.setState(0)
+            
     @Slot(dict) # type: ignore
     def _updateUI(self, dict_f:dict):
-        
         try:
             action_i = dict_f['action']
             type_i = dict_f['type']
@@ -412,7 +417,8 @@ class ControlLauncher(UILauncher):
                     action_i(value_new)
             return True, ''
         except Exception as e:
-             False, e
+            return False, e
+    
     @Slot() # type: ignore
     def _refresh_setting(self):
         self._refresh_setting.disconnect()
@@ -421,8 +427,11 @@ class ControlLauncher(UILauncher):
 
 def check_admin(config_f:adict):
     if (not is_admin()) and config_f[atuple('InitialConfig', 'admin_mode')]:
-        # Re-run the program with admin privileges
-        ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+        if config_f[atuple('InitialConfig', 'admin_terminal')]:
+            # Re-run the program with admin privileges
+            ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+        else:
+            ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 0)
         sys.exit()
 
 def app_set(config_f:adict):

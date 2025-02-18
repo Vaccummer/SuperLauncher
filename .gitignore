@@ -5,3 +5,5 @@ trial2.py
 trial3.py
 dist
 build
+trial*
+tmp/*

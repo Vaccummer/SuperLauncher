@@ -20,6 +20,7 @@ enum class FileOperationType
 {
     COPY = 1,
     MOVE = 2,
+    RM = 3,
 };
 
 enum class FileOperationResult
