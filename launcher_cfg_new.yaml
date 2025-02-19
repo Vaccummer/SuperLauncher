@@ -2,7 +2,7 @@ InitialConfig:
   use_desktop_opengl: true
   use_high_dpi_pixmap: true
   surface_sample_count: 32
-  admin_mode: true
+  admin_mode: false
   admin_terminal: false
 
 Hotkeys:

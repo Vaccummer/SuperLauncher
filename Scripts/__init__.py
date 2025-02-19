@@ -446,3 +446,4 @@ def app_set(config_f:adict):
     QApplication.setApplicationVersion("1.0.0")
     QApplication.setOrganizationName("Vaccummer")   
     QApplication.setOrganizationDomain("https://github.com/Vaccummer")
+ 
