@@ -251,17 +251,17 @@ class AutoLabel(QLabel):
     @dynamic_load(type_f='style')
     def customStyle(self, format_dict:dict, escape_sign:dict={}):
         bg_color = Udata(atuple('background_colors'), ['transparent', 'transparent', 'transparent'])
-        border_radius = Udata(atuple('border_radius'), 10)
+        border_radius = Udata(atuple('border_radius'), [10,10,10,10])
         border = Udata(atuple('border'), 'none')
         padding = Udata(atuple('padding'), [5,5,5,5])
         text_align = Udata(atuple('text_align'), 'left')
         temp_dict = {
             'QLabel': {
                 'background-color': bg_color[0],
-                'border-top-left-radius': border_radius,
-                'border-top-right-radius': border_radius,
-                'border-bottom-right-radius': border_radius,
-                'border-bottom-left-radius': border_radius,
+                'border-top-left-radius': border_radius[0],
+                'border-top-right-radius': border_radius[1],
+                'border-bottom-right-radius': border_radius[2],
+                'border-bottom-left-radius': border_radius[3],
                 'border': border,
                 'padding': padding,
                 'text-align': text_align,

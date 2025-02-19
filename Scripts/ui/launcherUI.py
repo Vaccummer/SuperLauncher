@@ -1,4 +1,5 @@
 import os
+from types import UnionType
 from PySide2.QtWidgets import QListWidget, QMainWindow, QWidget,QListWidgetItem,QPushButton, QHBoxLayout, QVBoxLayout, QLabel
 from PySide2.QtGui import QFontMetrics, QIcon
 from PySide2.QtCore import QSize, Qt
@@ -6,7 +7,9 @@ from functools import partial
 from abc import abstractmethod
 import asyncio
 import asyncssh
-from typing import List, Literal, Union, OrderedDict, TYPE_CHECKING
+from dataclasses import dataclass, fields
+from copy import deepcopy
+from typing import Literal, Union, Optional, TYPE_CHECKING
 # local import
 from ..ui.custom_widget import *
 from ..tools.toolbox import *
@@ -15,53 +18,135 @@ from ..worker import wrapped_worker as WW
 
 from ..manager.task_manage import *
 from .. import global_var as GV
+from ..manager import exception_enum as EX
 
 if TYPE_CHECKING:
     from Scripts import ControlLauncher
     from ..worker import worker_thread as WT
 
+class AssItemType(Enum):
+    Filename = "Filename"
+    Foldername = "Foldername"
+    App = "App"
+    Error = "Error"
+    Backspace = "Backspace"
+    def __eq__(self, value: object) -> bool:
+        return self.value == value
+    def __str__(self) -> str:
+        return self.value
+    def __repr__(self) -> str:
+        return self.value
+
+@dataclass
+class AssItemInfo:
+    index:int=None
+    title:Optional[str]=None
+    path:Optional[str]=None
+    type:AssItemType=None
+    host:Optional[str]=None
+    stat:Optional[os.stat_result]=None
+    chname:Optional[str]=None
+    group:Optional[str]=None
+    app_id:Optional[int]=None
+
+    def __ror__(self, value:"AssItemInfo") -> "AssItemInfo":
+        if not isinstance(value, AssItemInfo):
+            return self
+        keys = [field.name for field in fields(self)]
+        for key in keys:
+            value_new = getattr(value, key)
+            if value_new is not None:
+                setattr(self, key, value_new)
+        return self
+
+class AssLineObject:
+    def __init__(self, button:QPushButton, label:QLabel, item:QListWidgetItem):
+        self.button = button
+        self.label = label
+        self.item = item
+
+class AssMenuAction(Enum):
+    Launch = "Launch"
+    Delete = "Delete"
+    Copy = "Copy"
+    Cut = "Cut"
+    Paste = "Paste"
+    Remame = "Remame"
+    New = "New"
+    Download = "Download"
+    DownloadAskDir = "Download(Ask Dir)"
+    Cursor = "Cursor"
+    VSCode = "VSCode"
+    PowerShell = "PowerShell"
+    CMD = "CMD"
+    PowerShellAdmin = "PowerShellAdmin"
+    CMDAdmin = "CMDAdmin"
+    def __eq__(self, value: object) -> bool:
+        return self.value == value
+    def __str__(self) -> str:
+        return self.value
+    def __repr__(self) -> str:
+        return self.value
+    
 class Associate:
     def __init__(self, nums:int, 
                  app_info_d:dict[str, GV.LauncherAppInfo],
                  path_manager:TransferPathManager,):
         self.num = nums
         self.app_info_d = app_info_d
-        self._load()
-        self.pathid:TransferPathManager = path_manager
-    
-    def _load(self):
-        pass
+        self.manager:TransferPathManager = path_manager
     
     # To Associate subdirectory of certain path
-    def ass_path(self, prompt_f):
+    def ass_path(self, prompt_f:str)->list[AssItemInfo]:
         if not prompt_f:
             return []
-        prompt_f_s = self.pathid.check(prompt_f,)
-        if prompt_f_s is None:
-            pass
-        elif stat.S_ISDIR(prompt_f_s.st_mode):
-            return list(zip(*self.pathid.listdir(prompt_f)))
-        else:
-            return []
+        prompt_f_s = self.manager.check(prompt_f,)
+        match prompt_f_s:
+            case EX.PathNotExistsError():
+                pass
+            case os.stat_result() if stat.S_ISDIR(prompt_f_s.st_mode):
+                dirs, stats = self.manager.listdir(prompt_f)
+                rs = []
+                for dir_i, stat_i in zip(dirs, stats):
+                    if stat.S_ISDIR(stat_i.st_mode):
+                        rs.append(AssItemInfo(title=dir_i, path=os.path.join(prompt_f, dir_i), type=AssItemType.Foldername, host=GV.HOST, stat=stat_i))
+                    else:
+                        rs.append(AssItemInfo(title=dir_i, path=os.path.join(prompt_f, dir_i), type=AssItemType.Filename, host=GV.HOST, stat=stat_i))
+                return rs
+            case os.stat_result() if not stat.S_ISDIR(prompt_f_s.st_mode):
+                return []
+            case _:
+                title_f = prompt_f_s.__class__.__name__
+                return [AssItemInfo(title=title_f, path="", type=AssItemType.Error, host=GV.HOST)]
+        
         dir_n, base_n = os.path.split(prompt_f)
-        dir_n_s = self.pathid.check(dir_n)
-        if dir_n_s is None:
-            return []
-        if stat.S_ISDIR(dir_n_s.st_mode):
-            ori_l = list(zip(*self.pathid.listdir(dir_n)))
-            l1 = []
-            l2 = []
-            for i in ori_l:
-                if i[0].startswith(base_n):
-                    l1.append(i)
-                elif i[0].lower().startswith(base_n.lower()):
-                    l2.append(i)
-            return l1+l2
-        else:
-            return []
+        dir_n_s = self.manager.check(dir_n)
+        match dir_n_s:
+            case os.stat_result() if stat.S_ISDIR(dir_n_s.st_mode):
+                pass
+            case os.stat_result() if not stat.S_ISDIR(dir_n_s.st_mode):
+                return []
+            case _:
+                title_f = dir_n_s.__class__.__name__
+                return [AssItemInfo(title=title_f, path="", type=AssItemType.Error, host=GV.HOST)]
+        dirs_n2, stats_n2 = self.manager.listdir(dir_n)
+        l1 = []
+        l2 = []
+        for dir_i, stat_i in zip(dirs_n2, stats_n2):
+            if dir_i.startswith(base_n):
+                if stat.S_ISDIR(stat_i.st_mode):
+                    l1.append(AssItemInfo(title=dir_i, path=os.path.join(dir_n, dir_i), type=AssItemType.Foldername, host=GV.HOST, stat=stat_i))
+                else:
+                    l1.append(AssItemInfo(title=dir_i, path=os.path.join(dir_n, dir_i), type=AssItemType.Filename, host=GV.HOST, stat=stat_i))
+            elif dir_i.lower().startswith(base_n.lower()):
+                if stat.S_ISDIR(stat_i.st_mode):
+                    l2.append(AssItemInfo(title=dir_i, path=os.path.join(dir_n, dir_i), type=AssItemType.Foldername, host=GV.HOST, stat=stat_i))
+                else:
+                    l2.append(AssItemInfo(title=dir_i, path=os.path.join(dir_n, dir_i), type=AssItemType.Filename, host=GV.HOST, stat=stat_i))
+        return l1+l2
 
     # To associate a programme name of prompt
-    def ass_name(self, prompt_f)->list[tuple[str, Literal['app']]]:
+    def ass_name(self, prompt_f)->list[AssItemInfo]:
         if not prompt_f:
             return []
         name_l = []
@@ -72,33 +157,22 @@ class Associate:
         for name_i, app_i in self.app_info_d.items():
             chname_i = app_i.chname
             id_i = app_i.ID
-            if name_i.startswith(prompt_f):
-                name_l.append((name_i, 'app', id_i))
-            elif chname_i.startswith(prompt_f) and chname_i:
-                chname_l.append((chname_i, 'app', id_i))
-            elif name_i.lower().startswith(prompt_f.lower()):
-                name_l2.append((name_i, 'app', id_i))
-            elif prompt_f in name_i:
-                name_l3.append((name_i, 'app', id_i))
-            elif prompt_f in chname_i and chname_i:
-                chname_l4.append((chname_i, 'app', id_i))
+            match name_i:
+                case _ if name_i.startswith(prompt_f):
+                    name_l.append(AssItemInfo(title=name_i, type=AssItemType.App, app_id=id_i, chname=chname_i, group=app_i.group, path=app_i.exe_path))
+                case _ if chname_i and chname_i.startswith(prompt_f):
+                    chname_l.append(AssItemInfo(title=chname_i, type=AssItemType.App, app_id=id_i, chname=chname_i, group=app_i.group, path=app_i.exe_path))
+                case _ if name_i.lower().startswith(prompt_f.lower()):
+                    name_l2.append(AssItemInfo(title=name_i, type=AssItemType.App, app_id=id_i, chname=chname_i, group=app_i.group, path=app_i.exe_path))
+                case _ if prompt_f in name_i:
+                    name_l3.append(AssItemInfo(title=name_i, type=AssItemType.App, app_id=id_i, chname=chname_i, group=app_i.group, path=app_i.exe_path))
+                case _ if chname_i and prompt_f in chname_i:
+                    chname_l4.append(AssItemInfo(title=chname_i, type=AssItemType.App, app_id=id_i, chname=chname_i, group=app_i.group, path=app_i.exe_path))
+
         total_l = name_l+chname_l+name_l2+name_l3+chname_l4
-        final_l = []
-        id_l = []
-        for i in total_l:
-            if i[2] not in id_l:
-                final_l.append((i[0], i[1]))
-                id_l.append(i[2])
-        return final_l
+        return total_l
     
-    # To associate programmes with multiple prompts
-    def depracated_multi_pro_name(self, prompt_list_f):
-        output_0 = list_overlap([self.name(prompt_if)[0] for prompt_if in prompt_list_f])
-        output_1 = [self.names[(self.ch_names).index(ch_name_i)] for ch_name_i in list_overlap([self.name(prompt_if)[1] for prompt_if in prompt_list_f])]
-        out_t = (output_0+output_1)[0:self.num]
-        return out_t, ['app']*len(out_t)
-    
-    def fill(self, prompt:str)->Tuple[List[str], List[os.stat_result]]:
+    def fill(self, prompt:str)->list[AssItemInfo]:
         if is_path(prompt):
             return self.fill_path(prompt)
         else:
@@ -108,20 +182,19 @@ class Associate:
     def fill_path(self, prompt_f:str)->Union[None, str]:
         # if prompt is a exsisting path
         name_type_l = self.ass_path(prompt_f)
-        name_l = [i[0] for i in name_type_l]
-
+        name_l = [i.title for i in name_type_l]
         if not name_l:
             return None
-        path_check = self.pathid.check(prompt_f)
-        if path_check is None:
+        path_check = self.manager.check(prompt_f)
+        if not isinstance(path_check, os.stat_result):
             pass
         elif stat.S_ISDIR(path_check.st_mode):
             if len(name_l) == 1:
                 return os.path.join(prompt_f, name_l[0])
-            if '/' in prompt_f and not prompt_f.endswith('/'):
-                return prompt_f
+            elif '/' in prompt_f and not prompt_f.endswith('/'):
+                return prompt_f + '/'
             elif '\\' in prompt_f and not prompt_f.endswith('\\'):
-                return prompt_f
+                return prompt_f + '\\'
         else:
             return None
         dir_ni, base_ni = os.path.split(prompt_f)
@@ -141,7 +214,7 @@ class Associate:
         elif len(id_l1) > 1:
             return None
         app_l = list(self.app_info_d.values())
-        chname_l = [app_i.chname for app_i in app_l if app_i.chname.startswith(prompt_f)]
+        chname_l = [app_i.chname for app_i in app_l if app_i.chname and app_i.chname.startswith(prompt_f)]
         if len(chname_l) == 1:
             return chname_l[0]
         elif len(chname_l) > 1:
@@ -202,6 +275,8 @@ class NameTagWidget(QWidget):
         self.setGeometry(pos[0], pos[1], self.width(), self.height())
 
 class BasicAS(QListWidget):
+    def focusNextPrevChild(self, next):
+        return True
     def __init__(self, config:"Config_Manager", parent:"ControlLauncher",manager:"ManagerGroup"):
         super().__init__(parent)
         self.up = parent
@@ -212,24 +287,16 @@ class BasicAS(QListWidget):
         self.event_manager:GlobalMouseListener = manager.event
         self.config = config.deepcopy()
         self._loadAll()
-        
-    def focusNextPrevChild(self, next):
-        return True
     
-    def selectReset(self):
-        if self.selected_item is not None:
-            self._get_label(self.selected_item).setSelected(False)
-            self.selected_item = None
-
     def startDrag(self, supportedActions: Qt.DropActions):
         item_f = self.currentItem()
         self.selected_item = item_f
-        self.selected_label = self._get_label(item_f)
+        self.selected_label = self._itemLabel(item_f)
         self.is_dragging = True
         cwd_f = self.get_cwd()
         if cwd_f is None:
             return
-        text_f = self._get_item_text(item_f)
+        text_f = self._itemText(item_f)
 
         self.event_manager.resume('move')
         self.name_widget.setHost(GV.HOST)
@@ -246,7 +313,6 @@ class BasicAS(QListWidget):
         drag.setMimeData(mime_data)
         drag.exec_(Qt.CopyAction)  
         self.name_widget.hide()
-
     def dragEnterEvent(self, event: QDragEnterEvent):
         if event.mimeData().hasUrls() or event.source() == self: 
             event.acceptProposedAction()  
@@ -265,7 +331,7 @@ class BasicAS(QListWidget):
             src = self.watcher.src
             cwd_f = self.get_cwd()
             hostname = self.watcher.src_hostname
-            text_f = self._get_item_text(item_f)
+            text_f = self._itemText(item_f)
             if text_f == "..":
                 self._transfer(src=src, src_hostname=hostname, dst=os.path.dirname(cwd_f), dst_hostname=GV.HOST)
             else:
@@ -293,7 +359,53 @@ class BasicAS(QListWidget):
         self.setDragEnabled(True) 
         self.setDropIndicatorShown(True)
         self.config.group_chose("Launcher", self.name)
-        self._loadPara()
+
+        # load value
+        pre = ['Launcher', self.name]
+        self.extra_style_dict = {}
+        self.max_item_maintain = UIUpdater.get(atuple(pre+['max_item_maintain']), 999)
+        self.max_length = UIUpdater.get(atuple(pre+['max_length']), 600)
+        self.max_app_num = UIUpdater.get(atuple(pre+['max_app_num']), 999)
+
+        # load pointer
+        ## style config
+        self.pre = ['Launcher', self.name]
+        self.button_config = atuple('Launcher', self.name,'style','button')
+        self.label_config = atuple('Launcher', self.name, 'style', 'label')
+        self.main_config = atuple('Launcher', self.name, 'style', 'main')
+        self.item_config = atuple('Launcher', self.name, 'style', 'item')
+        self.scroll_bar_config = atuple('Launcher', self.name, 'style', 'scroll_bar')
+        self.font_a = atuple('Launcher', self.name, 'font', 'main')
+        self.icon_proportion = atuple(self.pre+['style','button','icon_proportion'])
+        self.item_height = atuple(self.pre+['style','main','item','height'])
+        self.menu_style = atuple('Launcher', self.name, 'style', 'menu', 'main')
+        self.menu_item_style = atuple('Launcher', self.name, 'style', 'menu', 'item_button')
+        self.menu_font = atuple('Launcher', self.name, 'font', 'menu')
+        self.host_sd = atuple('Launcher', self.name, 'style', 'ItemNameTag', 'Hostname')
+        self.basename_sd = atuple('Launcher', self.name, 'style', 'ItemNameTag', 'Basename')
+        self.tag_host_font = atuple('Launcher', self.name, 'font', 'tag_hostname')
+        self.tag_basename_font = atuple('Launcher', self.name, 'font', 'tag_basename')
+
+        ## size
+        pre = ['Launcher', self.name, 'Size']
+        self.button_height = self.item_height
+        self.extra_width = atuple(pre+['extra_width'])
+        self.max_width = atuple(pre+['max_width'])
+        self.min_width = atuple(pre+['min_width'])
+        self.menu_item_height = atuple(pre+['menu_item_height'])
+
+
+        self.app_info_d:dict[int:GV.LauncherAppInfo] = self.launcher_manager.app_d
+        self.ass = Associate(self.max_app_num, self.app_info_d, self.path_manager)
+        self.config.group_chose(mode="Launcher", widget=self.name, obj=None)
+        self.line_margin = atuple('Launcher', self.name, 'style', 'main', 'widget', 'line_margin')
+
+        UIUpdater.set(self.font_a, self.setFont, 'font')
+        style_d = atuple('Launcher', self.name, 'style', 'main')
+        self.style_ctl = self.customStyle(style_d)
+        spacing_f = atuple('Launcher', self.name, 'style', 'main', 'item', 'spacing')
+        UIUpdater.set(spacing_f, self.setSpacing, 'spacing')
+
         self._loadPtr()
         default_path = os.path.abspath("./tmp/vaccummer_superlauncher_url_temp_file94138.txt")
         self.path_i = UIUpdater.get(atuple("Launcher", "associate_list", "path", "hook_file_path"), default_path)
@@ -310,7 +422,7 @@ class BasicAS(QListWidget):
     def _hook_result_reciver(self, src_dst_l:list[str]):
         hostname, src, dst = src_dst_l
         if self.selected_item is not None:
-            label_f = self._get_label(self.selected_item)
+            label_f = self._itemLabel(self.selected_item)
             label_f.setSelected(False)
         if os.path.basename(dst) == os.path.basename(self.path_i):
             WW.Copier().rm(dst)
@@ -340,61 +452,15 @@ class BasicAS(QListWidget):
             return
         item_f = self.itemAt(self.mapFromGlobal(QPoint(pos[0], pos[1])))
         if item_f == self.selected_item:
+            if self.hover_label is not None:
+                self.hover_label.setSelected(False)
             return
         if item_f is None:
             return
         if self.hover_label is not None:
             self.hover_label.setSelected(False)
-        self.hover_label = self._get_label(item_f)
+        self.hover_label = self._itemLabel(item_f)
         self.hover_label.setBgColor("#216ECE")
-
-    def _loadPara(self):
-        # dynamic load
-        pre = ['Launcher', self.name]
-        self.max_item_maintain = UIUpdater.get(atuple(pre+['max_item_maintain']), 999)
-        self.max_length = UIUpdater.get(atuple(pre+['max_length']), 600)
-        self.max_app_num = UIUpdater.get(atuple(pre+['max_app_num']), 999)
-        
-    def _loadPtr(self):
-        self.extra_style_dict = {}
-        # static load
-        self.pre = ['Launcher', self.name]
-        self.button_config = atuple('Launcher', self.name,'style','button')
-        self.label_config = atuple('Launcher', self.name, 'style', 'label')
-        self.main_config = atuple('Launcher', self.name, 'style', 'main')
-        self.item_config = atuple('Launcher', self.name, 'style', 'item')
-        self.scroll_bar_config = atuple('Launcher', self.name, 'style', 'scroll_bar')
-        self.font_a = atuple('Launcher', self.name, 'font', 'main')
-        self.icon_proportion = atuple(self.pre+['style','button','icon_proportion'])
-        self.item_height = atuple(self.pre+['style','main','item','height'])
-        self.menu_style = atuple('Launcher', self.name, 'style', 'menu', 'main')
-        self.menu_item_style = atuple('Launcher', self.name, 'style', 'menu', 'item_button')
-        self.menu_font = atuple('Launcher', self.name, 'font', 'menu')
-        self.host_sd = atuple('Launcher', self.name, 'style', 'ItemNameTag', 'Hostname')
-        self.basename_sd = atuple('Launcher', self.name, 'style', 'ItemNameTag', 'Basename')
-        self.tag_host_font = atuple('Launcher', self.name, 'font', 'tag_hostname')
-        self.tag_basename_font = atuple('Launcher', self.name, 'font', 'tag_basename')
-
-        # size
-        pre = ['Launcher', self.name, 'Size']
-        self.button_height = self.item_height
-        self.extra_width = atuple(pre+['extra_width'])
-        self.max_width = atuple(pre+['max_width'])
-        self.min_width = atuple(pre+['min_width'])
-        self.menu_item_height = atuple(pre+['menu_item_height'])
-
-
-        # self.launcher_df:pandas.DataFrame = self.launcher_manager.df
-        self.app_info_d:dict[int:GV.LauncherAppInfo] = self.launcher_manager.app_d
-        self.ass = Associate(self.max_app_num, self.app_info_d, self.path_manager)
-        self.config.group_chose(mode="Launcher", widget=self.name, obj=None)
-        self.line_margin = atuple('Launcher', self.name, 'style', 'main', 'widget', 'line_margin')
-
-        UIUpdater.set(self.font_a, self.setFont, 'font')
-        style_d = atuple('Launcher', self.name, 'style', 'main')
-        self.style_ctl = self.customStyle(style_d)
-        spacing_f = atuple('Launcher', self.name, 'style', 'main', 'item', 'spacing')
-        UIUpdater.set(spacing_f, self.setSpacing, 'spacing')
 
     def _get_prompt(self)->str:
         return self.input_text
@@ -521,27 +587,32 @@ class UIAS(BasicAS):
     def _init_signle_item(self, button_size:atuple, index_f:int, label_font:atuple=None):
         label_font = self.font_a if label_font is None else label_font
         item_i = QListWidgetItem()
-        item_i.setData(Qt.UserRole + 1, int(index_f))
+        item_i.setData(Qt.UserRole + 1, AssItemInfo(index=index_f))
         button_i = YohoPushButton(icon_i=None, style_config=self.button_config, icon_proportion=self.icon_proportion)
         button_i.setFixedSize(1.2*UIUpdater.get(button_size),UIUpdater.get(button_size))
         button_i.clicked.connect(partial(self._changeicon, index_i=index_f))
 
-        label_i = AutoLabel(text="Default", font=label_font, style_config=self.label_config)
+        label_i = AutoLabel(text="Default", font=label_font, style_config=self.label_config, height=button_size)
         # label_i = LabelAlikeButton(text_f="Default", style_config=self.label_config, font_f=label_font, height_f=button_size)
         label_i.setAlignment(Qt.AlignVCenter|Qt.AlignLeft)
+        # label_i.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         layout_i = amlayoutH(align_v='l')
         UIUpdater.set(self.line_margin, layout_i.setContentsMargins, 'margin')
         layout_i.setSpacing(0)
         layout_i.addWidget(button_i)
         layout_i.addWidget(label_i)
+        layout_i.addStretch()
         widget_i = QWidget()
         widget_i.setLayout(layout_i)
         self.addItem(item_i)
         self.setItemWidget(item_i, widget_i)
+        height_f = UIUpdater.get(button_size, 60)
+        item_i.setSizeHint(QSize(self.viewport().width(), height_f))
         return item_i, button_i, label_i
 
     def _init_special_item(self):
         self.s_item, self.s_button, self.s_label = self._init_signle_item(self.button_height, -1)
+        self.s_item.setData(Qt.UserRole, AssItemInfo(title="..", type=AssItemType.Backspace))
         self.s_label.setText('..')
         self.s_button.force_antype = 'shake'
         self.s_item.setHidden(True)
@@ -572,21 +643,26 @@ class UIAS(BasicAS):
             self.button_l.append(button_i)
             self.label_l.append(label_i)
     
-    def _get_item_index(self, item:QListWidgetItem)->int:
-        return item.data(Qt.UserRole + 1)
+    def _itemIndex(self, item:QListWidgetItem)->int:
+        return self._itemInfo(item).index
     
-    def _get_item_text(self, item:QListWidgetItem)->str:
-        index_f = self._get_item_index(item)
+    def _itemInfo(self, item:QListWidgetItem)->AssItemInfo:
+        return item.data(Qt.UserRole)
+    
+    def _itemText(self, item:QListWidgetItem)->str:
+        index_f = self._itemIndex(item)
         if index_f == -1:
             return ".."
-        return self.label_l[index_f].text()
+        return self._itemLabel(item).text()
     
-    def _getbutton(self, item:QListWidgetItem) -> QPushButton:
-        index_f = self._get_item_index(item)
+    def _itemButton(self, item:QListWidgetItem) -> QPushButton:
+        index_f = self._itemIndex(item)
+        if index_f == -1:
+            return self.s_button
         return self.button_l[index_f]
     
-    def _get_label(self, item:QListWidgetItem) -> AutoLabel:
-        index_f = self._get_item_index(item)
+    def _itemLabel(self, item:QListWidgetItem) -> AutoLabel:
+        index_f = self._itemIndex(item)
         if index_f == -1:
             return self.s_label
         return self.label_l[index_f]
@@ -618,6 +694,23 @@ class AssociateList(UIAS):
         self.customContextMenuRequested.connect(self.right_click)
         self.itemClicked.connect(self.left_click)
     
+    def _getItemIcon(self, info:AssItemInfo)->AIcon:
+        match info.type:
+            case AssItemType.App:
+                request = GV.IconQuery(type_f=GV.ItemType.App, name=info.title, path=info.path, group=info.group, ID=info.app_id)
+                return AIcon(self.launcher_manager.get_app_icon(request))
+            case AssItemType.Filename:
+                request = GV.IconQuery(type_f=GV.ItemType.File, name=info.title,path=info.path, host=info.host)
+                return AIcon(self.launcher_manager.get_file_icon(request))
+            case AssItemType.Foldername:
+                request = GV.IconQuery(type_f=GV.ItemType.Folder, name=info.title, path=info.path, host=info.host)
+                return AIcon(self.launcher_manager.get_folder_icon(request))
+            case AssItemType.Error:
+                return AIcon(self.launcher_manager.error_icon)  
+            case _:
+                GV.logger.warning(f"Unknown item type: {info.type}")
+                return AIcon(self.launcher_manager.default_file_icon)
+    
     @Slot(str)
     def update_associated_words(self, text:str):
         self.input_text = text
@@ -625,7 +718,7 @@ class AssociateList(UIAS):
         if is_path(text):
             self.type = 'path'
             sign_n = 'path'
-            word_type_l = self.word_sort(self.ass.ass_path(text))
+            word_type_l:list[AssItemInfo] = self.word_sort(self.ass.ass_path(text))
         else:
             sign_n = 'name'
             word_type_l = self.ass.ass_name(text)
@@ -645,57 +738,34 @@ class AssociateList(UIAS):
             if i >= match_num:
                 if i > self.max_item_maintain:
                     self.removeItemWidget(self.item_l[i])
+                    self.item_l.pop(i)
+                    self.button_l.pop(i)
+                    self.label_l.pop(i)
+                    del button_i
+                    del label_i
+                    del item_i
                 else:
                     self.item_l[i].setHidden(True)
                 continue
             self.item_l[i].setHidden(False)
-            text_i = word_type_l[i][0]
+            info_i = word_type_l[i]
+            text_i = info_i.title
             self.label_l[i].setText(text_i)
-            if sign_n == 'name':
-                app_info = self.app_info_d.get(text_i, GV.LauncherAppInfo(None, '', '', '', ''))
-                chname = app_info.chname
-                group = app_info.group
-                path = app_info.exe_path
-                icon_i = app_info.icon_path 
-                if not icon_i:
-                    request = GV.IconQuery(type_f='app', name=text_i, path=path, host=GV.HOST)
-                    icon_i = self.launcher_manager.get_app_icon(request)
-                if isinstance(icon_i, str):
-                    icon_i = AIcon(icon_i)
-                ass_info = Ass.Info(index=i, text=text_i, type=sign_n, path=path, host=GV.HOST)
-            else:
-                host = GV.HOST
-                if self.path_manager.check(self.input_text) is None:
-                    dir_path = os.path.dirname(text)
-                else:
-                    dir_path = text
-                path_f = os.path.join(dir_path, text_i)
-                ass_info = Ass.Info(index=i, text=text_i, type=sign_n, path=path_f, host=host)
-                path_check = self.path_manager.check(path_f)
-                if path_check is None:
-                    icon_i = self.launcher_manager.default_file_icon
-                else:
-                    if stat.S_ISDIR(path_check.st_mode):
-                        type_i = 'folder'
-                    else:
-                        type_i = 'file'
-                    icon_query = GV.IconQuery(type_f=type_i, name=text_i, path=path_f, host=host)
-                    icon_i = self.launcher_manager.icon_query(icon_query)
-                if isinstance(icon_i, str):
-                    icon_i = AIcon(icon_i)
-            self.button_l[i].setIcon(icon_i)
-            self.item_l[i].setData(Qt.UserRole, ass_info)
+            ori_data = self.item_l[i].data(Qt.UserRole+1)
+            self.item_l[i].setData(Qt.UserRole+1, ori_data|info_i)
+            icon_f = self._getItemIcon(info_i)
+            self.button_l[i].setIcon(icon_f)
 
     def _tab_complete(self, current_text:str):
         return self.ass.fill(current_text)
     
     def left_click(self, item:QListWidgetItem):
         # if self.selected_item is not None:
-        #     index_f = self._get_item_index(self.selected_item)
+        #     index_f = self._itemIndex(self.selected_item)
         #     self.label_l[index_f].setSelected(True)
         # self.selected_item = item
-        index_f = self._get_item_index(item)
-        item_text = self._get_item_text(item)
+        index_f = self._itemIndex(item)
+        item_text = self._itemText(item)
         prompt_f = self._get_prompt()
         if is_path(prompt_f):
             if not self.path_manager.check(prompt_f):
@@ -713,7 +783,7 @@ class AssociateList(UIAS):
             self.set_input_text('')
     
     def _initMenu(self):
-        self.action_l = ['Open','Delete', 'New', 'Assign Icon', 'Reverse', 'Download', 'Download(Ask dir)']
+        self.action_l = ['Launch','Delete', 'New', 'Assign Icon', 'Reverse', 'Download', 'Download(Ask dir)', 'Cursor', 'VS']
         self.context_menu = AutoMenu(main_style_d=self.menu_style, item_style_d=self.menu_item_style, 
                                 actions=self.action_l, values=[],font=self.menu_font,height_f=self.menu_item_height 
                                 )
@@ -726,7 +796,7 @@ class AssociateList(UIAS):
         item = self.itemAt(pos)
         if not item:
             return
-        index_f = self._get_item_index(item)
+        index_f = self._itemIndex(item)
         self.label_l[index_f].setSelected(True)
         self.labelSelected = self.label_l[index_f]
         ass_info:Ass.Info = item.data(Qt.UserRole)
@@ -817,15 +887,15 @@ class AssociateList(UIAS):
         self.s_button.setIcon(self.sort_icons.get(self.sort_method, QIcon()))
         self.update_associated_words(self.input_text)
 
-    def sort_fliter(self, input_l:list[list])->list[list]:
+    def sort_fliter(self, input_l:list[AssItemInfo])->list[AssItemInfo]:
         tar_unfliterred = []
         tar_fliterred = []
         for item_i in input_l:
             flier_check = False
             for sign_i in self.fliter_sign:
-                if not isinstance(item_i[0], str):
+                if not isinstance(item_i.title, str):
                     print(1)
-                if item_i[0].startswith(sign_i):
+                if item_i.title.startswith(sign_i):
                     flier_check = True
                     break
             if flier_check:
@@ -834,19 +904,19 @@ class AssociateList(UIAS):
                 tar_unfliterred.append(item_i)
         return tar_unfliterred+tar_fliterred
 
-    def word_sort(self, input_l:list[list])->list[list]:
+    def word_sort(self, input_l:list[AssItemInfo])->list[AssItemInfo]:
         match self.sort_method:
             case 'name':
                 if self.sort_reverse:
-                    input_l.sort(key=lambda x: x[0], reverse=True)
+                    input_l.sort(key=lambda x: x.title, reverse=True)
                 else:
-                    input_l.sort(key=lambda x: x[0])
+                    input_l.sort(key=lambda x: x.title)
                 return self.sort_fliter(input_l)
             case 'type':
                 tar_dir = []
                 tar_file = []
                 for item_i in input_l:
-                    if stat.S_ISDIR(item_i[1].st_mode):
+                    if item_i.type == AssItemType.Dir:
                         tar_dir.append(item_i)
                     else:
                         tar_file.append(item_i)
@@ -857,10 +927,10 @@ class AssociateList(UIAS):
                 else:
                     return tar_dir+tar_file
             case 'size':
-                input_l.sort(key=lambda x: x[1].st_size, reverse=self.sort_reverse)
+                input_l.sort(key=lambda x: x.stat.st_size, reverse=self.sort_reverse)
                 return self.sort_fliter(input_l)
             case 'time':
-                input_l.sort(key=lambda x: x[1].st_mtime, reverse=self.sort_reverse)
+                input_l.sort(key=lambda x: x.stat.st_mtime, reverse=self.sort_reverse)
                 return self.sort_fliter(input_l)
             case _:
                 return self.sort_fliter(input_l)
@@ -1496,7 +1566,7 @@ class AsBACKup:
                 return
         else:
             dir_path = self.download_dir
-        item_text = self._get_item_text(item)
+        item_text = self._itemText(item)
         prompt_f = self._get_prompt()
         if not self.path_manager.check(prompt_f):
             prompt_f = os.path.dirname(prompt_f)

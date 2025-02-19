@@ -267,7 +267,7 @@ Launcher:
         item:
           background_colors: ["rgba(255, 255, 255, 160)"] # common, hover, pressed
           border: "none"
-          border_radius: 12
+          border_radius: 15
           padding: [0, 0, 0, 0]
           margin: 0
           height: 80 # only int input, label and button will be adjusted to item's height
@@ -284,17 +284,17 @@ Launcher:
           margin: 0
       label:
         background_colors: ["#F7F7F7", "#FFC300", "#FF5733"]
-        padding: [5, 10, 5, 10]
+        padding: [0, 15, 0, 15]
         border: "none"
         text_align: "left"
-        border_radius: 10
+        border_radius: [15, 20, 20, 15]
         resize_fractor: 0.5
       button:
         icon_proportion: 0.9
         background_colors: ["rgba(255, 255, 255, 20)", "#FFC300", "#FF5733"] # common, hover, pressed
-        border_radius: 10
+        border_radius: [20, 10, 10, 20]
         animation_type: "shake" # 'shake' or 'resize', default is None
-        padding: [0, 0, 0, 10]
+        padding: [0, 0, 0, 0]
       menu:
         main:
           border: "none"
@@ -339,9 +339,11 @@ Launcher:
         type: "./load/Launcher/assoicate_list/default_icon_folder/sort_by_type.svg"
         size: "./load/Launcher/assoicate_list/default_icon_folder/sort_by_size.svg"
         time: "./load/Launcher/assoicate_list/default_icon_folder/sort_by_time.svg"
+    # bulitin options: Launch, Delete, Copy, Move, New, Reverse, Download, Download(Ask Dir), Cursor, VSCode
+    right_click_menu_options: "all" # "all" to allow all, if you want to specify the options, use list format`` to assign multi options
 
   shortcut_obj:
-    horizontal_button_num: 6
+    horizontal_button_num: 8
     vertical_button_num: 5
     Size:
       setting_window_size: [0.8*win_x, 0.8*win_y]
@@ -951,3 +953,10 @@ Backend:
     block_size: -1
     max_requests: 2
     preserve: true
+
+Commander:
+  excutable_path: # pair of alias of program and its path
+    cursor: "C:\\Users\\am\\AppData\\Local\\Programs\\Cursor\\Cursor.exe"
+    vs: "C:\\Users\\am\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+  builtin_variable: # pair of variable name and its value, the variable can be used in the command, but it not excutable
+    dsk: "F:\\Windows_Data\\Desktop_File"

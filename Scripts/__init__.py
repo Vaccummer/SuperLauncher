@@ -355,7 +355,6 @@ class ControlLauncher(UILauncher):
                 case Qt.Key_Tab:
                     tab_out = self.associate_list._tab_complete(text)
                     if tab_out:
-                        tab_out = tab_out + '\\'
                         if GV.HOST_TYPE in ['WSL', 'Remote']:
                             if '/' in tab_out:
                                 self.input_box.setText(tab_out.replace('\\', '/'))

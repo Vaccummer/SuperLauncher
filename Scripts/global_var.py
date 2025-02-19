@@ -1,3 +1,4 @@
+from enum import Enum
 from typing import Literal,Callable
 import time
 import atexit
@@ -5,6 +6,7 @@ from PySide2.QtCore import QThread
 from dataclasses import dataclass
 from .ConsoleCustom.logger import get_logger
 from .worker.task_data import TaskInfo
+import backends as BK
 MODE:str = "Launcher"
 HOST:str = 'Local'
 HOST_TYPE:str = "Local"
@@ -15,7 +17,7 @@ GEOMETRY:list[int] = [0, 0, 0, 0]
 TASKS:list[TaskInfo] = []
 
 UpdateSign = Literal[None, 'size', 'font', 'icon', 'config', 'height', 'margin', 'unpack', 'style']
-  
+
 logger = get_logger('runtime.log')
 
 @dataclass
@@ -87,14 +89,23 @@ class TransferInfo:
     size:int
     type_f:Literal['file', 'dir']
 
+class ItemType(Enum):
+    File = 'file'
+    App = 'app'
+    Folder = 'folder'
+    Error = 'error'
+    def __str__(self):
+        return self.value
+
 @dataclass
 class IconQuery:
-    type_f:Literal['file', 'app', "folder"]
+    type_f:Literal['file', 'app', "folder", "error"]|ItemType
     name:str
     chname:str=""
     group:str=None
     path:str=""
     host:str=""
+    ID:int=None
 
 @dataclass
 class IconSaveRequest:
@@ -126,3 +137,6 @@ class IconSaveRequest:
     path:str
     host:str
     src:str
+
+
+

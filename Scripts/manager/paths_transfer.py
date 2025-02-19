@@ -19,6 +19,7 @@ from .config_ui import AIcon, APixmap
 from .. import global_var as GV
 from .config_ui import Config_Manager  
 from .config_ui import UIUpdater
+from . import exception_enum as EX
 import backends as BK
 
 
@@ -60,6 +61,7 @@ class LauncherPathManager(QObject):
     def _load_default_icon(self, df_app:str, df_file:str, df_folder:str):
         self.default_app_icon = AIcon(df_app) if df_app else AIcon()
         self.default_file_icon = AIcon(df_file) if df_file else AIcon()
+        self.error_icon = AIcon(df_file)
         self.default_folder_icon = AIcon(df_folder) if df_folder else AIcon()
 
     def _load_icon_dict(self)->None:
@@ -175,7 +177,6 @@ class LauncherPathManager(QObject):
         except BK.UnkownError as e:
             GV.logger.warning(title='UnkownError', message=f"Unknown error: {exe_path}")
             return None
-
 
     def app_icon_extract(self, exe_path:str, group:str, name:str, index_f:int=0)->str|None:
         if self.extractor_record.get((exe_path, group, name), False):
@@ -510,7 +511,7 @@ class TransferPathManager(SSHManager):
         path = os.path.join(self.wsl_d[self.hostname_n]['path'], path)
         return path
     
-    def check(self, path:str, hostname:str|None=None) -> Union[None, os.stat_result]:
+    def check(self, path:str, hostname:str|None=None) -> Union[EX.BaseException, os.stat_result]:
         if hostname is None:
             host_type = GV.HOST_TYPE
             hostname = GV.HOST
@@ -518,22 +519,26 @@ class TransferPathManager(SSHManager):
             host_type = self.host_types.get(hostname, None)
             if host_type is None:
                 GV.logger.error(title="WrongHosttype", message=f'Transfermanager.check get an invalid hostname "{hostname}"')
-                return None
+                return WrongHostException(f"Invalid hostname: {hostname}")
         if host_type == 'WSL':
             path = self._wsl_path_preprocess(path)
         if host_type in ['Local', 'WSL']:
             if not os.path.exists(path):
-                return None
-            return os.stat(path)
+                return EX.PathNotExistsError(f"Local path not exists: {path}")
+            try:
+                return os.stat(path)
+            except PermissionError:
+                return EX.PermissionError(f"Local path permission error: {path}")
         elif host_type == 'Remote':
             try:
-                # 获取文件状态信息
                 return self.sftp.stat(path)
             except FileNotFoundError:
-                return None
+                return EX.PathNotExistsError(f"Remote path not exists: {path}")
+            except PermissionError:
+                return EX.PermissionError(f"Remote path permission error: {path}")
             except Exception as e:
                 GV.logger.error(title="HostConnectError", message=f'Host {hostname} connection encounter error: {e}')
-                return None
+                return EX.HostConnectError(f"Host {hostname} connection encounter error: {e}")
     
     def isdir(self, path:str)->bool:
         stat_t = self.check(path)

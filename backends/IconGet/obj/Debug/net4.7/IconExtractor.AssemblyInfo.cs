@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IconExtractor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4935d02b6d0d8b579e0c8d01d054fd72a099f81c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b9c29033c9237e53b2ec658f8bbac418edb8a5e4")]
 [assembly: System.Reflection.AssemblyProductAttribute("IconExtractor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IconExtractor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
