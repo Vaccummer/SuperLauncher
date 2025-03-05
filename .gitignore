@@ -10,3 +10,4 @@ tmp/*
 *.yaml
 .history
 *.log
+.vs
