@@ -20,36 +20,14 @@ UpdateSign = Literal[None, 'size', 'font', 'icon', 'config', 'height', 'margin',
 
 logger = get_logger('runtime.log')
 
-@dataclass
-class ThreadInfo:
-    ID:str
-    task:TaskInfo
-    thread:QThread
-class ThreadManager:
-    def __init__(self):
-        self.threads = []
-
-    def add_thread(self, thread:QThread):
-        self.threads.append(thread)
-
-    def clean(self):
-        for thread in self.threads:
-            try:
-                thread.stop()
-            except Exception as e:
-                logger.warning(f'Failed to stop thread {thread}, error: {e}')
-        time.sleep(0.5)
-
-    def clear(self):
-        self.threads = []
 
 @dataclass
-class FuncInfo:
+class FuncInfo():
     classname:str
     methodname:str
     filename:str
     linenum:int
-
+    
 @dataclass
 class LaunchTask:
     name:str

@@ -18,17 +18,20 @@ from ..manager.config_ui import UIUpdater
 from .task_data import *
 from ..tools.toolbox import get_display_refresh_rate
 from .. import global_var as GV
+from .. import AM_ENUMS as AME
+from .. import AM_DATACLASS as AMD
 
 ImageType = Image.Image
+runtime_info_type = AMD.task_manager.TaskRuntimeInfo
 
 class FileWatcher(QThread):
-    runtime_info = Signal(TaskRuntimeInfo)
+    runtime_info = Signal(runtime_info_type)
     callback_info = Signal(list)
     stop_signal = Signal()
-    def __init__(self, task_f:TaskInfo):
+    def __init__(self, task_f:runtime_info_type):
         super().__init__()
         self.task_f = task_f
-        self.task_data:WatcherTask = task_f.task_data
+        self.task_data:AMD.task_manager.WatcherTask = task_f.task_data
         self.ID = task_f.ID
         self.drivers = self.task_data.drivers
         self.worker = Watcher(self.drivers)
@@ -75,24 +78,24 @@ class FileWatcher(QThread):
         self.callback_info.emit([self.src_hostname, self.src, filename])
 
 class ZIPmanager(QThread):
-    runtime_info = Signal(TaskRuntimeInfo)
+    runtime_info = Signal(runtime_info_type)
     stop_signal = Signal()
-    def __init__(self, task_f:TaskInfo):
+    def __init__(self, task_f:runtime_info_type):
         super().__init__()
-        self.task_f:TaskInfo = task_f
+        self.task_f:AMD.task_manager.TaskInfo = task_f
         self.worker = Zipper()
         self.ID:int = task_f.ID
         self.progress_cb = partial(self._emitRuntimeInfo, ID=self.ID, type='progress')
         self.filename_cb = partial(self._emitRuntimeInfo, ID=self.ID, type='filename')
         self.done_cb = partial(self._emitRuntimeInfo, ID=self.ID, type='done')
-        self.task_data:ZipTaskData = task_f.task_data
+        self.task_data:AMD.task_manager.ZipTaskData = task_f.task_data
         self.stop_signal.connect(self.stop)
 
     def run(self):
         match self.task_data.task:
-            case ZipClass.ZIP:
+            case AME.task_manager.Zipper.ZipClass.ZIP:
                 code = self.worker.compress(self.task_f, self.filename_cb, self.progress_cb)
-            case ZipClass.UNZIP:
+            case AME.task_manager.Zipper.ZipClass.UNZIP:
                 code = self.worker.decompress(self.task_f, self.filename_cb, self.progress_cb)
         if code == BK.ZipperErrorCode.InvalidZipPassword:
             passwd_f = input("Please input the password: ")
@@ -109,16 +112,16 @@ class ZIPmanager(QThread):
     def _emitRuntimeInfo(self, ID:int, type:Literal['filename', 'progress', 'done'], info:int|float|str):
         match type:
             case 'filename':
-                self.runtime_info.emit(TaskRuntimeInfo(ID=ID, type=type, filename=info))
+                self.runtime_info.emit(runtime_info_type(ID=ID, type=type, filename=info))
             case 'progress':
-                self.runtime_info.emit(TaskRuntimeInfo(ID=ID, type=type, progress=info))
+                self.runtime_info.emit(runtime_info_type(ID=ID, type=type, progress=info))
             case 'done':
-                self.runtime_info.emit(TaskRuntimeInfo(ID=ID, type=type, done=info))
+                self.runtime_info.emit(runtime_info_type(ID=ID, type=type, done=info))
 
 class ExplorerCopier(QThread):
-    runtime_info = Signal(TaskRuntimeInfo)
+    runtime_info = Signal(runtime_info_type)
     stop_signal = Signal()
-    def __init__(self, task_f:TaskInfo):
+    def __init__(self, task_f:AMD.task_manager.TaskInfo):
         super().__init__()
         self.task_f = task_f
         self.worker = Copier()
@@ -130,11 +133,12 @@ class ExplorerCopier(QThread):
         pass
 
 class FileTransfer(QThread):
-    runtime_info = Signal(TaskRuntimeInfo)
+    runtime_info = Signal(runtime_info_type)
     stop_signal = Signal()
-    def __init__(self, task_f:FileTask, sftp_config:Optional[BK.TransferConfig]=None):
+    def __init__(self, task_f:AMD.task_manager.TaskInfo, sftp_config:Optional[BK.TransferConfig]=None):
         super().__init__()
         self.task_f = task_f
+        self.task_data:AMD.task_manager.FileTaskData = task_f.task_data
         self.sftp_config = sftp_config 
         self.stop_sign = False
 
@@ -146,25 +150,25 @@ class FileTransfer(QThread):
         assert isinstance(self.sftp_config, BK.TransferConfig)
         self.worker = BK.SFTPClient(self.sftp_config, self.task_config, self._progress_cb, self._error_cb)
         try:
-            self.worker.transfer(self.task_f.src, self.task_f.dst, type_f)
-            self.runtime_info.emit(TaskRuntimeInfo(ID=self.ID, type='done', done=TransferError.Normal))
+            self.worker.transfer(self.task_data.src, self.task_data.dst, type_f)
+            self.runtime_info.emit(runtime_info_type(ID=self.ID, type='done', done=AME.task_manager.Transfer.ErrorType.Normal))
         except Exception as e:
             if str(e) == 'Canceled':
-                self.runtime_info.emit(TaskRuntimeInfo(ID=self.ID, type='done', done=TransferError.Canceled))
+                self.runtime_info.emit(runtime_info_type(ID=self.ID, type='done', done=AME.task_manager.Transfer.ErrorType.Canceled))
             else:
                 self._error_cb(e)
 
     def _progress_cb(self, src:str, dst:str, size:int):
         if self.stop_sign:
             raise Exception('Canceled')
-        self.runtime_info.emit(TaskRuntimeInfo(ID=self.ID, type='progress', progress=size/self.total_size))
+        self.runtime_info.emit(runtime_info_type(ID=self.ID, type='progress', progress=size/self.total_size))
     
     def _error_cb(self, error:Any):
         try:
             msg = str(error)
         except:
             msg = 'Unknown Error Info'
-        self.runtime_info.emit(TaskRuntimeInfo(ID=self.ID, type='error', error=error, error_msg=msg))
+        self.runtime_info.emit(runtime_info_type(ID=self.ID, type='error', error=error, error_msg=msg))
 
     @Slot()
     def stop(self) -> None:

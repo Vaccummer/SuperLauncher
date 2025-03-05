@@ -1,118 +1,148 @@
-import warnings
+import subprocess
+import wexpect as px
 import sys
-import traceback
-from dataclasses import dataclass, fields
-from functools import partial
-import time
+import threading
+from typing import Optional, Callable
 
+class ScpController:
+    def __init__(self):
+        self.process: Optional[subprocess.Popen] = None
+        self._output_buffer = []
+        self._error_buffer = []
+        self._is_running = False
 
-programm_start_time_color_config = time.time()
-try:
-    from rich.console import Console
-    console = Console(highlight=False)
-    print_r = console.print
-    use_rich = True
-except ImportError:
-    warnings.warn('Module "rich" not found, use "pip install rich" to install it!')
-    use_rich = False
-    console = None
+    def run_scp(
+        self,
+        source: str,
+        destination: str,
+        on_output: Callable[[str], None] = None,
+        on_error: Callable[[str], None] = None,
+        password: str = None
+    ) -> int:
+        """
+        执行 SCP 命令
+        :param source: 源路径（如 user@host:/path）
+        :param destination: 目标路径（如 C:/dest）
+        :param on_output: 实时输出回调
+        :param on_error: 实时错误回调
+        :param password: 密码（非安全方式，建议用密钥）
+        :return: 退出码
+        """
+        # 构建命令（Windows 路径需转义）
+        cmd = ['scp.exe', '-r', '-v', source, destination.replace('\\', '/')]
+        
+        # 启动进程
+        self.process = subprocess.Popen(
+            cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            stdin=subprocess.PIPE,
+            text=True,
+            encoding=sys.stdout.encoding,
+            errors='replace'
+        )
+        
+        # 若需密码，自动输入（非安全！仅演示）
+        if password:
+            self.process.stdin.write(password + '\n')
+            self.process.stdin.flush()
 
+        self._is_running = True
 
-@dataclass
-class TerminalErrorColorConfig:
-    error:tuple = (('color', '#FF0000'), ('bold', False), ('italic', False), ('underline', False), ('strike', False))
+        # 启动线程捕获输出
+        def read_stream(stream, buffer, callback):
+            for line in iter(stream.readline, ''):
+                if not line:
+                    break
+                buffer.append(line)
+                if callback:
+                    callback(line.strip())
+            stream.close()
 
-    message:tuple = (('color', '#FF0000'), ('bold', False), ('italic', False), ('underline', False), ('strike', False))
+        # 输出线程
+        stdout_thread = threading.Thread(
+            target=read_stream,
+            args=(self.process.stdout, self._output_buffer, on_output)
+        )
+        stderr_thread = threading.Thread(
+            target=read_stream,
+            args=(self.process.stderr, self._error_buffer, on_error)
+        )
+        
+        stdout_thread.daemon = True
+        stderr_thread.daemon = True
+        
+        stdout_thread.start()
+        stderr_thread.start()
 
-    date:tuple = (('color', '#1B55DD'), ('bold', False), ('italic', True), ('underline', False), ('strike', False))
+        # 等待进程结束
+        return_code = self.process.wait()
+        self._is_running = False
+        
+        stdout_thread.join(timeout=1)
+        stderr_thread.join(timeout=1)
+        
+        return return_code
 
-    time:tuple = (('color', '#10E46C'), ('bold', False), ('italic', True), ('underline', False), ('strike', False))
+    def stop(self):
+        """终止正在运行的 SCP 进程"""
+        if self.process and self._is_running:
+            self.process.terminate()  # 温和终止
+            try:
+                self.process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                self.process.kill()  # 强制终止
+            self._is_running = False
 
-    text:tuple = (('color', '#DCD7D7'), ('bold', False), ('italic', False), ('underline', False), ('strike', False))
+    def get_output(self) -> str:
+        """获取所有标准输出"""
+        return ''.join(self._output_buffer)
 
-    filename:tuple = (('color', '#189731'), ('bold', False), ('italic', False), ('underline', False), ('strike', False))
+    def get_errors(self) -> str:
+        """获取所有错误输出"""
+        return ''.join(self._error_buffer)
 
-    lineno:tuple = (('color', '#00FF00'), ('bold', False), ('italic', False), ('underline', False), ('strike', False))
+    def is_running(self) -> bool:
+        """检查进程是否在运行"""
+        return self._is_running
 
-    name:tuple = (('color', '#0000FF'), ('bold', False), ('italic', False), ('underline', False), ('strike', False))
+def parse_scp_progress(line: str) -> Optional[float]:
+    """
+    从 SCP 的详细输出中解析进度百分比
+    示例输入: 'Transferred: 1024 bytes, 53% Done, 1.2 MB/s'
+    """
+    if '%' in line:
+        parts = line.split()
+        for part in parts:
+            if '%' in part:
+                percent_str = part.replace('%', '')
+                try:
+                    return float(percent_str)
+                except ValueError:
+                    pass
+    return None
 
-    line:tuple = (('color', '#E6E0E0'), ('bold', False), ('italic', False), ('underline', False), ('strike', False))
+# 使用方式
+def on_stderr(line):
+    percent = parse_scp_progress(line)
+    if percent is not None:
+        print(f"\r进度: {percent}%", end='')
 
-    locals:tuple = (('color', '#000000') , ('bold', False), ('italic', False), ('underline', False), ('strike', False))
+if __name__ == "__main__":
+    import wexpect
+    import re
+    # 启动 Windows cmd.exe
+    child = wexpect.spawn('''scp.exe -r am@172.28.14.64:/home/am/cache "c:/Users/assdasd/hello"''')
 
+    while True:
+        index = child.expect([".*password:", ".+", wexpect.EOF])
+        match index:
+            case 0:
+                child.sendline("1984")
+            case 1:
+                print(child.after)
+                with open('a2.log', 'a', encoding="utf-8") as f:
+                    f.write(f"{re.escape(child.after)}\n") 
+            case 2:
+                break
 
-def tuple_to_style(tuple_list:list[tuple])->str|None:
-    dict_t = dict(tuple_list)
-    start_str = '['
-    list_s = []
-    if not dict_t.get('color'):
-        return None
-    list_s.append(dict_t.get("color"))
-    if dict_t.get('bold'):
-        list_s.append('bold')
-    if dict_t.get('italic'):
-        list_s.append('italic')
-    if dict_t.get('underline'):
-        list_s.append('underline')
-    if dict_t.get('strike'):
-        list_s.append('strike')
-    return start_str + ' '.join(list_s) + ']'
-
-
-# Traceback (most recent call last):
-#   File "d:\SuperLauncher\trial4.py", line 15, in <module>
-#     a = 1/0
-# ZeroDivisionError: division by zero
-
-
-def call_back_exception(exc_type: Exception, exc_value: Exception, exc_traceback: Exception,color_config:TerminalErrorColorConfig=TerminalErrorColorConfig()):
-    # __slots__ = ('filename', 'lineno', 'name', '_line', 'locals')
-    exc_type = exc_type.__name__
-    exc_value = exc_value
-    tb_str_list:list[traceback.FrameSummary] = traceback.extract_tb(exc_traceback)
-    time_str_date = time.strftime('%Y-%m-%d', time.localtime()) 
-    time_str_time = time.strftime('%H:%M:%S', time.localtime())
-
-    if use_rich:
-        print_r(f'{color_config.error}Traceback[/] (Exception at {color_config.date}{time_str_date}[/] {color_config.time}{time_str_time}[/])', highlight=False)
-    else:
-        print(f'Traceback (Exception at {time_str_date} {time_str_time})')
-    for tb in tb_str_list:
-
-        if use_rich:
-            print_r(f'  File {color_config.filename}"{tb.filename}"[/], line {color_config.lineno}{tb.lineno}[/], in {color_config.name}{tb.name}[/]')
-            print_r(f'    {color_config.line}{tb.line}[/]')
-        else:
-            print(f'  File "{tb.filename}", line {tb.lineno}, in {tb.name}')
-            print(f'    {tb.line}')
-        if tb.locals:
-            print(f'  Locals: {tb.locals}')
-
-    if use_rich:
-        print_r(f'{color_config.error}{exc_type}[/]: {color_config.message}{exc_value}[/]')
-        print_r(f'{color_config.text}Launch Time[/]: {color_config.date}{time_str_date}[/] {color_config.time}{time_str_time}[/]')
-        print_r(f"{color_config.text}Exception Time[/]: {color_config.date}{time_str_date}[/] {color_config.time}{time_str_time}[/]")
-        console.print("-" * console.width, style="dim")
-    else:
-        print(f'{exc_type}: {exc_value}')
-        print(f'Launch Time: {time_str_date} {time_str_time}')
-        print(f"Exception Time: {time_str_date} {time_str_time}")
-        print('\n')
-        print('-'*100)
-
-
-
-
-
-
-
-
-
-color_config = TerminalErrorColorConfig()
-
-if use_rich:
-    for name_i in fields(color_config):
-        setattr(color_config, name_i.name, tuple_to_style(getattr(color_config, name_i.name)))
-    
-sys.excepthook = partial(call_back_exception, color_config=color_config)
-a = 2/0

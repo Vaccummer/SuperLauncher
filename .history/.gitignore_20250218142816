@@ -7,4 +7,3 @@ dist
 build
 trial*
 tmp/*
-*.yaml

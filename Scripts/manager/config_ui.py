@@ -12,7 +12,6 @@ from ..tools.toolbox import *
 from .. import global_var as GV
 
 
-
 class Asize(QSize):
     def __init__(self, width:int, height:int):
         super().__init__(width, height)

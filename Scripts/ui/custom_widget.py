@@ -4,8 +4,9 @@ from PySide2.QtWidgets import QPushButton, QWidget, QListWidget, QLineEdit, QMai
 import random
 from typing import Tuple, Union
 # local import
-from ..manager.config_ui import *
+from ..manager.config_ui import UIUpdater, dynamic_load, Udata, process_style_dict
 from ..manager.paths_transfer import *
+from ..tools.toolbox import *
 
 class YohoPushButton(QPushButton):
     right_button_clicked = Signal(dict)
