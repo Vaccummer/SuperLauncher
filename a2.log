@@ -1,148 +1,0 @@
-\ 
-\\
-
-\ 
-\\
-
-start\-systemd\-namespace\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 100%\ \ 920\ \ \ 898\.3KB/s\ \ \ 00:00\ \ \ \ \\
-ubuntu\-wsl2\-systemd\-script\.sh\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 100%\ 2927\ \ \ \ \ 2\.8MB/s\ \ \ 00:00\ \ \ \ \\
-
-README\.md\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 100%\ 1214\ \ \ \ \ 1\.2MB/s\ \ \ 00:00\ \ \ \ \\
-
-enter\-systemd\-namespace\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 100%\ 1832\ \ \ \ \ 1\.8KB/s\ \ \ 00:00\ \ \ \ \\
-
-Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh:Zone\.Identifier\ \ \ 0%\ \ \ \ 0\ \ \ \ \ 0\.0KB/s\ \ \ \-\-:\-Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh:Zone\.Identifier\ 100%\ \ 160\ \ \ \ \ 0\.2KB/s\ \ \ 00:00\ \ \ \ \\
-
-Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ \ 0%\ \ \ \ 0\ \ \ \ \ 0\.0KB/s\ \ \ \-\-:\-\-\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ \ 9%\ \ \ 95MB\ \ 94\.2MB/s\ \ \ 00:10\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 17%\ \ 183MB\ \ 93\.6MB/s\ \ \ 00:09\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 25%\ \ 271MB\ \ 92\.8MB/s\ \ \ 00:08\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 36%\ \ 380MB\ \ 94\.6MB/s\ \ \ 00:07\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 43%\ \ 453MB\ \ 92\.3MB/s\ \ \ 00:06\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 50%\ \ 534MB\ \ 91\.2MB/s\ \ \ 00:05\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 60%\ \ 639MB\ \ 92\.4MB/s\ \ \ 00:04\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 67%\ \ 709MB\ \ 90\.2MB/s\ \ \ 00:03\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 75%\ \ 797MB\ \ 90\.0MB/s\ \ \ 00:02\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 85%\ \ 896MB\ \ 90\.9MB/s\ \ \ 00:01\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 92%\ \ 973MB\ \ 89\.3MB/s\ \ \ 00:00\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ 100%\ 1051MB\ \ 89\.1MB/s\ \ \ 00:11\ \ \ \ \\
-
-trial1\.sh\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 100%\ \ 610\ \ \ 595\.6KB/s\ \ \ 00:00\ \ \ \ \\
-
-ssh:\ connect\ to\ host\ 192\.168\.31\.46\ port\ 22:\ Connection\ timed\ out\\
-C:\\Windows\\System32\\OpenSSH\\scp\.exe:\ Connection\ closed\\
-
-ssh:\ connect\ to\ host\ 192\.168\.31\.46\ port\ 22:\ Connection\ timed\ out\\
-C:\\Windows\\System32\\OpenSSH\\scp\.exe:\ Connection\ closed\\
-
-ssh:\ connect\ to\ host\ 192\.168\.31\.46\ port\ 22:\ Connection\ timed\ out\\
-C:\\Windows\\System32\\OpenSSH\\scp\.exe:\ Connection\ closed\\
-
-ssh:\ connect\ to\ host\ 192\.168\.31\.46\ port\ 22:\ Connection\ timed\ out\\
-C:\\Windows\\System32\\OpenSSH\\scp\.exe:\ Connection\ closed\\
-
-\ 
-\ 
-\ 
-\\
-am@192\.168\.31\.46:\ Permission\ denied\ \(publickey,password,keyboard\-interactive\)\.\\
-C:\\Windows\\System32\\OpenSSH\\scp\.exe:\ Connection\ closed\\
-
-\ 
-\\
-
-\ 
-\\
-
-start\-systemd\-namespace\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 100%\ \ 920\ \ \ 898\.5KB/s\ \ \ 00:00\ \ \ \ \\
-
-ubuntu\-wsl2\-systemd\-script\.sh\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 100%\ 2927\ \ \ \ \ 2\.8MB/s\ \ \ 00:00\ \ \ \ \\
-
-README\.md\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 100%\ 1214\ \ \ \ \ 1\.2MB/s\ \ \ 00:00\ \ \ \ \\
-
-enter\-systemd\-namespace\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 100%\ 1832\ \ \ \ \ 1\.8MB/s\ \ \ 00:00\ \ \ \ \\
-
-Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh:Zone\.Identifier\ \ \ 0%\ \ \ \ 0\ \ \ \ \ 0\.0KB/s\ \ \ \-\-:\-Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh:Zone\.Identifier\ 100%\ \ 160\ \ \ 156\.2KB/s\ \ \ 00:00\ \ \ \ \\
-
-Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ \ 0%\ \ \ \ 0\ \ \ \ \ 0\.0KB/s\ \ \ \-\-:\-\-\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 10%\ \ 108MB\ 105\.4MB/s\ \ \ 00:08\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 17%\ \ 185MB\ 102\.6MB/s\ \ \ 00:08\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 25%\ \ 267MB\ 100\.4MB/s\ \ \ 00:07\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 35%\ \ 377MB\ 101\.2MB/s\ \ \ 00:06\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 42%\ \ 451MB\ \ 98\.5MB/s\ \ \ 00:06\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 51%\ \ 545MB\ \ 97\.9MB/s\ \ \ 00:05\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 61%\ \ 652MB\ \ 98\.5MB/s\ \ \ 00:04\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 68%\ \ 725MB\ \ 95\.9MB/s\ \ \ 00:03\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 77%\ \ 816MB\ \ 95\.3MB/s\ \ \ 00:02\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 86%\ \ 912MB\ \ 95\.5MB/s\ \ \ 00:01\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 93%\ \ 987MB\ \ 93\.4MB/s\ \ \ 00:00\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ 100%\ 1051MB\ \ 89\.9MB/s\ \ \ 00:11\ \ \ \ \\
-trial1\.sh\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 100%\ \ 610\ \ \ 595\.8KB/s\ \ \ 00:00\ \ \ \ \\
-
-\ 
-\\
-
-\ 
-\\
-
-start\-systemd\-namespace\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 100%\ \ 920\ \ \ \ \ 0\.9KB/s\ \ \ 00:00\ \ \ \ \\
-
-ubuntu\-wsl2\-systemd\-script\.sh\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 100%\ 2927\ \ \ \ \ 2\.8MB/s\ \ \ 00:00\ \ \ \ \\
-README\.md\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 100%\ 1214\ \ \ \ \ 1\.2KB/s\ \ \ 00:00\ \ \ \ \\
-enter\-systemd\-namespace\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 100%\ 1832\ \ \ \ \ 1\.8MB/s\ \ \ 00:00\ \ \ \ \\
-
-Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh:Zone\.Identifier\ \ \ 0%\ \ \ \ 0\ \ \ \ \ 0\.0KB/s\ \ \ \-\-:\-Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh:Zone\.Identifier\ 100%\ \ 160\ \ \ \ \ 0\.2KB/s\ \ \ 00:00\ \ \ \ \\
-Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ \ 0%\ \ \ \ 0\ \ \ \ \ 0\.0KB/s\ \ \ \-\-:\-\-\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ \ 8%\ \ \ 87MB\ \ 86\.1MB/s\ \ \ 00:11\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 15%\ \ 163MB\ \ 85\.0MB/s\ \ \ 00:10\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 24%\ \ 261MB\ \ 86\.3MB/s\ \ \ 00:09\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 33%\ \ 355MB\ \ 87\.1MB/s\ \ \ 00:07\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 41%\ \ 434MB\ \ 86\.1MB/s\ \ \ 00:07\ ETA
-\Anaconda3\-2024\.10\-1\-Linux\-x86_64\.sh\ \ \ \ \ \ \ \ \ \ \ \ 51%\ \ 542MB\ \ 88\.2MB/s\ \ \ 00:05\ ETA
-\ 
-\\
-
-\ 
-\\
-
-C:\\Windows\\System32\\OpenSSH\\scp\.exe:\ stat\ remote:\ No\ such\ file\ or\ directory\\
-
-\ 
-\\
-
-\ 
-\\
-
-C:\\Windows\\System32\\OpenSSH\\scp\.exe:\ /home/am/cachsse:\ No\ such\ file\ or\ directory\\
-
-\ 
-\\
-
-\ 
-\\
-
-C:\\Windows\\System32\\OpenSSH\\scp\.exe:\ stat\ remote:\ No\ such\ file\ or\ directory\\
-
-\ 
-\\
-
-\ 
-\\
-
-C:\\Windows\\System32\\OpenSSH\\scp\.exe:\ stat\ remote:\ No\ such\ file\ or\ directory\\
-
-C:\\Windows\\System32\\OpenSSH\\scp\.exe:\ stat\ local\ "c:/asds/asdas":\ No\ such\ file\ or\ directory\\
-
-\ 
-\\
-
-\ 
-\\
-
-C:\\Windows\\System32\\OpenSSH\\scp\.exe:\ /home/am/caasche:\ No\ such\ file\ or\ directory\\
-
-\ 
-\\
-
-C:\\Windows\\System32\\OpenSSH\\scp\.exe:\ mkdir\ c:/Users/assdasd/hello:\ No\ such\ file\ or\ directory\\
-
